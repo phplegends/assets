@@ -1,0 +1,19 @@
+{
+    "name": "phplegends/assets",
+    "description": "Manager of assets to easy integration with various enviroments",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Wallace de Souza",
+            "email": "wallacemaxters@gmail.com"
+        }
+    ],
+    "require": {
+        "php" : ">=5.4"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "PHPLegends\\Assets\\" : "src/Assets"
+        }
+    }
+}
