@@ -37,5 +37,44 @@ class Assets
 	{
 		$assets = new self;
 
+		$manager = $assets->getManager();
+
+		if (isset($config['base'])) {
+
+			$manager->setBaseUri($config['base']);
+		}
+
+		if (isset($config['namespaces']) && is_array($config['namespaces']))
+		{
+			foreach($config['namespaces'] as $namespace => $directory) {
+
+				$manager->addGlobalNamespace($namespace, $directory);
+			}
+		}
+
+		foreach (['css', 'js'] as $assetType) {
+			
+			if (isset($config[$assetType]['namespaces'])) {
+
+				foreach((array) $config[$assetType]['namespaces'] as $namespace => $directory) {
+
+					$manager->addNamespace($namespace, $directory, $assetType);
+				}
+			}
+
+			if (isset($config[$assetType]['add'])) {
+
+				foreach((array) $config[$assetType]['add'] as $file) {
+
+					$manager->add($assetType, $file);
+				}
+			}
+
+		}
+
+
+		return $manager;
+
 	}
+
 }

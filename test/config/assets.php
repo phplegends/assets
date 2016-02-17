@@ -3,12 +3,19 @@
 
 return [
 
+	'base' => 'http://localhost:8000/assets',
+
 	'css' => [
 
-		'uri' => 'http://localhost:8000/assets/css',
-
 		'namespaces' => [
-			'user' => 'user/'
+			'u.editors' => 'css/user/editors',
+			'u.posters' => 'css/user/posters'
+		]
+	],
+
+	'js' => [
+		'namespaces' => [
+			'admin' => 'js/admin'
 		]
 	]
 ];
