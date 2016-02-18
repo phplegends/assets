@@ -2,20 +2,20 @@
 
 namespace PHPLegends\Assets\Collections;
 
-class JavascriptCollection extends AbstractCollection
+class ImageCollection extends AbstractCollection
 {
 	public function getAssetAlias()
 	{
-		return 'js';
+		return 'img';
 	}
 
 	public function buildTag($url, array $attributes = [])
 	{
-		return "<script type='text/javascript' src='{$url}'></script>";
+		return "<img src='{$url}' />";
 	}
 
 	public function getExtensions()
 	{
-		return ['js'];
+		return ['jpg', 'png', 'bmp', 'jpeg'];
 	}
-} 
+}

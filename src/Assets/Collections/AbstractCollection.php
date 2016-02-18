@@ -2,42 +2,69 @@
 
 namespace PHPLegends\Assets\Collections;
 
-abstract class AbstractCollection implements CollectionInterface, TagInterface
+abstract class AbstractCollection implements CollectionInterface
 {
 
     const NAMESPACE_SEPARATOR = ':';
 
+    /**
+    * @var array
+    */
     protected $items = [];
 
+    /**
+    * @var array
+    */
     protected $namespaces = [];
 
-    private $baseUrl;
+    /**
+    * @var string|null
+    */
+    protected $baseUri;
 
-    abstract public function getExtension();
+    /**
+    * @{inheritdoc}
+    */
+    abstract public function getAssetAlias();
 
-    abstract public function buildTag($url);
+    /**
+    * @{inheritdoc}
+    */
+    abstract public function buildTag($url, array $attributes = []);
+
+    public function validateExtension($asset)
+    {
+        $regex = sprintf('/\.(%s)$/i', implode('|', $this->getExtensions()));
+
+        return (boolean) preg_match($regex, $asset);
+    }
+
+    public function setBaseUri($baseUri)
+    {
+        $this->baseUri = rtrim($baseUri, '/') . '/';
+
+        return $this;
+    }
+
+    public function getBaseUri()
+    {
+        return $this->baseUri;
+    }
 
     public function addNamespace($namespace, $dirname)
     {
         $this->namespaces[$namespace] = rtrim($dirname, '/') . '/';
     }
 
-    protected function normalizeAssetName($file)
-    {
-        $regex = sprintf('/(\.%s)$/i', $this->getExtension());
-
-        if (preg_match($regex, $file) == 0) {
-
-            $file .= '.' . $this->getExtension();
-        }
-
-        return $file;
-    }
-
     public function add($file)
     {
+        
+        if (! $this->validateExtension($file)) {
 
-        $file = $this->normalizeAssetName($file);
+            throw new \UnexpectedValueException(
+                sprintf('Invalid extension for "%s"', $this->getAssetAlias())
+            );
+        }
 
         if (strpos($file, '*') !== false) {
 
@@ -52,11 +79,8 @@ abstract class AbstractCollection implements CollectionInterface, TagInterface
         }
 
         $this->items[$file] = $file;
-    }
 
-    public function getItems()
-    {
-        return array_values($this->items);
+        return $this;
     }
 
     protected function parseNamespace($namespace)
@@ -78,16 +102,11 @@ abstract class AbstractCollection implements CollectionInterface, TagInterface
 
     public function getUrls()
     {
-        $urls = [];
+        return array_map(function ($url)
+        {
+            return $this->getBaseUri() . $this->parseNamespace($url);
 
-        foreach ($this->items as $item) {
-
-            $uri = $this->parseNamespace($item);
-
-            $urls[] = $uri;
-        }
-
-        return $urls;
+        }, $this->items);
     }
 
     public function getTags()
@@ -97,5 +116,16 @@ abstract class AbstractCollection implements CollectionInterface, TagInterface
             return $this->buildTag($url);
 
         }, $this->getUrls());
+    }
+
+
+    public function output()
+    {
+        return implode(PHP_EOL, $this->getTags());
+    }
+
+    public function __toString()
+    {
+        return $this->output();
     }
 }

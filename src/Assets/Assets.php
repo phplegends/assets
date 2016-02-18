@@ -4,77 +4,83 @@ namespace PHPLegends\Assets;
 
 use PHPLegends\Assets\Collections\JavascriptCollection;
 use PHPLegends\Assets\Collections\CssCollection;
+use PHPLegends\Assets\Collections\CollectionInterface;
 
 class Assets
 {
-	protected $manager;
+	protected static $config = [];
 
-	public function __construct()
+	public static function create(array $config = [])
 	{
-		$this->manager = new Manager;
+		if (empty($config)) {
 
-		$this->manager->addCollection(new JavascriptCollection);
+			$manager = new Manager;
 
-		$this->manager->addCollection(new CssCollection);
-	}
+			$manager->addCollection(new JavascriptCollection);
 
-	public function getManager()
-	{
-		return $this->manager;
-	}
+			$manager->addCollection(new CssCollection);
 
-	public function manager()
-	{
-		return $this->getManager();
-	}
-
-	public static function create()
-	{
-		return new self;
-	}
-
-	public static function factory(array $config)
-	{
-		$assets = new self;
-
-		$manager = $assets->getManager();
-
-		if (isset($config['base'])) {
-
-			$manager->setBaseUri($config['base']);
-		}
-
-		if (isset($config['namespaces']) && is_array($config['namespaces']))
-		{
-			foreach($config['namespaces'] as $namespace => $directory) {
-
-				$manager->addGlobalNamespace($namespace, $directory);
-			}
-		}
-
-		foreach (['css', 'js'] as $assetType) {
+			return $manager;
 			
-			if (isset($config[$assetType]['namespaces'])) {
-
-				foreach((array) $config[$assetType]['namespaces'] as $namespace => $directory) {
-
-					$manager->addNamespace($namespace, $directory, $assetType);
-				}
-			}
-
-			if (isset($config[$assetType]['add'])) {
-
-				foreach((array) $config[$assetType]['add'] as $file) {
-
-					$manager->add($assetType, $file);
-				}
-			}
-
 		}
 
+		return Manager::createFromConfig($config);
+	}
 
-		return $manager;
+	public static function setConfig(array $config)
+	{
+		static::$config = $config;
+	}
 
+	public static function css(array $cssFiles)
+	{
+		$collection = new CssCollection;
+
+		static::configCollection('css', $collection);
+
+		static::loadFiles($cssFiles, $collection);
+
+		return $collection;
+	}
+
+	public static function js(array $jsFiles)
+	{
+		$collection = new JavascriptCollection;
+
+		static::configCollection('js', $collection);
+
+		static::loadFiles($jsFiles, $collection);
+
+		return $collection;
+	}
+
+	protected static function loadFiles(array $files, CollectionInterface $collection)
+	{
+		foreach ($files as $css) {
+
+			$collection->add($css);
+		}
+
+		return $collection;
+
+	}
+
+	protected static function configCollection($type, CollectionInterface $collection)
+	{
+		if (isset(static::$config[$type]['namespaces'])) {
+
+			foreach (static::$config[$type]['namespaces'] as $namespace => $path) {
+
+				$collection->addNamespace($namespace, $path);
+			}
+		}
+
+		if (isset(static::$config['base'])) {
+
+		    $collection->setBaseUri(static::$config['base']);
+		}
+
+		return $collection;
 	}
 
 }

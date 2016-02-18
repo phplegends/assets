@@ -3,43 +3,32 @@
 namespace PHPLegends\Assets;
 
 use PHPLegends\Assets\Collections\CollectionInterface;
+use PHPLegends\Assets\Collections\CssCollection;
+use PHPLegends\Assets\Collections\JavascriptCollection;
 
 class Manager
 {
     protected $collections;
 
-    protected $baseUri = null;
+    protected $baseUri = null; 
 
-    public function addCollection(CollectionInterface $collection, $type = null)
+    public function addCollection(CollectionInterface $collection)
     {
 
-        if ($type === null) {
+        $assetType = $collection->getAssetAlias();
 
-            $type = $collection->getExtension();
-        }
-
-        $this->collections[$type] = $collection;
+        $this->collections[$assetType] = $collection;
 
         return $this;
     }
 
-    public function addGlobalNamespace($name, $directory)
+    public function addNamespace($namespace, $directory, $assetType = null)
     {
-        foreach (array_keys($this->collections) as $type) {
+        if ($assetType === null) {
 
-            $this->addNamespace($name, $directory, $type);
-        }
+            foreach ($this->collections as $type => $collection) {
 
-        return $this;
-    }
-
-    public function addNamespace($namespace, $directory, $extensionName = null)
-    {
-        if ($extensionName === null) {
-
-            foreach($this->collections as $type => $collection) {
-
-                $suffixedDir = $directory . '/' . $type;
+                $suffixedDir = strtr($directory, ['{path}' => $type]);
 
                 $collection->addNamespace($namespace, $suffixedDir);
             }
@@ -47,18 +36,45 @@ class Manager
             return $this;
         }
 
-        $this->getCollection($extensionName)->addNamespace($namespace, $directory);
+        $this->getCollection($assetType)->addNamespace($namespace, $directory);
 
         return $this;
     }
 
-    public function add($type, $file)
+
+    protected function getCollectionByFileExtension($asset)
     {
-        $this->getCollection($type)->add($file);
+
+        foreach ($this->collections as $collection) {
+
+            if ($collection->validateExtension($asset)) {
+
+                return $this->getCollection($collection->getAssetAlias());
+            }
+        }
+
+        return null;
+    }
+
+    public function add($asset)
+    {
+
+        $collection = $this->getCollectionByFileExtension($asset);
+
+        if ($collection === null) {
+
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'The collection of extension "%s" is not registred',
+                    pathinfo($asset, PATHINFO_EXTENSION)
+                )
+            );
+        }
+
+        $collection->add($asset);
 
         return $this;
     }
-
 
     public function getCollection($type)
     {
@@ -88,46 +104,95 @@ class Manager
         return $this;
     }
 
-    public function getUrls($type = null)
+    public function getUrls()
     {
         $urls = [];
 
         foreach ($this->collections as $collection) {
 
+            if ($this->baseUri) $collection->setBaseUri($this->baseUri);
+
             foreach ($collection->getUrls() as $url) {
 
-                $urls[] = $this->buildUrl($url);
+                $urls[] = $url;
             }
         }
 
         return $urls;
     }
 
-    protected function buildUrl($url)
-    {
-        return $this->baseUri . $url;
-    }
 
-    public function getTags($type = null)
+    public function getTags()
     {
-        $urls = [];
+        $tags = [];
 
         foreach ($this->collections as $collection) {
 
-            foreach ($collection->getUrls() as $url) {
+           if ($this->baseUri) $collection->setBaseUri($this->baseUri);
 
-                $url = $this->buildUrl($url);
+            foreach ($collection->getTags() as $tag) {
 
-                $urls[] = $collection->buildTag($url);
+                $tags[] = $tag;
             }
         }
 
-        return $urls;
+        return $tags;
     }
 
-    public function output($type = null)
+    public function output()
     {
-        return implode(PHP_EOL, $this->getTags($type));
+        return implode(PHP_EOL, $this->getTags());
+    }
+
+
+    public static function createFromConfig(array $config)
+    {
+        $manager = new self;
+
+        $manager->addCollection(new CssCollection);
+
+        $manager->addCollection(new JavascriptCollection);
+
+        if (isset($config['base'])) {
+
+            $manager->setBaseUri($config['base']);
+        }
+
+        if (isset($config['namespaces']) && is_array($config['namespaces'])) {
+
+            foreach($config['namespaces'] as $namespace => $directory) {
+
+                $manager->addGlobalNamespace($namespace, $directory);
+            }
+        }
+
+        foreach (['css', 'js'] as $assetType) {
+            
+            if (isset($config[$assetType]['namespaces'])) {
+
+                foreach((array) $config[$assetType]['namespaces'] as $namespace => $directory) {
+
+                    $manager->addNamespace($namespace, $directory, $assetType);
+                }
+            }
+
+            if (isset($config[$assetType]['add'])) {
+
+                foreach((array) $config[$assetType]['add'] as $file) {
+
+                    $manager->add($assetType, $file);
+                }
+            }
+
+        }
+
+        return $manager;
+
+    }
+
+    public function __toString()
+    {
+        return $this->output();
     }
 
 }
