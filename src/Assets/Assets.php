@@ -3,6 +3,7 @@
 namespace PHPLegends\Assets;
 
 use PHPLegends\Assets\Collections\JavascriptCollection;
+use PHPLegends\Assets\Collections\ImageCollection;
 use PHPLegends\Assets\Collections\CssCollection;
 use PHPLegends\Assets\Collections\CollectionInterface;
 
@@ -10,77 +11,79 @@ class Assets
 {
 	protected static $config = [];
 
-	public static function create(array $config = [])
-	{
-		if (empty($config)) {
-
-			$manager = new Manager;
-
-			$manager->addCollection(new JavascriptCollection);
-
-			$manager->addCollection(new CssCollection);
-
-			return $manager;
-			
-		}
-
-		return Manager::createFromConfig($config);
-	}
-
 	public static function setConfig(array $config)
 	{
 		static::$config = $config;
 	}
 
-	public static function css(array $cssFiles)
+	public static function image($assets)
 	{
-		$collection = new CssCollection;
+		$collection = (new ImageCollection)->addArray((array) $assets);
 
-		static::configCollection('css', $collection);
-
-		static::loadFiles($cssFiles, $collection);
-
-		return $collection;
+		return static::configureCollection($collection);
 	}
 
-	public static function js(array $jsFiles)
+	public static function style($assets)
 	{
-		$collection = new JavascriptCollection;
+		$collection = (new CssCollection)->addArray((array) $assets);
 
-		static::configCollection('js', $collection);
-
-		static::loadFiles($jsFiles, $collection);
-
-		return $collection;
+		return static::configureCollection($collection);
 	}
 
-	protected static function loadFiles(array $files, CollectionInterface $collection)
+	public static function add(array $assets)
 	{
-		foreach ($files as $css) {
-
-			$collection->add($css);
-		}
-
-		return $collection;
-
+		return  static::createManager()
+							->addCollection(new JavascriptCollection)
+							->addCollection(new CssCollection)
+							->addCollection(new ImageCollection);
 	}
 
-	protected static function configCollection($type, CollectionInterface $collection)
+	public static function script($assets)
 	{
-		if (isset(static::$config[$type]['namespaces'])) {
+		$collection = (new JavascriptCollection)->addArray((array) $assets);
 
-			foreach (static::$config[$type]['namespaces'] as $namespace => $path) {
+		return static::configureCollection($collection);
+	}
 
-				$collection->addNamespace($namespace, $path);
-			}
-		}
+	protected static function createManager()
+	{
+		$manager = new Manager;
 
 		if (isset(static::$config['base'])) {
 
-		    $collection->setBaseUri(static::$config['base']);
+		    $manager->setBaseUri(static::$config['base']);
 		}
 
-		return $collection;
+		// Defines the nampesace globally
+
+		if (isset(static::$config['namespaces']) ) {
+
+			foreach ((array) static::$config['namespaces'] as $namespace => $path) {
+
+				$manager->addNamespace($namespace, $path);
+			}	
+		}
+
+		return $manager;
+	}
+
+	protected static function configureCollection(CollectionInterface $collection)
+	{
+		$manager = static::createManager();
+
+		$manager->addCollection($collection);
+
+		$type = $collection->getAssetAlias();
+
+		if (isset(static::$config[$type]['namespaces'])) {
+
+			foreach ((array) static::$config[$type]['namespaces'] as $namespace => $path) {
+
+				$collection->addNamespace($namespace, $path, $type);
+			}
+		}
+
+		return $manager;
 	}
 
 }

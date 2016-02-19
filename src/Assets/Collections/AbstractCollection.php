@@ -56,17 +56,16 @@ abstract class AbstractCollection implements CollectionInterface
         $this->namespaces[$namespace] = rtrim($dirname, '/') . '/';
     }
 
-    public function add($file)
+    public function add($asset)
     {
-        
-        if (! $this->validateExtension($file)) {
+        if (! $this->validateExtension($asset)) {
 
             throw new \UnexpectedValueException(
                 sprintf('Invalid extension for "%s"', $this->getAssetAlias())
             );
         }
 
-        if (strpos($file, '*') !== false) {
+        if (strpos($asset, '*') !== false) {
 
             $glob = $this->parseNamespace($file);
 
@@ -78,7 +77,16 @@ abstract class AbstractCollection implements CollectionInterface
             return $this;
         }
 
-        $this->items[$file] = $file;
+        $asset = $this->parseNamespace($asset);
+
+        $this->items[$asset] = $asset;
+
+        return $this;
+    }
+
+    public function addArray(array $assets)
+    {
+        foreach ($assets as $asset) $this->add($asset);
 
         return $this;
     }
@@ -104,7 +112,7 @@ abstract class AbstractCollection implements CollectionInterface
     {
         return array_map(function ($url)
         {
-            return $this->getBaseUri() . $this->parseNamespace($url);
+            return $this->getBaseUri() . $url;
 
         }, $this->items);
     }

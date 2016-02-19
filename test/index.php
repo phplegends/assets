@@ -12,26 +12,37 @@ $config = [
 
     'base' => 'http://localhost:8000/assets',
 
-    'css' => [
-
-        'namespaces' => [
-            'u.editors' => 'css/user/editors',
-            'u.posters' => 'css/user/posters'
-        ]
+    'namespaces' => [
+        'admin'        => '{asset}/admin/',
+        'user.editors' => '{asset}/user/editors',
+        'user.posters' => '{asset}/user/posters',
     ],
 
-    'js' => [
-        'namespaces' => [
-            'admin' => 'js/admin'
-        ] 
-    ]
+    // 'css' => [
+
+    //     'namespaces' => [
+    //         'u.editors' => 'css/user/editors',
+    //         'u.posters' => 'css/user/posters'
+    //     ]
+    // ],
+
+    // 'js' => [
+    //     'namespaces' => [
+    //         'admin' => 'js/admin'
+    //     ] 
+    // ]
 ];
 
 
 Assets::setConfig($config);
 
-echo Assets::css(['u.editors:default.css']);
 
-echo Assets::css(['u.posters:post.css']);
+var_dump(Assets::add(['x.js']));
 
-echo Assets::js(['admin:default.js']);
+echo Assets::style('user.editors:default.css');
+
+echo Assets::style('user.posters:post.css');
+
+echo Assets::script(['admin:default.js']);
+
+echo Assets::script(['admin:default.js']);
