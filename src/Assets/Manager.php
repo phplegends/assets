@@ -8,16 +8,24 @@ use PHPLegends\Assets\Collections\JavascriptCollection;
 
 class Manager
 {
-    protected $collections;
+    protected $collections = [];
 
     protected $baseUri = null; 
+
+    protected $namespaceWildcard = '{asset}';
+
+    protected $namespaces = [];
+
 
     public function addCollection(CollectionInterface $collection)
     {
 
-        $assetType = $collection->getAssetAlias();
+        foreach ($this->namespaces as $namespace => $path) {
 
-        $this->collections[$assetType] = $collection;
+            $collection->addNamespace($namespace, $path);
+        }
+
+        $this->collections[$collection->getAssetAlias()] = $collection;
 
         return $this;
     }
@@ -26,9 +34,11 @@ class Manager
     {
         if ($assetType === null) {
 
+            $this->namespaces[$namespace] = $directory;
+
             foreach ($this->collections as $type => $collection) {
 
-                $suffixedDir = strtr($directory, ['{path}' => $type]);
+                $suffixedDir = strtr($directory, [$this->getNamespaceWildcard() => $type]);
 
                 $collection->addNamespace($namespace, $suffixedDir);
             }
@@ -193,6 +203,28 @@ class Manager
     public function __toString()
     {
         return $this->output();
+    }
+
+    /**
+    * Set wildcard character for namespace definition
+    * @param string $wildcard
+    * @return 
+    */
+    public function setNamespaceWildcard($wildcard)
+    {
+
+        $this->namespaceWildcard = sprintf('{%s}', $wildcard);
+
+        return $this;
+    }
+
+    /**
+    * Get Asset Wildcard for namespace
+    * @return string
+    */
+    public function getNamespaceWildcard()
+    {
+        return $this->namespaceWildcard;
     }
 
 }

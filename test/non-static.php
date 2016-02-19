@@ -16,13 +16,11 @@ $manager->addCollection(new CssCollection);
 
 $manager->addCollection(new ImageCollection);
 
-// global 
+$manager->addNamespace('admin', '/assets/{asset}/admin');
 
-$manager->addNamespace('admin', 'assets/{path}/admin');
+$manager->addNamespace('user', '/assets/{asset}/user');
 
-$manager->addNamespace('user', 'assets/css/user', 'css');
-
-$manager->setBaseUri('http://localhost:8000');
+//$manager->setBaseUri('http://localhost:8000');
 
 $manager->add('admin:default.js')
 		->add('admin:default.css')
