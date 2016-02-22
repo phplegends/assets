@@ -21,12 +21,15 @@ class Manager
     /**
     * @var string
     */
-
     protected $baseUri;
 
     public function __construct(array $collections = [])
     {
-        foreach ($collections as $collection) $this->addCollection($collection);
+        foreach ($collections as $collection) {
+
+            $this->addCollection($collection);
+
+        }
     }
 
     public function addCollection(CollectionInterface $collection)
@@ -46,7 +49,7 @@ class Manager
     public function add($asset)
     {
 
-        $collection = $this->getCollectionByFileExtension($asset);
+        $collection = $this->findCollectionByFileExtension($asset);
 
         if ($collection === null) {
 
@@ -73,7 +76,7 @@ class Manager
         return $this;
     }
 
-    protected function getCollectionByFileExtension($asset)
+    protected function findCollectionByFileExtension($asset)
     {
 
         foreach ($this->collections as $collection) {
@@ -107,18 +110,6 @@ class Manager
         return $items;
     }
 
-    protected function collectionToList()
-    {
-        $merge = [];
-
-        foreach ($this->collections as $colletion) {
-
-            $merge = array_merge($merge, $collection->all());
-        }
-
-        return $merge;
-    }
-
     protected function collectionToMappedList(callable $callback)
     {
         $items = [];
@@ -143,6 +134,21 @@ class Manager
     public function getBaseUri()
     {
         return $this->baseUri;
+    }
+
+    public function output()
+    {
+        return implode(PHP_EOL, $this->getTags());
+    }
+
+    public function __toString()
+    {
+        return $this->output();
+    }
+
+    protected function getAbsolutePath($asset)
+    {
+        return realpath($this->parsePathAlias($asset));
     }
 
     protected function extractPathAlias($path)
@@ -179,7 +185,7 @@ class Manager
 
     protected function parsePathWildcards($path, $asset)
     {
-        $collection = $this->getCollectionByFileExtension($asset);
+        $collection = $this->findCollectionByFileExtension($asset);
 
         return strtr($path, ['{folder}' => $collection->getAssetAlias()]);
     }
@@ -189,15 +195,7 @@ class Manager
         return $this->getBaseUri() . $this->parsePathAlias($asset);
     }
 
-    public function output()
-    {
-        return implode(PHP_EOL, $this->getTags());
-    }
-
-    public function __toString()
-    {
-        return $this->output();
-    }
+    
 
 }
 

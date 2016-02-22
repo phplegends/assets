@@ -4,14 +4,24 @@ namespace PHPLegends\Assets\Collections;
 
 class CssCollection extends AbstractCollection
 {
+	protected $attributes = [
+		'rel' => 'stylesheet',
+		'type' => 'text/css'
+	];
+
 	public function getAssetAlias()
 	{
 		return 'css';
 	}
 
-	public function buildTag($url, array $attributes = [])
+	public function buildTag($url)
 	{
-		return "<link rel='stylesheet' type='text/css' href='{$url}' />";
+		
+		$attributes = ['href' => $url] + $this->attributes;
+
+		$attr = $this->createHtmlAttributes($attributes);
+
+		return "<link {$attr}/>";
 	}
 
 	public function getExtensions()

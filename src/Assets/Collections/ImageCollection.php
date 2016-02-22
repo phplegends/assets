@@ -4,14 +4,19 @@ namespace PHPLegends\Assets\Collections;
 
 class ImageCollection extends AbstractCollection
 {
+
 	public function getAssetAlias()
 	{
 		return 'img';
 	}
 
-	public function buildTag($url, array $attributes = [])
+	public function buildTag($asset)
 	{
-		return "<img src='{$url}' />";
+		$attributes = ['src' => $asset] + $this->attributes;
+
+		$attr = $this->createHtmlAttributes($attributes);
+
+		return "<img {$attr}/>";
 	}
 
 	public function getExtensions()
