@@ -8,6 +8,11 @@ abstract class AbstractCollection implements CollectionInterface
     /**
     * @var array
     */
+    protected $attributes = [];
+
+    /**
+    * @var array
+    */
     protected $items = [];
 
     /**
@@ -18,7 +23,7 @@ abstract class AbstractCollection implements CollectionInterface
     /**
     * @{inheritdoc}
     */
-    abstract public function buildTag($url, array $attributes = []);
+    abstract public function buildTag($url);
 
     /**
     * @param string $asset
@@ -59,5 +64,33 @@ abstract class AbstractCollection implements CollectionInterface
     public function all()
     {
         return $this->items;
+    }
+
+    protected function createHtmlAttributes(array $attributes)
+    {
+        $output = [];
+
+        foreach ($attributes as $name => $attribute) {
+
+            $attribute = htmlspecialchars($attribute);
+
+            if (is_integer($name)) {
+
+                $output[] = "{$attribute}";
+
+                continue;
+            }
+
+            $output[] = "{$name}=\"{$attribute}\"";
+        }
+
+        return implode(' ', $output);
+    }
+
+    public function setAttributes(array $attributes)
+    {
+        $this->attributes = $attributes + $this->attributes;
+
+        return $this;
     }
 }

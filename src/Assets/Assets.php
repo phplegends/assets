@@ -16,18 +16,18 @@ class Assets
 		static::$config = $config;
 	}
 
-	public static function image($assets)
+	public static function image($assets, array $attributes = [])
 	{
-		$collection = (new ImageCollection)->addArray((array) $assets);
+		$collection = (new ImageCollection)->setAttributes($attributes);
 
-		return static::configureCollection($collection);
+		return static::configureCollection($collection)->addArray((array) $assets);
 	}
 
-	public static function style($assets)
+	public static function style($assets, array $attributes = [])
 	{
-		$collection = (new CssCollection)->addArray((array) $assets);
+		$collection = (new CssCollection)->setAttributes($attributes);
 
-		return static::configureCollection($collection);
+		return static::configureCollection($collection)->addArray((array) $assets);
 	}
 
 	public static function add(array $assets)
@@ -39,11 +39,12 @@ class Assets
 							->addArray($assets);
 	}
 
-	public static function script($assets)
+	public static function script($assets, array $attributes = [])
 	{
-		$collection = (new JavascriptCollection)->addArray((array) $assets);
+		$collection = (new JavascriptCollection)->setAttributes($attributes);
 
-		return static::configureCollection($collection);
+		return static::configureCollection($collection)
+					  ->addArray((array) $assets);
 	}
 
 	protected static function createManager()
@@ -73,16 +74,6 @@ class Assets
 		$manager = static::createManager();
 
 		$manager->addCollection($collection);
-
-		$type = $collection->getAssetAlias();
-
-		if (isset(static::$config[$type]['namespaces'])) {
-
-			foreach ((array) static::$config[$type]['namespaces'] as $namespace => $path) {
-
-				$collection->addNamespace($namespace, $path, $type);
-			}
-		}
 
 		return $manager;
 	}

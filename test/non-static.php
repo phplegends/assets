@@ -4,6 +4,7 @@
 include_once __DIR__ . '/../vendor/autoload.php';
 
 use PHPLegends\Assets\Manager;
+use PHPLegends\Assets\Concatenator;
 use PHPLegends\Assets\Collections\JavascriptCollection;
 use PHPLegends\Assets\Collections\CssCollection;
 use PHPLegends\Assets\Collections\ImageCollection;
@@ -28,3 +29,10 @@ $manager->add('js.adm:default.js')
 		->add('img.adm:default.png');
 
 echo $manager->output();
+
+$concat = new Concatenator([
+	'./assets/css/admin/default.css',
+	'./assets/css/user/index.css',
+]);
+
+$concat->save('./assets/css');

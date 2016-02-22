@@ -4,14 +4,20 @@ namespace PHPLegends\Assets\Collections;
 
 class JavascriptCollection extends AbstractCollection
 {
+	protected $attributes = ['type' => 'text/javascript'];
+
 	public function getAssetAlias()
 	{
 		return 'js';
 	}
 
-	public function buildTag($url, array $attributes = [])
+	public function buildTag($asset)
 	{
-		return "<script type='text/javascript' src='{$url}'></script>";
+		$attributes = ['src' => $asset] + $this->attributes;
+
+		$attr = $this->createHtmlAttributes($attributes);
+
+		return "<script {$attr}></script>";
 	}
 
 	public function getExtensions()

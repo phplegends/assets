@@ -18,7 +18,7 @@ interface CollectionInterface
     * @param string $url
     * @param array $attributes
     */
-    public function buildTag($url, array $attributes = []);
+    public function buildTag($asset);
 
     /**
     * Retrieves the alias of collection 
