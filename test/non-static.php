@@ -8,25 +8,23 @@ use PHPLegends\Assets\Collections\JavascriptCollection;
 use PHPLegends\Assets\Collections\CssCollection;
 use PHPLegends\Assets\Collections\ImageCollection;
 
-$manager = new Manager;
+$manager = new Manager([
+	new JavascriptCollection,
+	new CssCollection,
+	new ImageCollection,
+]);
 
-$manager->addCollection(new JavascriptCollection);
 
-$manager->addCollection(new CssCollection);
+$manager->addPathAlias('js.adm', '/assets/js/admin');
 
-$manager->addCollection(new ImageCollection);
+$manager->addPathAlias('css.adm', '/assets/css/user');
 
-$manager->addNamespace('admin', '/assets/{asset}/admin');
+$manager->addPathAlias('img.adm', '/assets/img/user');
 
-$manager->addNamespace('user', '/assets/{asset}/user');
-
-//$manager->setBaseUri('http://localhost:8000');
-
-$manager->add('admin:default.js')
-		->add('admin:default.css')
-		->add('user:default.css')
-		->add('admin:default.jpg')
-		->add('admin:default.jpeg')
-		->add('admin:default.png');
+$manager->add('js.adm:default.js')
+		->add('css.adm:default.css')
+		->add('js.adm:default.jpg')
+		->add('img.adm:default.jpeg')
+		->add('img.adm:default.png');
 
 echo $manager->output();

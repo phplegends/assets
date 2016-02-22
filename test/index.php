@@ -8,41 +8,19 @@ use PHPLegends\Assets\Collections\JavascriptCollection;
 use PHPLegends\Assets\Collections\CssCollection;
 use PHPLegends\Assets\Assets;
 
-$config = [
+Assets::setConfig([
+    //'base_uri' 		=> 'https://assets.my-site.com.br/',
+    'path_alias' 	=> [
+		'css.posts' => 'assets/css/posts',
+		'js.admin'  => 'assets/js/admin',
+		'admin'     => 'asset/{folder}/admin'
+    ], 
+]);
 
-    'base' => 'http://localhost:8000/assets',
-
-    'namespaces' => [
-        'admin'        => '{asset}/admin/',
-        'user.editors' => '{asset}/user/editors',
-        'user.posters' => '{asset}/user/posters',
-    ],
-
-    // 'css' => [
-
-    //     'namespaces' => [
-    //         'u.editors' => 'css/user/editors',
-    //         'u.posters' => 'css/user/posters'
-    //     ]
-    // ],
-
-    // 'js' => [
-    //     'namespaces' => [
-    //         'admin' => 'js/admin'
-    //     ] 
-    // ]
-];
-
-
-Assets::setConfig($config);
-
-
-var_dump(Assets::add(['x.js']));
-
-echo Assets::style('user.editors:default.css');
-
-echo Assets::style('user.posters:post.css');
-
-echo Assets::script(['admin:default.js']);
-
-echo Assets::script(['admin:default.js']);
+echo Assets::add([
+    'css.posts:default.css',
+    'css.posts:post.css',
+    'js.admin:default.js',
+    'admin:teste.js',
+    'admin:default.css'
+]);
