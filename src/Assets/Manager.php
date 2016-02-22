@@ -8,62 +8,39 @@ use PHPLegends\Assets\Collections\JavascriptCollection;
 
 class Manager
 {
+    /**
+    * @var array
+    */
     protected $collections = [];
 
-    protected $baseUri = null; 
+    /**
+    * @var
+    */
+    protected $paths = [];
 
-    protected $namespaceWildcard = '{asset}';
+    /**
+    * @var string
+    */
 
-    protected $namespaces = [];
+    protected $baseUri;
 
+    public function __construct(array $collections = [])
+    {
+        foreach ($collections as $collection) $this->addCollection($collection);
+    }
 
     public function addCollection(CollectionInterface $collection)
     {
-
-        foreach ($this->namespaces as $namespace => $path) {
-
-            $collection->addNamespace($namespace, $path);
-        }
-
         $this->collections[$collection->getAssetAlias()] = $collection;
 
         return $this;
     }
 
-    public function addNamespace($namespace, $directory, $assetType = null)
+    public function addPathAlias($name, $directory)
     {
-        if ($assetType === null) {
-
-            $this->namespaces[$namespace] = $directory;
-
-            foreach ($this->collections as $type => $collection) {
-
-                $suffixedDir = strtr($directory, [$this->getNamespaceWildcard() => $type]);
-
-                $collection->addNamespace($namespace, $suffixedDir);
-            }
-
-            return $this;
-        }
-
-        $this->getCollection($assetType)->addNamespace($namespace, $directory);
+        $this->paths[$name] = '/' . trim($directory, '/') . '/';
 
         return $this;
-    }
-
-
-    protected function getCollectionByFileExtension($asset)
-    {
-
-        foreach ($this->collections as $collection) {
-
-            if ($collection->validateExtension($asset)) {
-
-                return $this->getCollection($collection->getAssetAlias());
-            }
-        }
-
-        return null;
     }
 
     public function add($asset)
@@ -73,27 +50,94 @@ class Manager
 
         if ($collection === null) {
 
-            throw new \InvalidArgumentException(
-                sprintf(
-                    'The collection of extension "%s" is not registred',
-                    pathinfo($asset, PATHINFO_EXTENSION)
-                )
+            $message =  sprintf(
+                'The collection of extension "%s" is not registred',
+                pathinfo($asset, PATHINFO_EXTENSION)
             );
+
+            throw new \InvalidArgumentException($message);
         }
+
+        $asset = $this->buildUrl($asset);
 
         $collection->add($asset);
 
         return $this;
     }
 
-    public function getCollection($type)
+    public function addArray(array $assets)
     {
-        if (! isset($this->collections[$type])) {
 
-            throw new \UnexpectedValueException(sprintf('Type %s collection is not added in manager', $type));
+        foreach ($assets as $asset) $this->add($asset);
+
+        return $this;
+    }
+
+    protected function getCollectionByFileExtension($asset)
+    {
+
+        foreach ($this->collections as $collection) {
+
+            if ($collection->validateExtension($asset)) {
+
+                return $collection;
+            }
         }
 
-        return $this->collections[$type];
+        return null;
+    }
+
+    public function getTags()
+    {
+        return $this->collectionToMappedList(function ($item, $collection)
+        {
+            return $collection->buildTag($item);
+        });
+    }
+
+    protected function mapCollection(CollectionInterface $collection, callable $callback)
+    {
+        $items = [];
+
+        foreach ($collection->all() as $item)  {
+
+            $items[] = $callback($item, $collection);
+        }
+
+        return $items;
+    }
+
+    protected function collectionToList()
+    {
+        $merge = [];
+
+        foreach ($this->collections as $colletion) {
+
+            $merge = array_merge($merge, $collection->all());
+        }
+
+        return $merge;
+    }
+
+    protected function collectionToMappedList(callable $callback)
+    {
+        $items = [];
+
+        foreach ($this->collections as $collection) {
+
+            $items = array_merge(
+                $items, $this->mapCollection($collection, $callback)
+            );
+        }
+
+        return $items;
+    }
+
+    public function setBaseUri($uri)
+    {
+        $this->baseUri = rtrim($uri, '/');
+
+        return $this;
     }
 
     public function getBaseUri()
@@ -101,52 +145,48 @@ class Manager
         return $this->baseUri;
     }
 
-    public function setBaseUri($baseUri)
+    protected function extractPathAlias($path)
     {
+        $separator = ':';
 
-        if (! filter_var($baseUri, FILTER_VALIDATE_URL)) {
+        if (strpos($path, $separator) === false) {
 
-            throw new \UnexpectedValueException('The value passed must be a url');
+            return [null, $path];
         }
 
-        $this->baseUri = rtrim($baseUri, '/') . '/';
-
-        return $this;
+        return explode($separator, $path);
     }
 
-    public function getUrls()
+    protected function parsePathAlias($path)
     {
-        $urls = [];
+        list($alias, $asset) = $this->extractPathAlias($path);
 
-        foreach ($this->collections as $collection) {
+        if ($alias === null) return $asset;
 
-            if ($this->baseUri) $collection->setBaseUri($this->baseUri);
+        if (! isset($this->paths[$alias])) {
 
-            foreach ($collection->getUrls() as $url) {
-
-                $urls[] = $url;
-            }
+            throw new \UnexpectedValueException(
+                "Alias '{$alias}' doesnt registred"
+            );
         }
 
-        return $urls;
+        $path = $this->paths[$alias];
+
+        $path = $this->parsePathWildcards($path, $asset);
+
+        return $path . $asset;
     }
 
-
-    public function getTags()
+    protected function parsePathWildcards($path, $asset)
     {
-        $tags = [];
+        $collection = $this->getCollectionByFileExtension($asset);
 
-        foreach ($this->collections as $collection) {
+        return strtr($path, ['{folder}' => $collection->getAssetAlias()]);
+    }
 
-           if ($this->baseUri) $collection->setBaseUri($this->baseUri);
-
-            foreach ($collection->getTags() as $tag) {
-
-                $tags[] = $tag;
-            }
-        }
-
-        return $tags;
+    protected function buildUrl($asset)
+    {
+        return $this->getBaseUri() . $this->parsePathAlias($asset);
     }
 
     public function output()
@@ -154,77 +194,9 @@ class Manager
         return implode(PHP_EOL, $this->getTags());
     }
 
-
-    public static function createFromConfig(array $config)
-    {
-        $manager = new self;
-
-        $manager->addCollection(new CssCollection);
-
-        $manager->addCollection(new JavascriptCollection);
-
-        if (isset($config['base'])) {
-
-            $manager->setBaseUri($config['base']);
-        }
-
-        if (isset($config['namespaces']) && is_array($config['namespaces'])) {
-
-            foreach($config['namespaces'] as $namespace => $directory) {
-
-                $manager->addGlobalNamespace($namespace, $directory);
-            }
-        }
-
-        foreach (['css', 'js'] as $assetType) {
-            
-            if (isset($config[$assetType]['namespaces'])) {
-
-                foreach((array) $config[$assetType]['namespaces'] as $namespace => $directory) {
-
-                    $manager->addNamespace($namespace, $directory, $assetType);
-                }
-            }
-
-            if (isset($config[$assetType]['add'])) {
-
-                foreach((array) $config[$assetType]['add'] as $file) {
-
-                    $manager->add($assetType, $file);
-                }
-            }
-
-        }
-
-        return $manager;
-
-    }
-
     public function __toString()
     {
         return $this->output();
-    }
-
-    /**
-    * Set wildcard character for namespace definition
-    * @param string $wildcard
-    * @return 
-    */
-    public function setNamespaceWildcard($wildcard)
-    {
-
-        $this->namespaceWildcard = sprintf('{%s}', $wildcard);
-
-        return $this;
-    }
-
-    /**
-    * Get Asset Wildcard for namespace
-    * @return string
-    */
-    public function getNamespaceWildcard()
-    {
-        return $this->namespaceWildcard;
     }
 
 }

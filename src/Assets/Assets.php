@@ -35,7 +35,8 @@ class Assets
 		return  static::createManager()
 							->addCollection(new JavascriptCollection)
 							->addCollection(new CssCollection)
-							->addCollection(new ImageCollection);
+							->addCollection(new ImageCollection)
+							->addArray($assets);
 	}
 
 	public static function script($assets)
@@ -49,18 +50,18 @@ class Assets
 	{
 		$manager = new Manager;
 
-		if (isset(static::$config['base'])) {
-
-		    $manager->setBaseUri(static::$config['base']);
-		}
-
 		// Defines the nampesace globally
 
-		if (isset(static::$config['namespaces']) ) {
+		if (isset(static::$config['base_uri'])) {
 
-			foreach ((array) static::$config['namespaces'] as $namespace => $path) {
+			$manager->setBaseUri(static::$config['base_uri']);
+		}
 
-				$manager->addNamespace($namespace, $path);
+		if (isset(static::$config['path_alias']) ) {
+
+			foreach ((array) static::$config['path_alias'] as $alias => $path) {
+
+				$manager->addPathAlias($alias, $path);
 			}	
 		}
 

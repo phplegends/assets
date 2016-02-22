@@ -12,12 +12,6 @@ interface CollectionInterface
 	*/
     public function add($asset);
 
-    /**
-    * Add alias for a directory in collection
-    * @param string $namespace
-    * @param string $directory
-    */
-    public function addNamespace($namespace, $directory);
 
     /**
     * Retrieves the content tag with url of asset
@@ -32,26 +26,9 @@ interface CollectionInterface
     public function getAssetAlias();
 
     /**
-    * Get all tags of collection
-    * @return array
+    * Get all items
     */
-    public function getTags();
-
-    /**
-    * Get all urls of asset collection
-    */
-    public function getUrls();
-
-    /**
-    * Determines the base uri for assets
-    * @param string $baseUri
-    */
-    public function setBaseUri($baseUri);
-
-    /**
-    * @return string
-    */
-    public function getBaseUri();
+    public function all();
 
     /**
     * Validates the file extension of asset

@@ -4,8 +4,40 @@
 		"selected_items":
 		[
 			[
+				"getT",
+				"getAssetAlias"
+			],
+			[
+				"get",
+				"getCollectionByFileExtension〔function〕"
+			],
+			[
+				"build",
+				"buildUrl"
+			],
+			[
+				"base",
+				"base_uri"
+			],
+			[
+				"call_us",
+				"call_user_func_array〔function〕"
+			],
+			[
+				"p",
+				"parsePathAlias〔function〕"
+			],
+			[
+				"se",
+				"$separator〔variable〕"
+			],
+			[
 				"add",
-				"addNamespace〔function〕"
+				"addCollection〔function〕"
+			],
+			[
+				"call",
+				"$callback〔variable〕"
 			],
 			[
 				"crea",
@@ -46,14 +78,6 @@
 			[
 				"g",
 				"getAssetAlias〔function〕"
-			],
-			[
-				"base",
-				"baseUri"
-			],
-			[
-				"get",
-				"getBaseUri〔function〕"
 			],
 			[
 				"PAT",
@@ -210,10 +234,6 @@
 			[
 				"Un",
 				"UnexpectedValueException"
-			],
-			[
-				"p",
-				"$propertyName〔variable〕"
 			],
 			[
 				"Reflect",
@@ -416,10 +436,6 @@
 				"Iterator"
 			],
 			[
-				"call",
-				"$callbacks〔variable〕"
-			],
-			[
 				"callab",
 				"callables"
 			],
@@ -498,48 +514,48 @@
 			[
 				"tag",
 				"tag_p_texto	function"
-			],
-			[
-				"ajax",
-				"ajaxOptions〔variable〕"
-			],
-			[
-				"str",
-				"strCPF〔argument〕"
-			],
-			[
-				"insti",
-				"$instituicao_id〔variable〕"
-			],
-			[
-				"inst",
-				"$instituicao_id〔variable〕"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "Assets/Manager.php",
+			"file": "src/Assets/Assets.php",
 			"settings":
 			{
-				"buffer_size": 5050,
+				"buffer_size": 1971,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Assets.php",
+			"file": "test/non-static.php",
 			"settings":
 			{
-				"buffer_size": 1947,
+				"buffer_size": 699,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Collections/JavascriptCollection.php",
+			"file": "src/Assets/Manager.php",
 			"settings":
 			{
-				"buffer_size": 348,
+				"buffer_size": 3860,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/index.php",
+			"settings":
+			{
+				"buffer_size": 580,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Assets/Collections/AbstractCollection.php",
+			"settings":
+			{
+				"buffer_size": 1199,
 				"line_ending": "Unix"
 			}
 		}
@@ -803,7 +819,7 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 400.0,
+		"height": 183.0,
 		"last_filter": "php",
 		"selected_items":
 		[
@@ -1358,15 +1374,27 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/var/www/assets",
+		"/var/www/assets/src",
+		"/var/www/assets/src/Assets",
+		"/var/www/assets/src/Assets/Collections",
+		"/var/www/assets/test",
+		"/var/www/assets/test/assets"
+	],
 	"file_history":
 	[
-		"/var/www/assets/test/index.php",
-		"/home/wallace/Área de Trabalho/senha",
-		"/var/www/assets/src/Assets/Collections/AbstractCollection.php",
-		"/var/www/assets/test/non-static.php",
-		"/var/www/assets/src/Assets/Collections/ImageCollection.php",
-		"/var/www/assets/src/Assets/Manager.php",
 		"/var/www/assets/src/Assets/Collections/CollectionInterface.php",
+		"/var/www/assets/test/index.php",
+		"/var/www/assets/test/non-static.php",
+		"/var/www/assets/src/Assets/Manager.php",
+		"/home/wallace/Área de Trabalho/senha",
+		"/var/www/assets/Assets/Collections/JavascriptCollection.php",
+		"/var/www/assets/Assets/Assets.php",
+		"/var/www/assets/Assets/Manager.php",
+		"/var/www/assets/src/Assets/Collections/AbstractCollection.php",
+		"/var/www/assets/src/Assets/Collections/ImageCollection.php",
 		"/var/www/assets/test/assets/css/admin/default.css",
 		"/var/www/assets/src/Assets/Collections/CssCollection.php",
 		"/var/www/assets/src/Assets/Collections/JavascriptCollection.php",
@@ -1458,6 +1486,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"parseAssetPathWildcard",
+			"tags",
+			"addPath",
+			"e",
+			"parse",
+			"parseNamespace",
+			"namespace",
+			"NAMESPACE",
+			"namespace",
+			"namespaces",
+			"addNamespace",
 			"configCollection",
 			"/',\n",
 			"']);\n",
@@ -1574,18 +1613,7 @@
 			"s",
 			"\\WallaceMaxters\\SevenFramework\\View\\",
 			" ",
-			"?>",
-			"contenttags",
-			"getContentTags",
-			"getTags",
-			"getEscaped",
-			"escapedTags",
-			"preg",
-			"setName",
-			"  '",
-			"redirect",
-			"chat_status",
-			"\"x\""
+			"?>"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1632,24 +1660,144 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Assets/Manager.php",
+					"file": "src/Assets/Assets.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5050,
+						"buffer_size": 1971,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								246,
-								246
+								1090,
+								1090
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 549.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "test/non-static.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 699,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								397,
+								397
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 108.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/Assets/Manager.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3860,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3509,
+								3509
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"spell_check": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2712.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "test/index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 580,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								395,
+								395
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 108.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/Assets/Collections/AbstractCollection.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1199,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								925,
+								925
 							]
 						],
 						"settings":
@@ -1660,69 +1808,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 52.0,
+						"translation.y": 633.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "Assets/Assets.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1947,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								381,
-								381
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "Assets/Collections/JavascriptCollection.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 348,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								159,
-								159
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -1730,7 +1819,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 25.0
+		"height": 27.0
 	},
 	"input":
 	{
@@ -1791,7 +1880,7 @@
 	"project": "assets-legendary.sublime-project",
 	"replace":
 	{
-		"height": 46.0
+		"height": 50.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1800,6 +1889,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"mana",
+				"src/Assets/Manager.php"
+			],
+			[
+				"asset",
+				"src/Assets/Assets.php"
+			],
 			[
 				"abstra",
 				"src/Assets/Collections/AbstractCollection.php"
@@ -1815,10 +1912,6 @@
 			[
 				"man",
 				"src/Assets/Manager.php"
-			],
-			[
-				"asset",
-				"src/Assets/Assets.php"
 			],
 			[
 				"image",
@@ -1843,10 +1936,6 @@
 			[
 				"absa",
 				"src/Assets/Collections/AbstractCollection.php"
-			],
-			[
-				"mana",
-				"src/Assets/Manager.php"
 			],
 			[
 				"wm-modal",
