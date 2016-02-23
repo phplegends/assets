@@ -13,7 +13,7 @@ class JavascriptCollection extends AbstractCollection
 
 	public function buildTag($asset)
 	{
-		$attributes = ['src' => $asset] + $this->attributes;
+		$attributes = ['src' => $asset] + $this->getAttributes();
 
 		$attr = $this->createHtmlAttributes($attributes);
 

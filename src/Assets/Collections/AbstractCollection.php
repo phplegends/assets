@@ -25,9 +25,9 @@ abstract class AbstractCollection implements CollectionInterface
     */
     abstract public function buildTag($url);
 
+    
     /**
-    * @param string $asset
-    * @return boolean
+    * @{inheritdoc}
     */
     public function validateExtension($asset)
     {
@@ -36,9 +36,9 @@ abstract class AbstractCollection implements CollectionInterface
         return (boolean) preg_match($regex, $asset);
     }
 
+    
     /**
-    * @param string $asset
-    * @return 
+    * @{inheritdoc}
     */
     public function add($asset)
     {
@@ -54,6 +54,10 @@ abstract class AbstractCollection implements CollectionInterface
         return $this;
     }
 
+    /**
+    * @param array $assets
+    * @return \PHPLegends\Assets\Collections\AbstractCollection
+    */
     public function addArray(array $assets)
     {
         foreach ($assets as $asset) $this->add($asset);
@@ -61,11 +65,18 @@ abstract class AbstractCollection implements CollectionInterface
         return $this;
     }
 
+    /**
+    * @{inheritdoc}
+    */
     public function all()
     {
         return $this->items;
     }
 
+    /**
+    * @param array $attributes
+    * @param string
+    */
     protected function createHtmlAttributes(array $attributes)
     {
         $output = [];
@@ -87,10 +98,23 @@ abstract class AbstractCollection implements CollectionInterface
         return implode(' ', $output);
     }
 
+    /**
+    * @param array $attributes
+    * @return \PHPLegends\Assets\Collections\AbstractCollection
+    */
     public function setAttributes(array $attributes)
     {
         $this->attributes = $attributes + $this->attributes;
 
         return $this;
+    }
+
+    /**
+    * Get attributes for tag build
+    * @param array
+    */
+    public function getAttributes()
+    {
+        return $this->attributes;
     }
 }

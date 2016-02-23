@@ -8,7 +8,7 @@ interface CollectionInterface
 	/**
 	* Add asset file to collection
 	* @param string $asset
-	* @return 
+	* @return \PHPLegends\Assets\Collections\CollectionInterface
 	*/
     public function add($asset);
 
@@ -17,23 +17,33 @@ interface CollectionInterface
     * Retrieves the content tag with url of asset
     * @param string $url
     * @param array $attributes
+    * @return string
     */
     public function buildTag($asset);
 
     /**
     * Retrieves the alias of collection 
+    * @return string
     */
     public function getAssetAlias();
 
     /**
     * Get all items
+    * @return array
     */
     public function all();
 
     /**
-    * Validates the file extension of asset
+    * Get all extension accept by collection
     * @param string $asset
     * @return array
     */
     public function getExtensions();
+
+    /**
+    * Validates the file extension of asset
+    * @param string $asset
+    * @return boolean
+    */
+    public function validateExtension($asset);
 }

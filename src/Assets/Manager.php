@@ -23,6 +23,21 @@ class Manager
     */
     protected $baseUri;
 
+    /**
+    * @var string
+    */
+    protected $basePath;
+
+    /**
+    * @var string|null
+    */
+    protected $version;
+
+
+    /**
+    * @param \PHPLegends\Assets\Collections\CollectionInterface[] $collections
+    * @return void
+    */
     public function __construct(array $collections = [])
     {
         foreach ($collections as $collection) {
@@ -32,6 +47,10 @@ class Manager
         }
     }
 
+    /**
+    * @param \PHPLegends\Assets\Collections\CollectionInterface $collection
+    * @return PHPLegends\Assets\Manager
+    */
     public function addCollection(CollectionInterface $collection)
     {
         $this->collections[$collection->getAssetAlias()] = $collection;
@@ -39,13 +58,22 @@ class Manager
         return $this;
     }
 
+    /**
+    * @param string $name
+    * @param string $directory
+    * @return PHPLegends\Assets\Manager
+    */
     public function addPathAlias($name, $directory)
     {
-        $this->paths[$name] = '/' . trim($directory, '/') . '/';
+        $this->paths[$name] = '/' . trim($directory, '/');
 
         return $this;
     }
-
+    
+    /**
+    * @param string $asset
+    * @return PHPLegends\Assets\Manager
+    */
     public function add($asset)
     {
 
@@ -61,13 +89,17 @@ class Manager
             throw new \InvalidArgumentException($message);
         }
 
-        $asset = $this->buildUrl($asset);
+        $asset = $this->parsePathAlias($asset);
 
         $collection->add($asset);
 
         return $this;
     }
 
+    /**
+    * @param array $assets
+    * @return PHPLegends\Assets\Manager
+    */
     public function addArray(array $assets)
     {
 
@@ -76,6 +108,10 @@ class Manager
         return $this;
     }
 
+    /**
+    * @param string $asset
+    * @return PHPLegends\Assets\Manager
+    **/
     protected function findCollectionByFileExtension($asset)
     {
 
@@ -90,14 +126,95 @@ class Manager
         return null;
     }
 
+    /**
+    * @return array
+    */
     public function getTags()
     {
         return $this->collectionToMappedList(function ($item, $collection)
         {
-            return $collection->buildTag($item);
+            return $collection->buildTag($this->buildUrl($item));
         });
     }
 
+    /**
+    * @return array
+    */
+    public function getFilenames()
+    {
+        return $this->collectionToMappedList(function($item, $collection)
+        {
+            return $this->getBasePath() . $item;
+        });
+    }
+
+    /**
+    * @param string $uri
+    * @return PHPLegends\Assets\Manager
+    */
+    public function setBaseUri($uri)
+    {
+        $this->baseUri = rtrim($uri, '/');
+
+        return $this;
+    }
+
+    /**
+    * @return string
+    */
+    public function getBaseUri()
+    {
+        return $this->baseUri;
+    }
+
+    /**
+    * @param string $path
+    * @return \PHPLegends\Assets\Manager
+    */
+    public function setBasePath($path)
+    {
+        $realpath = realpath($path);
+
+        if ($realpath === false) {
+
+            throw new \InvalidArgumentException("The base path '{$path}' doesnt exists");
+        }
+
+        $this->basePath = rtrim($realpath, '/');
+
+        return $this;
+    }
+
+    /**
+    * @return string
+    */
+    public function getBasePath()
+    {
+        return $this->basePath;
+    }
+
+    /**
+    * @return string
+    */
+    public function output()
+    {
+        return implode(PHP_EOL, $this->getTags());
+    }
+
+    /**
+    * yes! this returns a string
+    * @return string
+    */
+    public function __toString()
+    {
+        return $this->output();
+    }
+
+    /**
+    * @param \PHPLegends\Assets\Collection\CollectionInterface
+    * @param callable $callback
+    * @return array
+    */
     protected function mapCollection(CollectionInterface $collection, callable $callback)
     {
         $items = [];
@@ -110,6 +227,10 @@ class Manager
         return $items;
     }
 
+    /**
+    * @param callable $callback
+    * @return array
+    */
     protected function collectionToMappedList(callable $callback)
     {
         $items = [];
@@ -124,33 +245,10 @@ class Manager
         return $items;
     }
 
-    public function setBaseUri($uri)
-    {
-        $this->baseUri = rtrim($uri, '/');
-
-        return $this;
-    }
-
-    public function getBaseUri()
-    {
-        return $this->baseUri;
-    }
-
-    public function output()
-    {
-        return implode(PHP_EOL, $this->getTags());
-    }
-
-    public function __toString()
-    {
-        return $this->output();
-    }
-
-    protected function getAbsolutePath($asset)
-    {
-        return realpath($this->parsePathAlias($asset));
-    }
-
+    /**
+    * @param string $path
+    * @return array
+    */
     protected function extractPathAlias($path)
     {
         $separator = ':';
@@ -163,9 +261,15 @@ class Manager
         return explode($separator, $path);
     }
 
+    /**
+    * @param string $path
+    * @return string
+    */
     protected function parsePathAlias($path)
     {
         list($alias, $asset) = $this->extractPathAlias($path);
+
+        $asset = '/'. ltrim($asset, '/');
 
         if ($alias === null) return $asset;
 
@@ -183,19 +287,52 @@ class Manager
         return $path . $asset;
     }
 
+    /**
+    * @param string $path
+    * @param string $asset
+    * @return string
+    */
     protected function parsePathWildcards($path, $asset)
     {
+
         $collection = $this->findCollectionByFileExtension($asset);
 
         return strtr($path, ['{folder}' => $collection->getAssetAlias()]);
     }
 
-    protected function buildUrl($asset)
+    /**
+    * @param string $version
+    * @return \PHPLegends\Assets\Manager
+    */
+    public function setVersion($version)
     {
-        return $this->getBaseUri() . $this->parsePathAlias($asset);
+        $this->version = $version;
+
+        return $this;
     }
 
-    
+    /**
+    * @return string
+    */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+    * @return string
+    */
+    protected function buildUrl($asset)
+    {
+        $version = $this->getVersion();
+
+        if ($version !== null) {
+
+            $asset .= '?' . http_build_query(['_version' => $this->getVersion()]);
+        }
+
+        return $this->getBaseUri() . $asset;
+    }
 
 }
 

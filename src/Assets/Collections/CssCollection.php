@@ -17,7 +17,7 @@ class CssCollection extends AbstractCollection
 	public function buildTag($url)
 	{
 		
-		$attributes = ['href' => $url] + $this->attributes;
+		$attributes = ['href' => $url] + $this->getAttributes();
 
 		$attr = $this->createHtmlAttributes($attributes);
 

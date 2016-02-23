@@ -9,73 +9,173 @@ use PHPLegends\Assets\Collections\CollectionInterface;
 
 class Assets
 {
-	protected static $config = [];
+    protected static $config = [
 
-	public static function setConfig(array $config)
-	{
-		static::$config = $config;
-	}
+        'compiled'  => '_compiled',
+        'base_path' => '/',
+        'autoload'  => [
+            'js'  => null, 
+            'css' => null
+        ]
+    ];
 
-	public static function image($assets, array $attributes = [])
-	{
-		$collection = (new ImageCollection)->setAttributes($attributes);
+    /**
+    * @param array $config
+    * @return void
+    */
+    public static function setConfig(array $config)
+    {
+        static::$config = array_merge(static::$config, $config);
+    }
 
-		return static::configureCollection($collection)->addArray((array) $assets);
-	}
+    /**
+    * @param string|array $assets
+    * @param array $attributes
+    * @return \PHPLegends\Assets\Manager
+    */
+    public static function image($assets, array $attributes = [])
+    {
+        $collection = (new ImageCollection)->setAttributes($attributes);
 
-	public static function style($assets, array $attributes = [])
-	{
-		$collection = (new CssCollection)->setAttributes($attributes);
+        return static::createManager()->addCollecti($collection)->addArray((array) $assets);
+    }
 
-		return static::configureCollection($collection)->addArray((array) $assets);
-	}
+    /**
+    * @param string|array $assets
+    * @param array $attributes
+    * @return \PHPLegends\Assets\Manager
+    */
+    public static function style($assets, array $attributes = [])
+    {
+        $collection = (new CssCollection)->setAttributes($attributes);
 
-	public static function add(array $assets)
-	{
-		return  static::createManager()
-							->addCollection(new JavascriptCollection)
-							->addCollection(new CssCollection)
-							->addCollection(new ImageCollection)
-							->addArray($assets);
-	}
+        return static::createManager()->addCollection($collection)->addArray((array) $assets);
+    }
 
-	public static function script($assets, array $attributes = [])
-	{
-		$collection = (new JavascriptCollection)->setAttributes($attributes);
+    /**
+    * @param array $assets
+    * @return \PHPLegends\Assets\Manager
+    */
+    public static function add(array $assets)
+    {
+        return  static::createManager()
+                            ->addCollection(new CssCollection)
+                            ->addCollection(new JavascriptCollection)
+                            ->addArray($assets);
+    }
 
-		return static::configureCollection($collection)
-					  ->addArray((array) $assets);
-	}
+    /**
+    * @param string|array $assets
+    * @param array $attributes
+    * @return \PHPLegends\Assets\Manager
+    */
 
-	protected static function createManager()
-	{
-		$manager = new Manager;
+    public static function script($assets, array $attributes = [])
+    {
+        $collection = (new JavascriptCollection)->setAttributes($attributes);
 
-		// Defines the nampesace globally
+        return static::createManager()
+                      ->addCollection($collection)
+                      ->addArray((array) $assets);
+    }
 
-		if (isset(static::$config['base_uri'])) {
 
-			$manager->setBaseUri(static::$config['base_uri']);
-		}
+    /**
+    * @param string|array $assets
+    * @param string|null $filename
+    * @return \PHPLegends\Assets\Manager
+    */
+    public static function concatScript(array $assets, $filename = null)
+    {
+        $manager = static::script($assets);
 
-		if (isset(static::$config['path_alias']) ) {
+        $directory = static::buildCompileDirectory($manager->getBasePath());
 
-			foreach ((array) static::$config['path_alias'] as $alias => $path) {
+        $files = $manager->getFilenames();
 
-				$manager->addPathAlias($alias, $path);
-			}	
-		}
+        $outputFile = Concatenator::create($files)
+                                    ->setGlue(sprintf(';%s', PHP_EOL))
+                                    ->getCache($directory, $filename);
 
-		return $manager;
-	}
+        $concatOutput = static::$config['compiled'] . '/' . $outputFile->getFilename();
 
-	protected static function configureCollection(CollectionInterface $collection)
-	{
-		$manager = static::createManager();
+        return static::script($concatOutput);
+    }
 
-		$manager->addCollection($collection);
+    /**
+    * @param string|array $assets
+    * @param string|null $filename
+    * @return \PHPLegends\Assets\Manager
+    */
 
-		return $manager;
-	}
+    public static function concatStyle(array $assets, $filename = null)
+    {
+        $manager = static::style($assets);
+
+        $directory = static::buildCompileDirectory();
+
+        $files = $manager->getFilenames();
+
+        $outputFile = (new Concatenator($files))->getCache($directory, $filename);
+
+        $concatOutput = static::$config['compiled'] . '/' . $outputFile->getFilename();
+
+        return static::style($concatOutput);
+    }
+
+    /**
+    * @return string
+    */
+    protected static function buildCompileDirectory()
+    {
+        $directory = static::$config['base_path'] . '/' . static::$config['compiled'];
+
+        if (! is_dir($directory)) {
+
+            mkdir($directory, 0777, true);
+        }
+
+        return $directory;
+    }
+
+    /**
+    * Creates and configure the manager
+    * @return \PHPLegends\Assets\Manager
+    */
+    protected static function createManager()
+    {
+        $manager = new Manager;
+
+        // Defines the nampesace globally
+
+        if (isset(static::$config['base_uri'])) {
+
+            $manager->setBaseUri(static::$config['base_uri']);
+        }
+
+        if (isset(static::$config['base_path'])) {
+
+            $manager->setBasePath(static::$config['base_path']);
+
+            // Trata o base_path para não haver barras desnecessárias
+
+            static::$config['base_path'] = $manager->getBasePath();
+        }
+
+        if (isset(static::$config['path_aliases']) ) {
+
+            foreach ((array) static::$config['path_aliases'] as $alias => $path) {
+
+                $manager->addPathAlias($alias, $path);
+            }   
+        }
+
+        if (isset(static::$config['version'])) {
+
+            $manager->setVersion(static::$config['version']);
+        }
+
+        return $manager;
+    }
 
 }

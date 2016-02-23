@@ -10,25 +10,29 @@ use PHPLegends\Assets\Assets;
 
 Assets::setConfig([
 
-    'path_alias' 	=> [
-        'js'        => 'assets/js',
-		'css.posts' => 'assets/css/posts',
-		'js.admin'  => 'assets/js/admin',
-		'admin'     => 'asset/{folder}/admin'
+    'base_uri' => 'http://localhost:8000/assets',
+
+    'base_path' => __DIR__ . '/assets',
+
+    'compiled' => '_compiled_assets',
+
+    'path_aliases' 	=> [
+        'css.posts' => 'css/posts',
+        'js.admin'  => 'js/admin',
+        'admin'     => '{folder}/admin',
+        'user'      => '{folder}/user'
     ],
+
+    //'version' => '1.0'
 ]);
 
-echo Assets::add([
-    'css.posts:default.css',
-    'css.posts:post.css',
-    'js.admin:default.js',
-    'admin:teste.js',
-    'admin:default.css',
-    'asset/js/teste.js'
-]);
- 
+// Concatenado arquivos
 
-echo Assets::script('admin:diferente.js', ['assync', 'defer']);
+echo  Assets::concatScript(['js.admin:default.js' , 'admin:app.js']);
 
-echo Assets::image('admin:image.png', ['height' => '"', 'width' => 80]);
 
+echo  Assets::concatScript(['js/admin/default.js' , 'js/admin/app.js']);
+
+// Concatenando css
+
+echo  Assets::concatStyle(['admin:default.css' , 'user:index.css']);
