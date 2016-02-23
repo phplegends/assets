@@ -519,6 +519,30 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "test/index.php",
+			"settings":
+			{
+				"buffer_size": 607,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "vendor/phplegends/legendary/src/legendary/Engine/Interpreter.php",
+			"settings":
+			{
+				"buffer_size": 3364,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/views/home.lgd.php",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "MINIFY JS",
 	"build_system_choices":
@@ -1337,26 +1361,29 @@
 	"expanded_folders":
 	[
 		"/var/www/assets",
-		"/var/www/assets/src/Assets",
-		"/var/www/assets/test/assets",
-		"/var/www/assets/test/assets/css",
-		"/var/www/assets/test/assets/css/admin",
-		"/var/www/assets/test/assets/css/user",
-		"/var/www/assets/test/assets/js"
+		"/var/www/assets/test",
+		"/var/www/assets/test/temp",
+		"/var/www/assets/test/views"
 	],
 	"file_history":
 	[
+		"/var/www/assets/vendor/phplegends/legendary/src/legendary/Engine/Compiler.php",
+		"/var/www/assets/test/temp/96bc8ba221fe12e2fecac2e846987763",
+		"/var/www/assets/vendor/phplegends/legendary/src/legendary/View.php",
+		"/var/www/assets/vendor/phplegends/legendary/src/legendary/Factory.php",
+		"/var/www/assets/composer.json",
+		"/var/www/assets/src/Assets/Collections/CssCollection.php",
+		"/var/www/assets/src/Assets/Collections/ImageCollection.php",
+		"/var/www/assets/src/Assets/Collections/JavascriptCollection.php",
+		"/var/www/assets/src/Assets/Concatenator.php",
+		"/var/www/assets/assets-legendary.sublime-project",
 		"/var/www/assets/src/Assets/Assets.php",
 		"/var/www/assets/test/index.php",
 		"/var/www/assets/test/non-static.php",
-		"/var/www/assets/src/Assets/Concatenator.php",
 		"/var/www/assets/test/assets/css/user/index.css",
 		"/var/www/assets/test/assets/css/37702977b0a161108a32c1f3502b7404.css",
-		"/var/www/assets/src/Assets/Collections/CssCollection.php",
 		"/var/www/cv/gulpfile.js",
 		"/var/www/assets/src/Assets/Collections/AbstractCollection.php",
-		"/var/www/assets/src/Assets/Collections/JavascriptCollection.php",
-		"/var/www/assets/src/Assets/Collections/ImageCollection.php",
 		"/var/www/assets/src/Assets/Manager.php",
 		"/var/www/assets/src/Assets/Collections/CollectionInterface.php",
 		"/home/wallace/Área de Trabalho/senha",
@@ -1375,7 +1402,6 @@
 		"/var/www/assets/test/assets/js/blog.js",
 		"/var/www/assets/test/assets/js/site.js",
 		"/var/www/assets/src/Assets/Collections/Collection.php",
-		"/var/www/assets/composer.json",
 		"/var/www/assets/test/assets/css/default.css",
 		"/var/www/assets/test/assets/js/default.js",
 		"/var/www/assets/src/Assets/../Collection.php",
@@ -1387,7 +1413,7 @@
 	],
 	"find":
 	{
-		"height": 61.0
+		"height": 47.0
 	},
 	"find_in_files":
 	{
@@ -1623,14 +1649,104 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "test/index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 607,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								136,
+								136
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 114.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "vendor/phplegends/legendary/src/legendary/Engine/Interpreter.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3364,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								478,
+								478
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 180.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "test/views/home.lgd.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 30.0
+		"height": 23.0
 	},
 	"input":
 	{
@@ -1691,7 +1807,7 @@
 	"project": "assets-legendary.sublime-project",
 	"replace":
 	{
-		"height": 56.0
+		"height": 42.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1700,6 +1816,22 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"compiler",
+				"vendor/phplegends/legendary/src/legendary/Engine/Compiler.php"
+			],
+			[
+				"inter",
+				"vendor/phplegends/legendary/src/legendary/Engine/Interpreter.php"
+			],
+			[
+				"view",
+				"vendor/phplegends/legendary/src/legendary/View.php"
+			],
+			[
+				"fac",
+				"vendor/phplegends/legendary/src/legendary/Factory.php"
+			],
 			[
 				"ma",
 				"src/Assets/Manager.php"
@@ -1851,10 +1983,6 @@
 			[
 				"viewconf",
 				"src/legendary/ViewConfig.php"
-			],
-			[
-				"inter",
-				"src/legendary/Engine/Interpreter.php"
 			],
 			[
 				"view.php",
@@ -2199,18 +2327,6 @@
 			[
 				"consoleappl",
 				"vendor/laravel/framework/src/Illuminate/Console/Application.php"
-			],
-			[
-				"reprovadas",
-				"app/views/solicitacao/reprovadas.blade.php"
-			],
-			[
-				"aprovacao",
-				"public/js/remessa/aguardando_aprovacao_financeira.js"
-			],
-			[
-				"historico_a",
-				"app/views/remessa/historico_aprovacao_financeira.blade.php"
 			]
 		],
 		"width": 0.0
@@ -2218,12 +2334,24 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "",
+		"last_filter": "lege",
 		"selected_items":
 		[
 			[
+				"lege",
+				"/var/www/legendary/legendary.sublime-project"
+			],
+			[
 				"",
-				"/var/www/cv/cardvantagens.sublime-project"
+				"/var/www/legendary/legendary.sublime-project"
+			],
+			[
+				"uni",
+				"/var/www/unibh/unibh-identidade-estudantil.sublime-project"
+			],
+			[
+				"asset",
+				"/var/www/assets/assets-legendary.sublime-project"
 			],
 			[
 				"coa",

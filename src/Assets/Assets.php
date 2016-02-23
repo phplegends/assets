@@ -13,10 +13,7 @@ class Assets
 
         'compiled'  => '_compiled',
         'base_path' => '/',
-        'autoload'  => [
-            'js'  => null, 
-            'css' => null
-        ]
+        'base_uri'  => '/',
     ];
 
     /**

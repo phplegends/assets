@@ -3,36 +3,53 @@
 
 include_once __DIR__ . '/../vendor/autoload.php';
 
-use PHPLegends\Assets\Manager;
-use PHPLegends\Assets\Collections\JavascriptCollection;
-use PHPLegends\Assets\Collections\CssCollection;
 use PHPLegends\Assets\Assets;
+use PHPLegends\Legendary\View;
+
+View::config([
+
+    'compiled' => __DIR__ . '/temp',
+
+    'path'     => __DIR__ . '/views',
+]);
 
 Assets::setConfig([
 
-    'base_uri' => 'http://localhost:8000/assets',
+    /*
+        Por que isso? O cara pode ter acesso a um path, e esse path, porém,
+        ter acesso via subdomínio
+    */
 
+    //'base_uri' => 'http://localhost:8000/assets',
+
+    'base_uri' => '/assets',
+
+    /*
+        A pasta base de todos o assets. Aqui é onde podemos processar o caminho completo do arquivo.
+    */
     'base_path' => __DIR__ . '/assets',
 
+    // Diretório onde são compilados os arquivos unidos pelo Concatenator
     'compiled' => '_compiled_assets',
 
+    // Adiciona "alias" para um path específico
+
     'path_aliases' 	=> [
-        'css.posts' => 'css/posts',
-        'js.admin'  => 'js/admin',
-        'admin'     => '{folder}/admin',
-        'user'      => '{folder}/user'
+        // O caractere curinga folder exclui a necessidade de criar um 
+        // Namespace para cada tipo de asset
+        // Isso será traduzido para 'css/chat', 'js/chat' e 'img/chat'
+        'chat' => '{folder}/chat'
     ],
 
-    //'version' => '1.0'
+    // Adiciona a famosa query string para burlar o cache do navegador
+    
+    'version' => '1.0'
 ]);
 
-// Concatenado arquivos
 
-echo  Assets::concatScript(['js.admin:default.js' , 'admin:app.js']);
+class_alias('PHPLegends\Assets\Assets', 'Assets');
 
+echo View::create('home', [
 
-echo  Assets::concatScript(['js/admin/default.js' , 'js/admin/app.js']);
-
-// Concatenando css
-
-echo  Assets::concatStyle(['admin:default.css' , 'user:index.css']);
+    'nome' => filter_input(INPUT_GET, 'nome')
+]);

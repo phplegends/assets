@@ -1,0 +1,68 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "5202fef1f5fc7c9230a375bdb28675cd",
+    "content-hash": "07ddbc357cebd122a4a7030e7e3478d2",
+    "packages": [],
+    "packages-dev": [
+        {
+            "name": "phplegends/legendary",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phplegends/legendary.git",
+                "reference": "ada5384118f7b415fc0ebdc8b9e91bb5da09b1a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phplegends/legendary/zipball/ada5384118f7b415fc0ebdc8b9e91bb5da09b1a9",
+                "reference": "ada5384118f7b415fc0ebdc8b9e91bb5da09b1a9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "victorjonsson/markdowndocs": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPLegends\\Legendary\\": "src/legendary"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Wallace de Souza Vizerra",
+                    "email": "wallacemaxters@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Guilherme Nascimento",
+                    "email": "guilherme@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple Template Engine for php",
+            "time": "2016-02-23 20:04:10"
+        }
+    ],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "phplegends/legendary": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.4"
+    },
+    "platform-dev": []
+}

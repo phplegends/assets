@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    
+    <?php echo Assets::concatStyle(['css/reset.css', 'css/default.css']) ?>
+
+    <?php echo Assets::concatScript(['js/jquery.js', 'chat:index.js']) ?>
+
+</head>
+<body>
+    <section class="container">
+        <h1>Autor <?php echo isset($nome) ? $nome : 'Legendary and Assets'; ?></h1>
+
+        <div class="chat-box"></div>
+    </section>
+</body>
+</html>

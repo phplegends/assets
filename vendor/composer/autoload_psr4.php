@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'PHPLegends\\Legendary\\' => array($vendorDir . '/phplegends/legendary/src/legendary'),
     'PHPLegends\\Assets\\' => array($baseDir . '/src/Assets'),
 );
