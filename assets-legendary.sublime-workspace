@@ -4,6 +4,74 @@
 		"selected_items":
 		[
 			[
+				"create",
+				"createManager"
+			],
+			[
+				"get",
+				"getBasePath"
+			],
+			[
+				"file",
+				"filename"
+			],
+			[
+				"conca",
+				"$concatOutput〔variable〕"
+			],
+			[
+				"s",
+				"style〔function〕"
+			],
+			[
+				"st",
+				"style"
+			],
+			[
+				"var",
+				"var_dump〔function〕"
+			],
+			[
+				"m",
+				"$manager〔variable〕"
+			],
+			[
+				"base",
+				"$basepath〔variable〕"
+			],
+			[
+				"coll",
+				"collectionToMappedList〔function〕"
+			],
+			[
+				"com",
+				"$compiled〔variable〕"
+			],
+			[
+				"pa",
+				"parsePathAlias〔function〕"
+			],
+			[
+				"colle",
+				"collections〔variable〕"
+			],
+			[
+				"buil",
+				"buildAbsolutePath〔function〕"
+			],
+			[
+				"collec",
+				"collectionToMappedList〔function〕"
+			],
+			[
+				"bui",
+				"buildAbsolutePath"
+			],
+			[
+				"real",
+				"realpath〔function〕"
+			],
+			[
 				"fil",
 				"filename"
 			],
@@ -40,16 +108,8 @@
 				"getAssetAlias"
 			],
 			[
-				"get",
-				"getCollectionByFileExtension〔function〕"
-			],
-			[
 				"build",
 				"buildUrl"
-			],
-			[
-				"base",
-				"base_uri"
 			],
 			[
 				"call_us",
@@ -124,10 +184,6 @@
 				"match"
 			],
 			[
-				"collec",
-				"$collection〔variable〕"
-			],
-			[
 				"Coll",
 				"CollectionInterface"
 			],
@@ -174,10 +230,6 @@
 			[
 				"su",
 				"$suffixedDir〔variable〕"
-			],
-			[
-				"colle",
-				"$collections〔variable〕"
 			],
 			[
 				"names",
@@ -292,20 +344,12 @@
 				"setExpression〔function〕"
 			],
 			[
-				"file",
-				"$fileOutput〔variable〕"
-			],
-			[
 				"sys_ge",
 				"sys_get_temp_dir〔function〕"
 			],
 			[
 				"php",
 				"$phpExt〔variable〕"
-			],
-			[
-				"pa",
-				"$parsedViewName〔variable〕"
 			],
 			[
 				"para",
@@ -322,10 +366,6 @@
 			[
 				"soli",
 				"$solicitacao〔variable〕"
-			],
-			[
-				"s",
-				"$syntax〔variable〕"
 			],
 			[
 				"mat",
@@ -346,10 +386,6 @@
 			[
 				"get_cla",
 				"get_class_methods"
-			],
-			[
-				"create",
-				"createElement"
 			],
 			[
 				"call_user",
@@ -478,47 +514,30 @@
 			[
 				"grp",
 				"group_key"
-			],
-			[
-				"grou",
-				"$group_key〔variable〕"
-			],
-			[
-				"Array",
-				"ArrayAccess〔namespace〕"
-			],
-			[
-				"gr",
-				"groups"
-			],
-			[
-				"var",
-				"var_dump〔function〕"
-			],
-			[
-				"Iterator",
-				"IteratorAggregate〔interface〕"
-			],
-			[
-				"Iterat",
-				"IteratorIterator〔namespace〕"
-			],
-			[
-				"R",
-				"Range〔class〕"
-			],
-			[
-				"gro",
-				"group_key"
-			],
-			[
-				"itera",
-				"iterator_to_array"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"contents": "<?php\n\n\ninclude_once __DIR__ . '/../vendor/autoload.php';\n\nuse PHPLegends\\Assets\\Manager;\nuse PHPLegends\\Assets\\Collections\\JavascriptCollection;\nuse PHPLegends\\Assets\\Collections\\CssCollection;\nuse PHPLegends\\Assets\\Assets;\n\nAssets::setConfig([\n\n    'base_uri' => 'http://localhost:8000/assets',\n\n    'base_path' => __DIR__ . '/assets',\n\n    'compiled' => '_compiled_assets',\n\n    'path_aliases' 	=> [\n        'css.posts' => 'css/posts',\n        'js.admin'  => 'js/admin',\n        'admin'     => '{folder}/admin',\n        'user'      => '{folder}/user'\n    ],\n\n    //'version' => '1.0'\n]);\n\n// Concatenado arquivos\n\necho  Assets::concatScript(['js.admin:default.js' , 'admin:app.js']);\n\n\necho  Assets::concatScript(['js/admin/default.js' , 'js/admin/app.js']);\n\n// Concatenando css\n\necho  Assets::concatStyle(['admin:default.css' , 'user:index.css']);\n",
+			"file": "test/index.php",
+			"file_size": 853,
+			"file_write_time": 131007281594527574,
+			"settings":
+			{
+				"buffer_size": 853,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "assets-legendary.sublime-project",
+			"settings":
+			{
+				"buffer_size": 134,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "MINIFY JS",
 	"build_system_choices":
@@ -1337,28 +1356,30 @@
 	"expanded_folders":
 	[
 		"/var/www/assets",
-		"/var/www/assets/src/Assets",
-		"/var/www/assets/test/assets",
-		"/var/www/assets/test/assets/css",
-		"/var/www/assets/test/assets/css/admin",
-		"/var/www/assets/test/assets/css/user",
-		"/var/www/assets/test/assets/js"
+		"/var/www/assets/src",
+		"/var/www/assets/src/Assets"
 	],
 	"file_history":
 	[
-		"/var/www/assets/src/Assets/Assets.php",
-		"/var/www/assets/test/index.php",
-		"/var/www/assets/test/non-static.php",
+		"/var/www/assets/.gitignore",
 		"/var/www/assets/src/Assets/Concatenator.php",
-		"/var/www/assets/test/assets/css/user/index.css",
-		"/var/www/assets/test/assets/css/37702977b0a161108a32c1f3502b7404.css",
-		"/var/www/assets/src/Assets/Collections/CssCollection.php",
-		"/var/www/cv/gulpfile.js",
+		"/var/www/assets/src/Assets/Assets.php",
+		"/var/www/assets/assets-legendary.sublime-project",
+		"/var/www/assets/composer.json",
 		"/var/www/assets/src/Assets/Collections/AbstractCollection.php",
 		"/var/www/assets/src/Assets/Collections/JavascriptCollection.php",
 		"/var/www/assets/src/Assets/Collections/ImageCollection.php",
-		"/var/www/assets/src/Assets/Manager.php",
+		"/var/www/assets/src/Assets/Collections/CssCollection.php",
 		"/var/www/assets/src/Assets/Collections/CollectionInterface.php",
+		"/var/www/assets/src/Assets/Manager.php",
+		"/var/www/assets/test/index.php",
+		"/var/www/assets/test/assets/js/admin/default.js",
+		"/var/www/assets/test/assets/js/admin/app.js",
+		"/var/www/assets/test/assets/_compiled/0fcabd2c9b7468acfac059cc71cf3faa.css",
+		"/var/www/assets/test/non-static.php",
+		"/var/www/assets/test/assets/css/user/index.css",
+		"/var/www/assets/test/assets/css/37702977b0a161108a32c1f3502b7404.css",
+		"/var/www/cv/gulpfile.js",
 		"/home/wallace/Área de Trabalho/senha",
 		"/var/www/assets/Assets/Collections/JavascriptCollection.php",
 		"/var/www/assets/Assets/Assets.php",
@@ -1370,12 +1391,9 @@
 		"/var/www/cv/application/routes.php",
 		"/var/www/assets/test/assets/css/user/editors/index.css",
 		"/var/www/assets/test/assets/css/user/posters/post.css",
-		"/var/www/assets/test/assets/js/admin/default.js",
-		"/var/www/assets/test/assets/js/admin/app.js",
 		"/var/www/assets/test/assets/js/blog.js",
 		"/var/www/assets/test/assets/js/site.js",
 		"/var/www/assets/src/Assets/Collections/Collection.php",
-		"/var/www/assets/composer.json",
 		"/var/www/assets/test/assets/css/default.css",
 		"/var/www/assets/test/assets/js/default.js",
 		"/var/www/assets/src/Assets/../Collection.php",
@@ -1387,7 +1405,7 @@
 	],
 	"find":
 	{
-		"height": 61.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -1449,6 +1467,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"compileDirectory",
+			"configureC",
+			"configureCp",
+			"configureColl",
+			"parsePathAlias",
+			"getBaseUri",
+			"compile_path",
+			"assets",
+			"getAb",
+			"/**",
 			"		\n",
 			" />\";",
 			"protected",
@@ -1566,17 +1594,7 @@
 			"$usuario->sol",
 			"try",
 			"files",
-			"$_FILES",
-			"(\\d+)",
-			"\\d+",
-			"financeiro",
-			"getFinanceir",
-			"new Soli",
-			"solicitacao",
-			"new SolicitacaoReprovada([\n                                'solicitacao_id' => $solicitacao->id,\n                                'texto'          => $motivo,\n                            ]);",
-			"conferir",
-			"conferencia",
-			"n"
+			"$_FILES"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1623,14 +1641,73 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "test/index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 853,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								591,
+								591
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 171.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "assets-legendary.sublime-project",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 134,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								49,
+								49
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 30.0
+		"height": 23.0
 	},
 	"input":
 	{
@@ -1691,7 +1768,7 @@
 	"project": "assets-legendary.sublime-project",
 	"replace":
 	{
-		"height": 56.0
+		"height": 42.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1701,8 +1778,8 @@
 		"selected_items":
 		[
 			[
-				"ma",
-				"src/Assets/Manager.php"
+				"asse",
+				"src/Assets/Assets.php"
 			],
 			[
 				"mana",
@@ -1711,6 +1788,18 @@
 			[
 				"asset",
 				"src/Assets/Assets.php"
+			],
+			[
+				"conca",
+				"src/Assets/Concatenator.php"
+			],
+			[
+				"",
+				"test/index.php"
+			],
+			[
+				"ma",
+				"src/Assets/Manager.php"
 			],
 			[
 				"abstra",
@@ -1907,10 +1996,6 @@
 			[
 				"conferir.js",
 				"public/js/remessa/conferir.js"
-			],
-			[
-				"",
-				".buildpath"
 			],
 			[
 				"soli",
@@ -2203,14 +2288,6 @@
 			[
 				"reprovadas",
 				"app/views/solicitacao/reprovadas.blade.php"
-			],
-			[
-				"aprovacao",
-				"public/js/remessa/aguardando_aprovacao_financeira.js"
-			],
-			[
-				"historico_a",
-				"app/views/remessa/historico_aprovacao_financeira.blade.php"
 			]
 		],
 		"width": 0.0
@@ -2223,7 +2300,7 @@
 		[
 			[
 				"",
-				"/var/www/cv/cardvantagens.sublime-project"
+				"/var/www/unibh/unibh-identidade-estudantil.sublime-project"
 			],
 			[
 				"coa",
@@ -2249,7 +2326,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 238.0,
+	"side_bar_width": 343.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
