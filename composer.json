@@ -12,7 +12,7 @@
         "php" : ">=5.4"
     },
     "require-dev" : {
-        "phplegends/legendary" : ""
+        "phplegends/legendary" : "dev-master"
     },
     "autoload" : {
         "psr-4" : {
