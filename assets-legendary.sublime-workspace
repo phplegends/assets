@@ -4,244 +4,64 @@
 		"selected_items":
 		[
 			[
-				"create",
-				"createManager"
+				"emai",
+				"$email〔variable〕"
 			],
 			[
-				"get",
-				"getBasePath"
+				"pessoa_",
+				"pessoa_contatos"
 			],
 			[
-				"file",
-				"filename"
+				"cove",
+				"cover_image"
 			],
 			[
-				"conca",
-				"$concatOutput〔variable〕"
+				"van",
+				"vantagensSection"
 			],
 			[
-				"s",
-				"style〔function〕"
+				"vantage",
+				"vantagensSection"
 			],
 			[
-				"st",
-				"style"
+				"vantagens",
+				"vantagensIds"
 			],
 			[
-				"var",
-				"var_dump〔function〕"
+				"desta",
+				"destaques"
 			],
 			[
-				"m",
-				"$manager〔variable〕"
+				"isObje",
+				"isPlainObject〔function〕"
 			],
 			[
-				"base",
-				"$basepath〔variable〕"
+				"inp",
+				"inputPostTitle"
 			],
 			[
-				"coll",
-				"collectionToMappedList〔function〕"
+				"req",
+				"required"
 			],
 			[
-				"com",
-				"$compiled〔variable〕"
+				"remove",
+				"removeAttr〔function〕"
 			],
 			[
-				"pa",
-				"parsePathAlias〔function〕"
+				"no",
+				"nomefantasia"
 			],
 			[
-				"colle",
-				"collections〔variable〕"
+				"empresa",
+				"empresa_id"
 			],
 			[
-				"buil",
-				"buildAbsolutePath〔function〕"
+				"emp",
+				"empresa_id"
 			],
 			[
-				"collec",
-				"collectionToMappedList〔function〕"
-			],
-			[
-				"bui",
-				"buildAbsolutePath"
-			],
-			[
-				"real",
-				"realpath〔function〕"
-			],
-			[
-				"fil",
-				"filename"
-			],
-			[
-				"new",
-				"$newFile〔variable〕"
-			],
-			[
-				"SplFi",
-				"SplFileObject"
-			],
-			[
-				"PATH_",
-				"PATHINFO_EXTENSION〔constant〕"
-			],
-			[
-				"at",
-				"attributes"
-			],
-			[
-				"html_",
-				"html_entity_decode〔function〕"
-			],
-			[
-				"attr",
-				"$attribute〔variable〕"
-			],
-			[
-				"att",
-				"$attribute〔variable〕"
-			],
-			[
-				"getT",
-				"getAssetAlias"
-			],
-			[
-				"build",
-				"buildUrl"
-			],
-			[
-				"call_us",
-				"call_user_func_array〔function〕"
-			],
-			[
-				"p",
-				"parsePathAlias〔function〕"
-			],
-			[
-				"se",
-				"$separator〔variable〕"
-			],
-			[
-				"add",
-				"addCollection〔function〕"
-			],
-			[
-				"call",
-				"$callback〔variable〕"
-			],
-			[
-				"crea",
-				"createManager〔function〕"
-			],
-			[
-				"lo",
-				"loadAssets〔function〕"
-			],
-			[
-				"load",
-				"loadConfig〔function〕"
-			],
-			[
-				"wil",
-				"$wildcard〔variable〕"
-			],
-			[
-				"w",
-				"$wildcard〔variable〕"
-			],
-			[
-				"use",
-				"user"
-			],
-			[
-				"getAsset",
-				"getAssetWildCard"
-			],
-			[
-				"nam",
-				"namespaces"
-			],
-			[
-				"confi",
-				"config"
-			],
-			[
-				"g",
-				"getAssetAlias〔function〕"
-			],
-			[
-				"PAT",
-				"PATHINFO_EXTENSION〔constant〕"
-			],
-			[
-				"ass",
-				"assetType"
-			],
-			[
-				"ma",
-				"match"
-			],
-			[
-				"Coll",
-				"CollectionInterface"
-			],
-			[
-				"config",
-				"configCollection"
-			],
-			[
-				"Collection",
-				"CollectionInterface〔namespace〕"
-			],
-			[
-				"css",
-				"$cssFiles〔variable〕"
-			],
-			[
-				"asset",
-				"$assetType〔variable〕"
-			],
-			[
-				"con",
-				"config"
-			],
-			[
-				"na",
-				"namespaces"
-			],
-			[
-				"me",
-				"$method〔variable〕"
-			],
-			[
-				"Bad",
-				"BadMethodCallException"
-			],
-			[
-				"call_",
-				"call_user_func_array〔function〕"
-			],
-			[
-				"metho",
-				"method_exists〔function〕"
-			],
-			[
-				"su",
-				"$suffixedDir〔variable〕"
-			],
-			[
-				"names",
-				"namespace"
-			],
-			[
-				"FILTER_VA",
-				"FILTER_VALIDATE_URL〔constant〕"
-			],
-			[
-				"Base",
-				"baseUri〔variable〕"
+				"visi",
+				"visible"
 			],
 			[
 				"regis",
@@ -254,6 +74,10 @@
 			[
 				"box",
 				"boxShadow"
+			],
+			[
+				"g",
+				"gulp"
 			],
 			[
 				"sol",
@@ -308,6 +132,10 @@
 				"$hasException〔variable〕"
 			],
 			[
+				"get",
+				"getGetterName〔function〕"
+			],
+			[
 				"prop",
 				"$property〔variable〕"
 			],
@@ -318,6 +146,10 @@
 			[
 				"Un",
 				"UnexpectedValueException"
+			],
+			[
+				"p",
+				"$propertyName〔variable〕"
 			],
 			[
 				"Reflect",
@@ -344,6 +176,10 @@
 				"setExpression〔function〕"
 			],
 			[
+				"file",
+				"$fileOutput〔variable〕"
+			],
+			[
 				"sys_ge",
 				"sys_get_temp_dir〔function〕"
 			],
@@ -352,8 +188,16 @@
 				"$phpExt〔variable〕"
 			],
 			[
+				"pa",
+				"$parsedViewName〔variable〕"
+			],
+			[
 				"para",
 				"parseNamespace"
+			],
+			[
+				"names",
+				"namespaces"
 			],
 			[
 				"N",
@@ -366,6 +210,10 @@
 			[
 				"soli",
 				"$solicitacao〔variable〕"
+			],
+			[
+				"s",
+				"$syntax〔variable〕"
 			],
 			[
 				"mat",
@@ -386,6 +234,10 @@
 			[
 				"get_cla",
 				"get_class_methods"
+			],
+			[
+				"create",
+				"createElement"
 			],
 			[
 				"call_user",
@@ -504,6 +356,10 @@
 				"Iterator"
 			],
 			[
+				"call",
+				"$callbacks〔variable〕"
+			],
+			[
 				"callab",
 				"callables"
 			],
@@ -514,294 +370,211 @@
 			[
 				"grp",
 				"group_key"
+			],
+			[
+				"grou",
+				"$group_key〔variable〕"
+			],
+			[
+				"Array",
+				"ArrayAccess〔namespace〕"
+			],
+			[
+				"gr",
+				"groups"
+			],
+			[
+				"var",
+				"var_dump〔function〕"
+			],
+			[
+				"Iterator",
+				"IteratorAggregate〔interface〕"
+			],
+			[
+				"Iterat",
+				"IteratorIterator〔namespace〕"
+			],
+			[
+				"R",
+				"Range〔class〕"
+			],
+			[
+				"gro",
+				"group_key"
+			],
+			[
+				"itera",
+				"iterator_to_array"
+			],
+			[
+				"ite",
+				"iterable"
+			],
+			[
+				"iterato",
+				"iterator_to_array〔function〕"
+			],
+			[
+				"PREG_S",
+				"PREG_SPLIT_NO_EMPTY〔constant〕"
+			],
+			[
+				"Range",
+				"RangePairs〔class〕"
+			],
+			[
+				"hi",
+				"$hight〔variable〕"
+			],
+			[
+				"ra",
+				"range"
+			],
+			[
+				"post_",
+				"post_privacidade_id"
+			],
+			[
+				"tag",
+				"tag_p_texto	function"
+			],
+			[
+				"ajax",
+				"ajaxOptions〔variable〕"
+			],
+			[
+				"str",
+				"strCPF〔argument〕"
+			],
+			[
+				"insti",
+				"$instituicao_id〔variable〕"
+			],
+			[
+				"inst",
+				"$instituicao_id〔variable〕"
+			],
+			[
+				"Exception",
+				"ExceptionHandlerInterface"
+			],
+			[
+				"cada",
+				"cadastrar_usuario"
+			],
+			[
+				"confirma",
+				"confirma_senha"
+			],
+			[
+				"r",
+				"rgb(〔value〕"
+			],
+			[
+				"font",
+				"font-weight: 〔property〕"
+			],
+			[
+				"font-",
+				"font-size: 〔property〕"
+			],
+			[
+				"base_",
+				"base64_encode〔function〕"
+			],
+			[
+				"base",
+				"base64_contents	statement"
+			],
+			[
+				"b",
+				"b64encode	function"
+			],
+			[
+				"empresas",
+				"empresasSugeridas"
+			],
+			[
+				"image",
+				"imageurl"
+			],
+			[
+				"brea",
+				"breakpoint"
+			],
+			[
+				"exis",
+				"$existentes〔variable〕"
+			],
+			[
+				"lista",
+				"$lista_emails〔variable〕"
+			],
+			[
+				"ar",
+				"array_reject〔function〕"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"contents": "<?php\n\n\ninclude_once __DIR__ . '/../vendor/autoload.php';\n\nuse PHPLegends\\Assets\\Manager;\nuse PHPLegends\\Assets\\Collections\\JavascriptCollection;\nuse PHPLegends\\Assets\\Collections\\CssCollection;\nuse PHPLegends\\Assets\\Assets;\n\nAssets::setConfig([\n\n    'base_uri' => 'http://localhost:8000/assets',\n\n    'base_path' => __DIR__ . '/assets',\n\n    'compiled' => '_compiled_assets',\n\n    'path_aliases' 	=> [\n        'css.posts' => 'css/posts',\n        'js.admin'  => 'js/admin',\n        'admin'     => '{folder}/admin',\n        'user'      => '{folder}/user'\n    ],\n\n    //'version' => '1.0'\n]);\n\n// Concatenado arquivos\n\necho  Assets::concatScript(['js.admin:default.js' , 'admin:app.js']);\n\n\necho  Assets::concatScript(['js/admin/default.js' , 'js/admin/app.js']);\n\n// Concatenando css\n\necho  Assets::concatStyle(['admin:default.css' , 'user:index.css']);\n",
-			"file": "test/index.php",
-			"file_size": 853,
-			"file_write_time": 131007281594527574,
+			"file": "assets-legendary.sublime-project",
 			"settings":
 			{
-				"buffer_size": 853,
+				"buffer_size": 182,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "assets-legendary.sublime-project",
+			"file": "assets-legendary.sublime-workspace",
 			"settings":
 			{
-				"buffer_size": 134,
+				"buffer_size": 550,
 				"line_ending": "Unix"
 			}
 		}
 	],
-	"build_system": "MINIFY JS",
+	"build_system": "",
 	"build_system_choices":
 	[
-		[
-			[
-				[
-					"MINIFY JS",
-					""
-				],
-				[
-					"Packages/User/lua.sublime-build",
-					""
-				]
-			],
-			[
-				"MINIFY JS",
-				""
-			]
-		],
-		[
-			[
-				[
-					"MINIFY JS",
-					""
-				],
-				[
-					"Packages/YUI Compressor/YUI Compressor.sublime-build",
-					""
-				],
-				[
-					"Packages/User/lua.sublime-build",
-					""
-				]
-			],
-			[
-				"MINIFY JS",
-				""
-			]
-		],
-		[
-			[
-				[
-					"Packages/Ant Buildfile/Ant Buildfile.sublime-build",
-					""
-				],
-				[
-					"Packages/Bash Build System/Bash.sublime-build",
-					""
-				]
-			],
-			[
-				"Packages/Bash Build System/Bash.sublime-build",
-				""
-			]
-		],
-		[
-			[
-				[
-					"Packages/Ant Buildfile/Ant Buildfile.sublime-build",
-					""
-				],
-				[
-					"Packages/YUI Compressor/YUI Compressor.sublime-build",
-					""
-				]
-			],
-			[
-				"Packages/YUI Compressor/YUI Compressor.sublime-build",
-				""
-			]
-		],
-		[
-			[
-				[
-					"Packages/Better CoffeeScript/CoffeeScript.sublime-build",
-					""
-				],
-				[
-					"Packages/Better CoffeeScript/CoffeeScript.sublime-build",
-					"Run"
-				],
-				[
-					"Packages/User/lua.sublime-build",
-					""
-				]
-			],
-			[
-				"Packages/Better CoffeeScript/CoffeeScript.sublime-build",
-				"Run"
-			]
-		],
-		[
-			[
-				[
-					"Packages/C++/C++ Single File.sublime-build",
-					""
-				],
-				[
-					"Packages/C++/C++ Single File.sublime-build",
-					"Run"
-				],
-				[
-					"Packages/User/lua.sublime-build",
-					""
-				]
-			],
-			[
-				"Packages/C++/C++ Single File.sublime-build",
-				""
-			]
-		],
-		[
-			[
-				[
-					"Packages/Java/Ant.sublime-build",
-					""
-				],
-				[
-					"Packages/Java/JavaC.sublime-build",
-					""
-				]
-			],
-			[
-				"Packages/Java/Ant.sublime-build",
-				""
-			]
-		],
-		[
-			[
-				[
-					"Packages/Java/Ant.sublime-build",
-					""
-				],
-				[
-					"Packages/Java/JavaC.sublime-build",
-					""
-				],
-				[
-					"Packages/Ant Buildfile/Ant Buildfile.sublime-build",
-					""
-				]
-			],
-			[
-				"Packages/Java/Ant.sublime-build",
-				""
-			]
-		],
-		[
-			[
-				[
-					"Packages/Markdown Preview/Markdown.sublime-build",
-					""
-				],
-				[
-					"Packages/User/lua.sublime-build",
-					""
-				]
-			],
-			[
-				"Packages/Markdown Preview/Markdown.sublime-build",
-				""
-			]
-		],
-		[
-			[
-				[
-					"Packages/Python/Python.sublime-build",
-					""
-				],
-				[
-					"Packages/Python/Python.sublime-build",
-					"Syntax Check"
-				]
-			],
-			[
-				"Packages/Python/Python.sublime-build",
-				""
-			]
-		],
-		[
-			[
-				[
-					"Packages/Python/Python.sublime-build",
-					""
-				],
-				[
-					"Packages/Python/Python.sublime-build",
-					"Syntax Check"
-				],
-				[
-					"Packages/Ant Buildfile/Ant Buildfile.sublime-build",
-					""
-				]
-			],
-			[
-				"Packages/Python/Python.sublime-build",
-				""
-			]
-		],
-		[
-			[
-				[
-					"Packages/Python/Python.sublime-build",
-					""
-				],
-				[
-					"Packages/Python/Python.sublime-build",
-					"Syntax Check"
-				],
-				[
-					"Packages/User/lua.sublime-build",
-					""
-				]
-			],
-			[
-				"Packages/Python/Python.sublime-build",
-				""
-			]
-		],
-		[
-			[
-				[
-					"Packages/SASS Build/SASS - Compressed.sublime-build",
-					""
-				],
-				[
-					"Packages/SASS Build/SASS.sublime-build",
-					""
-				],
-				[
-					"Packages/User/lua.sublime-build",
-					""
-				]
-			],
-			[
-				"Packages/SASS Build/SASS.sublime-build",
-				""
-			]
-		],
-		[
-			[
-				[
-					"Packages/YUI Compressor/YUI Compressor.sublime-build",
-					""
-				],
-				[
-					"Packages/User/lua.sublime-build",
-					""
-				]
-			],
-			[
-				"Packages/YUI Compressor/YUI Compressor.sublime-build",
-				""
-			]
-		]
 	],
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 183.0,
-		"last_filter": "php",
+		"height": 400.0,
+		"last_filter": "blade",
 		"selected_items":
 		[
+			[
+				"blade",
+				"Set Syntax: Laravel Blade"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"css comple",
+				"CSS Completions: Delete Cache"
+			],
+			[
+				"csscom",
+				"CSS Completions: Prune Cache"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"compress",
+				"Snippet: reset_doc_compressed"
+			],
 			[
 				"php",
 				"Set Syntax: PHP"
@@ -821,14 +594,6 @@
 			[
 				"coff",
 				"Set Syntax: CoffeeScript"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
-			],
-			[
-				"remove",
-				"Package Control: Remove Package"
 			],
 			[
 				"coffee",
@@ -873,14 +638,6 @@
 			[
 				"sas",
 				"Set Syntax: Sass"
-			],
-			[
-				"blade",
-				"Set Syntax: PHP - Laravel Blade"
-			],
-			[
-				"html",
-				"Set Syntax: HTML"
 			],
 			[
 				"md",
@@ -1355,57 +1112,103 @@
 	},
 	"expanded_folders":
 	[
-		"/var/www/assets",
-		"/var/www/assets/src",
-		"/var/www/assets/src/Assets"
+		"/var/www/assets"
 	],
 	"file_history":
 	[
-		"/var/www/assets/.gitignore",
-		"/var/www/assets/src/Assets/Concatenator.php",
-		"/var/www/assets/src/Assets/Assets.php",
-		"/var/www/assets/assets-legendary.sublime-project",
-		"/var/www/assets/composer.json",
-		"/var/www/assets/src/Assets/Collections/AbstractCollection.php",
-		"/var/www/assets/src/Assets/Collections/JavascriptCollection.php",
-		"/var/www/assets/src/Assets/Collections/ImageCollection.php",
-		"/var/www/assets/src/Assets/Collections/CssCollection.php",
-		"/var/www/assets/src/Assets/Collections/CollectionInterface.php",
-		"/var/www/assets/src/Assets/Manager.php",
-		"/var/www/assets/test/index.php",
-		"/var/www/assets/test/assets/js/admin/default.js",
-		"/var/www/assets/test/assets/js/admin/app.js",
-		"/var/www/assets/test/assets/_compiled/0fcabd2c9b7468acfac059cc71cf3faa.css",
-		"/var/www/assets/test/non-static.php",
-		"/var/www/assets/test/assets/css/user/index.css",
-		"/var/www/assets/test/assets/css/37702977b0a161108a32c1f3502b7404.css",
-		"/var/www/cv/gulpfile.js",
-		"/home/wallace/Área de Trabalho/senha",
-		"/var/www/assets/Assets/Collections/JavascriptCollection.php",
-		"/var/www/assets/Assets/Assets.php",
-		"/var/www/assets/Assets/Manager.php",
-		"/var/www/assets/test/assets/css/admin/default.css",
-		"/home/wallace/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
-		"/var/www/assets/src/Assets/Collections/TagInterface.php",
-		"/var/www/assets/test/config/assets.php",
+		"/var/www/assets/assets-legendary.sublime-workspace",
+		"/var/www/cv/application/views/home/sobre.blade.php",
+		"/var/www/cv/application/config/mail.php",
+		"/var/www/cv/laravel/config.php",
+		"/var/www/cv/application/controllers/pessoa.php",
+		"/var/www/cv/application/views/home/layout.blade.php",
+		"/var/www/cv/application/views/layouts/default_error.blade.php",
+		"/var/www/cv/application/views/error/default_error.blade.php",
+		"/var/www/cv/application/config/error.php",
+		"/var/www/cv/application/views/beneficiario/profile_page.blade.php",
+		"/var/www/cv/application/models/PostConveniado.php",
+		"/var/www/cv/laravel/response.php",
 		"/var/www/cv/application/routes.php",
-		"/var/www/assets/test/assets/css/user/editors/index.css",
-		"/var/www/assets/test/assets/css/user/posters/post.css",
-		"/var/www/assets/test/assets/js/blog.js",
-		"/var/www/assets/test/assets/js/site.js",
-		"/var/www/assets/src/Assets/Collections/Collection.php",
-		"/var/www/assets/test/assets/css/default.css",
-		"/var/www/assets/test/assets/js/default.js",
-		"/var/www/assets/src/Assets/../Collection.php",
-		"/var/www/assets/src/CollectionInterface.php",
+		"/var/www/cv/application/filters.php",
+		"/var/www/cv/application/views/empresa/novidades.blade.php",
+		"/var/www/cv/application/models/pessoa.php",
+		"/var/www/cv/application/views/beneficiario/versao_2/novidades.blade.php",
+		"/var/www/cv/cardvantagens.sublime-project",
+		"/var/www/cv/application/views/beneficiario/profile.blade.php",
+		"/var/www/cv/application/views/cadastrar/layout/default.blade.php",
+		"/var/www/cv/application/views/email/central_de_atendimento.blade.php",
+		"/var/www/cv/application/controllers/home.php",
+		"/var/www/cv/application/views/home/central_de_atendimento.blade.php",
+		"/var/www/cv/application/views/admin/vendas_liberadas.blade.php",
+		"/var/www/cv/application/views/admin/layout/default.blade.php",
+		"/var/www/cv/application/controllers/admin.php",
+		"/var/www/cv/application/models/post.php",
+		"/var/www/cv/application/controllers/conveniado.php",
+		"/var/www/cv/application/models/empresa.php",
+		"/var/www/cv/public/static/css/conveniado/wm-tooltip.css",
+		"/var/www/cv/application/views/layouts/default_conveniado.blade.php",
+		"/var/www/cv/application/models/ponto.php",
+		"/var/www/cv/application/views/admin/elements/menu_top_correios.blade.php",
+		"/var/www/cv/application/views/admin/alterar_rastreamento.blade.php",
+		"/var/www/cv/application/views/admin/codigo_rastreamento.blade.php",
+		"/var/www/cv/application/views/admin/codigo_promocional.blade.php",
+		"/var/www/cv/public/static/css/admin/default.css",
+		"/var/www/cv/public/static/css/conveniado/wm-notify-box.css",
+		"/var/www/cv/public/static/css/conveniado/grid.css",
+		"/var/www/cv/public/static/css/conveniado/sidebar.css",
+		"/var/www/cv/public/static/css/conveniado/default.css",
+		"/var/www/cv/public/static/css/conveniado/jpopover.css",
+		"/var/www/cv/public/static/css/conveniado/jmodal.css",
+		"/var/www/cv/public/static/css/jmodal.css",
+		"/var/www/cv/application/views/conveniado/captura.blade.php",
+		"/var/www/cv/public/static/js/dx.chartjs.js",
+		"/var/www/cv/application/views/conveniado/relatorio_checkin.blade.php",
+		"/var/www/cv/application/controllers/cartao.php",
+		"/var/www/cv/application/models/cartao.php",
+		"/var/www/cv/application/views/beneficiario/versao_2/elements/script-novidades.blade.php",
+		"/var/www/cv/public/static/js/wm-modal.js",
+		"/var/www/cv/application/views/conveniado/cadastrar/layout.blade.php",
+		"/var/www/cv/public/static/js/vantagem/new.js",
+		"/home/wallace/Área de Trabalho/senha",
+		"/var/www/cv/application/controllers/vantagem.php",
+		"/var/www/cv/application/views/home/index_new_del.blade.php",
+		"/var/www/cv/application/views/home/index_new.blade.php",
+		"/var/www/cv/public/static/css/vantagem/default.css",
+		"/var/www/cv/application/views/vantagem/new.blade.php",
+		"/var/www/cv/public/static/js/vantagem/wm_carrossel.min.js",
+		"/var/www/cv/application/views/metricas/estatisticas_cadastro.blade.php",
+		"/var/www/cv/public/static/js/vantagem/anime-vantagens.min.js",
+		"/var/www/cv/public/static/js/vantagem/anime-vantagens.js",
+		"/var/www/cv/public/static/js/vantagem/new.min.js",
+		"/var/www/cv/application/views/beneficiario/vantagem_new.blade.php",
+		"/var/www/cv/vendor/wallacemaxters/laravel3/src/laravel3/Support/Collection.php",
+		"/var/www/cv/laravel/routing/router.php",
+		"/var/www/cv/laravel/routing/route.php",
+		"/var/www/cv/application/config/application.php",
+		"/var/www/cv/public/static/js/beneficiario/novidades.js",
+		"/var/www/lab/ejs/index.php",
+		"/var/www/lab/ejs/views/home.ejs",
+		"/var/www/lab/ejs/js/app.js",
+		"/var/www/lab/ejs/js/ejs.js",
+		"/var/www/lab/ejs/js/ejs_production.js",
+		"/var/www/cv/application/controllers/post.php",
+		"/var/www/cv/laravel/helpers.php",
+		"/var/www/cv/public/static/css/css.css",
+		"/var/www/cv/public/static/css/wm-grid.css",
+		"/var/www/cv/public/static/css/inputs.css",
+		"/var/www/cv/public/static/css/css.min.css",
+		"/var/www/cv/application/views/layouts/default_autenticado.blade.php",
+		"/var/www/cv/gulpfile.js",
+		"/var/www/cv/public/static/css/crop.css",
+		"/var/www/cv/public/static/js/jquery-ui-rotatable.js",
+		"/var/www/assets/src/Assets/Manager.php",
 		"/var/www/assets/src/Assets/CollectionInterface.php",
 		"/var/www/assets/src/Assets/Collection.php",
-		"/var/www/cv/cardvantagens.sublime-project",
 		"/var/www/cv/node_test.js"
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 23.0
 	},
 	"find_in_files":
 	{
@@ -1467,42 +1270,47 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"compileDirectory",
-			"configureC",
-			"configureCp",
-			"configureColl",
-			"parsePathAlias",
-			"getBaseUri",
-			"compile_path",
-			"assets",
-			"getAb",
-			"/**",
-			"		\n",
-			" />\";",
-			"protected",
-			"collectionToList",
-			"getCollectionByFileExtension",
-			"parseAssetPathWildcard",
-			"tags",
-			"addPath",
-			"e",
-			"parse",
-			"parseNamespace",
-			"namespace",
-			"NAMESPACE",
-			"namespace",
-			"namespaces",
-			"addNamespace",
-			"configCollection",
-			"/',\n",
-			"']);\n",
-			"loadFiles",
-			"$type = null",
-			"tags",
-			"addNamespace",
-			"buildUr",
-			"{\n",
-			");\n",
+			"mailer",
+			"<header class=\"header\">\n	    <div class=\"container\">\n	        <div class='logo'>\n	        	<a href='{{ URL::to(\"/home\") }}'><img src=\"{{ URL::to('/static/img/logo.png') }}\"/></a>\n	        </div>\n	    </div>\n	</header>",
+			"500",
+			"masonry",
+			"mansory",
+			"$error",
+			"error",
+			"['id']",
+			"Session::get('auth.",
+			"Session::get('auth.empresa.logo_image')",
+			"Session::get('auth.empresa')",
+			"Session::get('auth.empresa.nomefantasia')",
+			"Session::get('auth.pessoa.id')",
+			"Session::get('auth.",
+			"Session::get('auth.empresa.id')",
+			"Session::get('a",
+			"Session",
+			"completePr",
+			".js",
+			"admin",
+			"admin ==",
+			"console",
+			"[\"\"]",
+			"mask",
+			"compartilhar",
+			"compartilhar'",
+			"compartilhar",
+			"response",
+			"vantagens-section",
+			"->order_by('categoria.prioridade', 'desc')",
+			"vantagensIds",
+			"destaquesQuantidade",
+			"current",
+			"<form",
+			"publicar-post",
+			"img",
+			"300",
+			"box-post-title-input",
+			"empresa",
+			"input",
+			"is-global",
 			"wm-alert",
 			"0px",
 			"wm-btn",
@@ -1589,12 +1397,7 @@
 			"getusuario",
 			"password",
 			"username",
-			"static/",
-			"mailer'",
-			"$usuario->sol",
-			"try",
-			"files",
-			"$_FILES"
+			"static/"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1602,6 +1405,12 @@
 		"regex": false,
 		"replace_history":
 		[
+			"        \n",
+			"Auth::user()->cartao->empresa->logo_image",
+			"Auth::user()->cartao->empresa",
+			"Auth::user()->cartao->empresa->nomefantasia",
+			"Auth::user()->id",
+			"Auth::user()->cartao->idempresa",
 			".min.js",
 			"'$1',",
 			"\"$1\"",
@@ -1641,65 +1450,66 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "test/index.php",
+					"file": "assets-legendary.sublime-project",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 853,
+						"buffer_size": 182,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								591,
-								591
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 171.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "assets-legendary.sublime-project",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 134,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								49,
-								49
+								131,
+								131
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "assets-legendary.sublime-workspace",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 550,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								25,
+								25
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 45.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -1736,41 +1546,17 @@
 		]
 	},
 	"menu_visible": true,
-	"output.CSS Extended Completions":
-	{
-		"height": 0.0
-	},
-	"output.css3_validator":
-	{
-		"height": 178.0
-	},
-	"output.csslint_result_view":
-	{
-		"height": 154.0
-	},
-	"output.exec":
-	{
-		"height": 243.0
-	},
 	"output.find_results":
 	{
 		"height": 0.0
 	},
-	"output.markdown":
-	{
-		"height": 140.0
-	},
-	"output.unsaved_changes":
-	{
-		"height": 110.0
-	},
-	"pinned_build_system": "",
+	"pinned_build_system": "Packages/YUI Compressor/YUI Compressor.sublime-build",
 	"project": "assets-legendary.sublime-project",
 	"replace":
 	{
 		"height": 42.0
 	},
-	"save_all_on_build": true,
+	"save_all_on_build": false,
 	"select_file":
 	{
 		"height": 0.0,
@@ -1778,68 +1564,360 @@
 		"selected_items":
 		[
 			[
-				"asse",
-				"src/Assets/Assets.php"
+				"mail",
+				"cv/application/config/mail.php"
 			],
 			[
-				"mana",
-				"src/Assets/Manager.php"
+				"config",
+				"cv/laravel/config.php"
 			],
 			[
-				"asset",
-				"src/Assets/Assets.php"
+				"cada",
+				"cv/application/controllers/cadastrar.php"
 			],
 			[
-				"conca",
-				"src/Assets/Concatenator.php"
+				"sobre",
+				"cv/application/views/home/sobre.blade.php"
+			],
+			[
+				"homelayout",
+				"cv/application/views/home/layout.blade.php"
+			],
+			[
+				"layoutdefa_err",
+				"cv/application/views/layouts/default_error.blade.php"
+			],
+			[
+				"respon",
+				"cv/laravel/response.php"
+			],
+			[
+				"filter",
+				"cv/application/filters.php"
+			],
+			[
+				"routes",
+				"cv/application/routes.php"
+			],
+			[
+				"pessoa",
+				"cv/application/models/pessoa.php"
+			],
+			[
+				"novidade.bl",
+				"cv/application/views/beneficiario/versao_2/novidades.blade.php"
+			],
+			[
+				"novidades.blade",
+				"cv/application/views/empresa/novidades.blade.php"
+			],
+			[
+				"profile",
+				"cv/application/views/beneficiario/profile.blade.php"
+			],
+			[
+				"post",
+				"cv/application/controllers/post.php"
+			],
+			[
+				"novidades",
+				"cv/application/views/beneficiario/versao_2/novidades.blade.php"
+			],
+			[
+				"alterar_ras",
+				"cv/application/views/admin/alterar_rastreamento.blade.php"
+			],
+			[
+				"admin",
+				"cv/application/controllers/admin.php"
+			],
+			[
+				"codigo_",
+				"cv/application/views/admin/codigo_promocional.blade.php"
+			],
+			[
+				"codigo_raster",
+				"cv/application/views/admin/codigo_rastreamento.blade.php"
+			],
+			[
+				"correios",
+				"cv/application/views/admin/elements/menu_top_correios.blade.php"
+			],
+			[
+				"admindefault.c",
+				"cv/public/static/css/admin/default.css"
+			],
+			[
+				"adminlayout",
+				"cv/application/views/admin/layout/default.blade.php"
+			],
+			[
+				"vendablade",
+				"cv/application/views/admin/vendas_liberadas.blade.php"
+			],
+			[
+				"homecentral",
+				"cv/application/views/home/central_de_atendimento.blade.php"
+			],
+			[
+				"home",
+				"cv/application/controllers/home.php"
+			],
+			[
+				"central",
+				"cv/application/views/home/central_de_atendimento.blade.php"
+			],
+			[
+				"wm-no",
+				"cv/public/static/css/conveniado/wm-notify-box.css"
+			],
+			[
+				"conveniadogrid",
+				"cv/public/static/css/conveniado/grid.css"
+			],
+			[
+				"sidebar",
+				"cv/public/static/css/conveniado/sidebar.css"
+			],
+			[
+				"conveniadodeaul",
+				"cv/public/static/css/conveniado/default.css"
+			],
+			[
+				"jpopover.css",
+				"cv/public/static/css/conveniado/jpopover.css"
+			],
+			[
+				"jmodal",
+				"cv/public/static/css/conveniado/jmodal.css"
+			],
+			[
+				"jmo",
+				"cv/public/static/css/jmodal.css"
+			],
+			[
+				"wm-too",
+				"cv/public/static/css/conveniado/wm-tooltip.css"
+			],
+			[
+				"modelpost",
+				"cv/application/models/post.php"
 			],
 			[
 				"",
-				"test/index.php"
+				"cv/application/views/conveniado/captura.blade.php"
 			],
 			[
-				"ma",
-				"src/Assets/Manager.php"
+				"dx.c",
+				"cv/public/static/js/dx.chartjs.js"
 			],
 			[
-				"abstra",
-				"src/Assets/Collections/AbstractCollection.php"
+				"dx",
+				"cv/public/static/js/dx.chartjs.js"
 			],
 			[
-				"j",
-				"src/Assets/Collections/JavascriptCollection.php"
+				"default_conveniad",
+				"cv/application/views/layouts/default_conveniado.blade.php"
 			],
 			[
-				"abstractcollection",
-				"src/Assets/Collections/AbstractCollection.php"
+				"conveniadocapu",
+				"cv/application/views/conveniado/captura.blade.php"
 			],
 			[
-				"man",
-				"src/Assets/Manager.php"
+				"relato",
+				"cv/application/views/conveniado/relatorio_checkin.blade.php"
 			],
 			[
-				"image",
-				"src/Assets/Collections/ImageCollection.php"
+				"conveniado",
+				"cv/application/controllers/conveniado.php"
 			],
 			[
-				"ab",
-				"src/Assets/Collections/AbstractCollection.php"
+				"conve",
+				"cv/application/controllers/conveniado.php"
 			],
 			[
-				"manager",
-				"src/Assets/Manager.php"
+				"empresa",
+				"cv/application/models/empresa.php"
 			],
 			[
-				"collect",
-				"src/Assets/Collections/CssCollection.php"
+				"postcon",
+				"cv/application/models/PostConveniado.php"
 			],
 			[
-				"absa",
-				"src/Assets/Collections/AbstractCollection.php"
+				"conv",
+				"cv/application/controllers/conveniado.php"
+			],
+			[
+				"homesobre",
+				"cv/application/views/home/sobre.blade.php"
+			],
+			[
+				"modelcartao",
+				"cv/application/models/cartao.php"
+			],
+			[
+				"cartao",
+				"cv/application/controllers/cartao.php"
+			],
+			[
+				"controllerconve",
+				"cv/application/controllers/conveniado.php"
+			],
+			[
+				"script-",
+				"cv/application/views/beneficiario/versao_2/elements/script-novidades.blade.php"
 			],
 			[
 				"wm-modal",
-				"public/css/wm-modal.css"
+				"cv/public/static/js/wm-modal.js"
+			],
+			[
+				"cadastrardefault.blade",
+				"cv/application/views/cadastrar/layout/default.blade.php"
+			],
+			[
+				"cadastrarlayout.blade",
+				"cv/application/views/conveniado/cadastrar/layout.blade.php"
+			],
+			[
+				"cadastrarlayout",
+				"cv/application/views/conveniado/cadastrar/layout.blade.php"
+			],
+			[
+				"cadastralayo",
+				"cv/application/views/conveniado/cadastrar/layout.blade.php"
+			],
+			[
+				"index_new.",
+				"cv/application/views/home/index_new.blade.php"
+			],
+			[
+				"ind",
+				"cv/application/views/home/index_new_del.blade.php"
+			],
+			[
+				"vantagem.php",
+				"application/controllers/vantagem.php"
+			],
+			[
+				"wm_carr",
+				"public/static/js/vantagem/wm_carrossel.min.js"
+			],
+			[
+				"wm_caa",
+				"application/views/metricas/estatisticas_cadastro.blade.php"
+			],
+			[
+				"anime-a",
+				"public/static/js/vantagem/anime-vantagens.min.js"
+			],
+			[
+				"anim",
+				"public/static/js/vantagem/anime-vantagens.js"
+			],
+			[
+				"anime-",
+				"public/static/js/vantagem/anime-vantagens.js"
+			],
+			[
+				"vantagem/default",
+				"public/static/css/vantagem/default.css"
+			],
+			[
+				"new.min",
+				"public/static/js/vantagem/new.min.js"
+			],
+			[
+				"new.js",
+				"public/static/js/vantagem/new.min.js"
+			],
+			[
+				"n",
+				"public/static/js/vantagem/new.js"
+			],
+			[
+				"vantagemnew.js",
+				"public/static/js/vantagem/new.js"
+			],
+			[
+				"vantagemnew.blade",
+				"application/views/vantagem/new.blade.php"
+			],
+			[
+				"vantagenew.blade",
+				"application/views/beneficiario/vantagem_new.blade.php"
+			],
+			[
+				"vantagemnew",
+				"application/views/beneficiario/vantagem_new.blade.php"
+			],
+			[
+				"collection",
+				"vendor/wallacemaxters/laravel3/src/laravel3/Support/Collection.php"
+			],
+			[
+				"route",
+				"laravel/routing/route.php"
+			],
+			[
+				"app",
+				"application/config/application.php"
+			],
+			[
+				"router",
+				"laravel/routing/router.php"
+			],
+			[
+				"vantagem",
+				"application/controllers/vantagem.php"
+			],
+			[
+				"novidades.js",
+				"public/static/js/beneficiario/novidades.js"
+			],
+			[
+				"laravelhelper",
+				"laravel/helpers.php"
+			],
+			[
+				"css.css",
+				"public/static/css/css.css"
+			],
+			[
+				"helper",
+				"laravel/helpers.php"
+			],
+			[
+				"inputs.css",
+				"public/static/css/inputs.css"
+			],
+			[
+				"wm-",
+				"public/static/css/wm-grid.css"
+			],
+			[
+				"script-novi",
+				"application/views/beneficiario/versao_2/elements/script-novidades.blade.php"
+			],
+			[
+				"css.min",
+				"public/static/css/css.min.css"
+			],
+			[
+				"default_auten",
+				"application/views/layouts/default_autenticado.blade.php"
+			],
+			[
+				"script-novidades",
+				"application/views/beneficiario/versao_2/elements/script-novidades.blade.php"
+			],
+			[
+				"staticcsscrop",
+				"public/static/css/crop.css"
+			],
+			[
+				"crop",
+				"public/static/css/crop.css"
 			],
 			[
 				"alert",
@@ -1996,298 +2074,6 @@
 			[
 				"conferir.js",
 				"public/js/remessa/conferir.js"
-			],
-			[
-				"soli",
-				"unibh/app/models/Solicitacao.php"
-			],
-			[
-				"foundationapp",
-				"unibh/vendor/laravel/framework/src/Illuminate/Foundation/Application.php"
-			],
-			[
-				"start",
-				"unibh/bootstrap/start.php"
-			],
-			[
-				"confapp.h",
-				"unibh/app/config/app.php"
-			],
-			[
-				"jquery-u",
-				"public/static/css/jquery-ui.css"
-			],
-			[
-				"homecompar",
-				"public/static/js/home/compartilhamento.js"
-			],
-			[
-				"default_autent",
-				"application/views/layouts/default_autenticado.blade.php"
-			],
-			[
-				"jbanner",
-				"public/static/js/jBanner.js"
-			],
-			[
-				"circlel",
-				"public/static/css/circleLoader.css"
-			],
-			[
-				"modal-ad",
-				"public/static/css/home/modal-advantages.css"
-			],
-			[
-				"acontecimento",
-				"public/static/js/acontecimentos.js"
-			],
-			[
-				"place",
-				"public/static/js/placeholder.js"
-			],
-			[
-				"login.js",
-				"public/static/js/home/login.js"
-			],
-			[
-				"index_1",
-				"public/static/js/home/index_v_1.js"
-			],
-			[
-				"index_v",
-				"public/static/css/home/index_v_1.css"
-			],
-			[
-				"index_new",
-				"application/views/home/index_new.blade.php"
-			],
-			[
-				"routes",
-				"application/routes.php"
-			],
-			[
-				"router",
-				"laravel/routing/router.php"
-			],
-			[
-				"homeindex",
-				"application/views/home/index.blade.php"
-			],
-			[
-				"valida_agenda",
-				"public/static/js/agenda/valida_agenda.js"
-			],
-			[
-				"newlaster.js",
-				"public/static/js/modal/newslatter/newslatter.js"
-			],
-			[
-				"carro",
-				"public/static/js/home/carrossel.js"
-			],
-			[
-				"jload",
-				"public/static/js/jLoader.js"
-			],
-			[
-				"comparti",
-				"public/static/js/home/compartilhamento.js"
-			],
-			[
-				"valida_fa",
-				"public/static/js/home/valida_faq.js"
-			],
-			[
-				"acompanhar",
-				"public/static/js/home/acompanhar_pedido.js"
-			],
-			[
-				"valida_esque",
-				"public/static/js/home/valida_esqueceu_senha.js"
-			],
-			[
-				"valida_esq",
-				"public/static/js/home/valida_esqueceu_email.js"
-			],
-			[
-				"valida_abrir_conta",
-				"public/static/js/home/valida_abrir_conta.js"
-			],
-			[
-				"gerais.js",
-				"public/static/js/venda/gerais.js"
-			],
-			[
-				"animation-hom",
-				"public/static/js/versao_2/home/animation-home.js"
-			],
-			[
-				"jloader",
-				"public/static/css/jLoader.css"
-			],
-			[
-				"agenda.css",
-				"public/static/css/agenda/agenda.css"
-			],
-			[
-				"jquery-ui",
-				"public/static/css/jquery-ui.css"
-			],
-			[
-				"form_inpu",
-				"public/static/css/conveniado/form_inputs.css"
-			],
-			[
-				"modal_home.",
-				"public/static/css/home/modal_home.css"
-			],
-			[
-				"default_novo",
-				"public/static/css/home/default_novo.css"
-			],
-			[
-				"homeversaoindex",
-				"application/views/home/versao_2/index.blade.php"
-			],
-			[
-				"hom",
-				"application/controllers/home.php"
-			],
-			[
-				"relatorio_gerado",
-				"application/views/sistema/relatorio_gerado.php"
-			],
-			[
-				"appc",
-				"src/Controller/AppController.php"
-			],
-			[
-				"boot",
-				"config/bootstrap.php"
-			],
-			[
-				"appcont",
-				"src/Controller/AppController.php"
-			],
-			[
-				"boots",
-				"config/bootstrap.php"
-			],
-			[
-				"requesthadler",
-				"vendor/cakephp/cakephp/src/Controller/Component/RequestHandlerComponent.php"
-			],
-			[
-				"tim",
-				"public/tim.php"
-			],
-			[
-				"timh",
-				"public/tim.php"
-			],
-			[
-				"footer-blade",
-				"application/views/home/footer-1.blade.php"
-			],
-			[
-				"footer-",
-				"application/views/conveniado/footer-autenticado.blade.php"
-			],
-			[
-				"controllerin",
-				"vendor/laravel/framework/src/Illuminate/Routing/ControllerInspector.php"
-			],
-			[
-				"layout.blade",
-				"app/views/layouts/default.blade.php"
-			],
-			[
-				"login.",
-				"app/views/layouts/login.blade.php"
-			],
-			[
-				"htmlb",
-				"vendor/laravel/framework/src/Illuminate/Html/HtmlBuilder.php"
-			],
-			[
-				"app",
-				"bootstrap/app.php"
-			],
-			[
-				"illuminate/foundation/http/kernel",
-				"vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php"
-			],
-			[
-				"illuminatekerne",
-				"vendor/laravel/framework/src/Illuminate/Contracts/Console/Kernel.php"
-			],
-			[
-				"conferir.",
-				"public/js/remessa/conferir.js"
-			],
-			[
-				"clientcon",
-				"app/controllers/webservice/ClientController.php"
-			],
-			[
-				"menu",
-				"app/views/layouts/elements/menu_links_aluno.blade.php"
-			],
-			[
-				"solicita",
-				"app/controllers/SolicitacaoController.php"
-			],
-			[
-				"route",
-				"application/routes.php"
-			],
-			[
-				"remessacontroller",
-				"unibh/app/controllers/RemessaController.php"
-			],
-			[
-				"remessacontroll",
-				"unabh/app/controllers/RemessaController.php"
-			],
-			[
-				"aguardando",
-				"unibh/app/views/remessa/aguardando_aprovacao_financeira.blade.php"
-			],
-			[
-				"aprovaca",
-				"unibh/public/js/remessa/aguardando_aprovacao_financeira.js"
-			],
-			[
-				"solicitacaocontroller",
-				"unabh/app/controllers/SolicitacaoController.php"
-			],
-			[
-				"unasolicitacot",
-				"unibh/app/controllers/SolicitacaoController.php"
-			],
-			[
-				"cadastr",
-				"cv/application/controllers/cadastrar.php"
-			],
-			[
-				"cssselector",
-				"laravel5/vendor/symfony/css-selector/CssSelectorConverter.php"
-			],
-			[
-				"formbuild",
-				"vendor/laravel/framework/src/Illuminate/Html/FormBuilder.php"
-			],
-			[
-				"form.php",
-				"vendor/symfony/dom-crawler/Symfony/Component/DomCrawler/Form.php"
-			],
-			[
-				"consoleappl",
-				"vendor/laravel/framework/src/Illuminate/Console/Application.php"
-			],
-			[
-				"reprovadas",
-				"app/views/solicitacao/reprovadas.blade.php"
 			]
 		],
 		"width": 0.0
@@ -2300,10 +2086,6 @@
 		[
 			[
 				"",
-				"/var/www/unibh/unibh-identidade-estudantil.sublime-project"
-			],
-			[
-				"coa",
 				"/var/www/cv/cardvantagens.sublime-project"
 			]
 		],
@@ -2326,7 +2108,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 343.0,
+	"side_bar_width": 316.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

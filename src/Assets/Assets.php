@@ -7,16 +7,19 @@ use PHPLegends\Assets\Collections\ImageCollection;
 use PHPLegends\Assets\Collections\CssCollection;
 use PHPLegends\Assets\Collections\CollectionInterface;
 
+/**
+* @author Wallace de Souza Vizerra <wallacemaxters@gmail.com>
+*/
 class Assets
 {
+    /**
+    * @static
+    * @var array
+    */
     protected static $config = [
-
-        'compiled'  => '_compiled',
-        'base_path' => '/',
-        'autoload'  => [
-            'js'  => null, 
-            'css' => null
-        ]
+        'compiled' => '_compiled',
+        'path'     => '/',
+        'base_uri' => '/',
     ];
 
     /**
@@ -37,7 +40,7 @@ class Assets
     {
         $collection = (new ImageCollection)->setAttributes($attributes);
 
-        return static::createManager()->addCollecti($collection)->addArray((array) $assets);
+        return static::createManager()->addCollection($collection)->addArray((array) $assets);
     }
 
     /**
@@ -128,7 +131,7 @@ class Assets
     */
     protected static function buildCompileDirectory()
     {
-        $directory = static::$config['base_path'] . '/' . static::$config['compiled'];
+        $directory = static::$config['path'] . '/' . static::$config['compiled'];
 
         if (! is_dir($directory)) {
 
@@ -153,13 +156,13 @@ class Assets
             $manager->setBaseUri(static::$config['base_uri']);
         }
 
-        if (isset(static::$config['base_path'])) {
+        if (isset(static::$config['path'])) {
 
-            $manager->setBasePath(static::$config['base_path']);
+            $manager->setBasePath(static::$config['path']);
 
-            // Trata o base_path para não haver barras desnecessárias
+            // Trata o path para não haver barras desnecessárias
 
-            static::$config['base_path'] = $manager->getBasePath();
+            static::$config['path'] = $manager->getBasePath();
         }
 
         if (isset(static::$config['path_aliases']) ) {

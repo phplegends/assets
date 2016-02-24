@@ -1,13 +1,13 @@
 {
-	"folders":
-	[
-		{
-			"path": "/var/www/assets"
-		}
-	],
+    "folders":
+    [
+        {
+            "path": "/var/www/assets"
+        }
+    ],
 
-	"settings" : {
-		"tab_size" : 4,
-		"translate_tabs_to_spaces" : true
-	}
+    "settings" : {
+        "tab_size" : 4,
+        "translate_tabs_to_spaces" : true
+    }
 }
