@@ -177,7 +177,6 @@ class Assets
 
             $manager->setVersion(static::$config['version']);
         }
-
         return $manager;
     }
 

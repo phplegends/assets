@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"se",
+				"setBaseUri〔function〕"
+			],
+			[
+				"add",
+				"addPathAlias〔function〕"
+			],
+			[
+				"path",
+				"path_aliases"
+			],
+			[
+				"ass",
+				"$assets〔variable〕"
+			],
+			[
+				"assert",
+				"assertEquals"
+			],
+			[
 				"emai",
 				"$email〔variable〕"
 			],
@@ -494,52 +514,38 @@
 			[
 				"empresas",
 				"empresasSugeridas"
-			],
-			[
-				"image",
-				"imageurl"
-			],
-			[
-				"brea",
-				"breakpoint"
-			],
-			[
-				"exis",
-				"$existentes〔variable〕"
-			],
-			[
-				"lista",
-				"$lista_emails〔variable〕"
-			],
-			[
-				"ar",
-				"array_reject〔function〕"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
+			"contents": "<?php\n\ninclude __DIR__ . '/../vendor/autoload.php';\n\nuse PHPLegends\\Assets\\Assets;\nuse PHPLegends\\Assets\\Manager;\nuse PHPLegends\\Assets\\Collections;\n\nclass AssetTest extends PHPUnit_Framework_TestCase\n{ \n    public function testPathAndUri()\n    {\n\n        Assets::config([\n            'path'     => __DIR__ . '/../test/assets',\n        ]);\n\n        $manager = Assets::style('css/reset.css');\n\n        $this->assertEquals($manager->getBasePath(), '/var/www/assets/test/assets');\n    }\n\n    public function testAliasPath()\n    {\n        Assets::config([\n\n            'base_uri' => '/assets',\n            'path_aliases' => [\n                'css.home' => 'css/home'\n            ]\n        ]);\n\n        $this->assertEquals(\n            (string) Assets::style('css.home:index.css'),\n            '<link href=\"/assets/css/home/index.css\" rel=\"stylesheet\" type=\"text/css\"/>'\n        );\n    }\n\n    public function testVersionViaConfig()\n    {\n        Assets::config(['version' => '2.0']);\n\n        $version = Assets::manager()->getVersion();\n\n        $this->assertEquals($version, '2.0');\n\n    }\n\n\n    public function testPathAlias()\n    {\n\n        Assets::config([\n            'path_aliases' => [\n                'admin' => 'assets/{folder}/admin/',\n\n            ]\n        ]);\n\n        $manager = Assets::add([]);\n\n        $this->assertEquals(\n            $manager->parsePathAlias('admin:index.js'),\n            '/assets/js/admin/index.js'\n        );\n\n        $this->assertEquals(\n            $manager->parsePathAlias('admin:index.css'),\n            '/assets/css/admin/index.css'\n        );\n    }\n\n    public function testPathAliasNonStatic()\n    {\n\n        $manager = new Manager([\n            new Collections\\JavascriptCollection,\n            new Collections\\CssCollection\n        ]);\n\n\n        $manager->addPathAlias('admin', 'assets/{folder}/admin');\n\n        $asset = $manager->parsePathAlias('admin:index.js');\n\n        $this->assertEquals(\n            $asset,\n            '/assets/js/admin/index.js'\n        );\n\n    }\n\n    public function testCollectionType()\n    {\n        $js = new Collections\\JavascriptCollection;\n\n        $css = new Collections\\JavascriptCollection;\n\n        \n\n    }\n}",
+			"file": "phpunit/AssetTest.php",
+			"file_size": 2190,
+			"file_write_time": 131008129123454025,
+			"settings":
+			{
+				"buffer_size": 2188,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Assets/Manager.php",
+			"settings":
+			{
+				"buffer_size": 6626,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<?php \n\nnamespace PHPLegends\\Assets;\n\nuse PHPLegends\\Assets\\Collections\\JavascriptCollection;\nuse PHPLegends\\Assets\\Collections\\ImageCollection;\nuse PHPLegends\\Assets\\Collections\\CssCollection;\nuse PHPLegends\\Assets\\Collections\\CollectionInterface;\n\n/**\n* @author Wallace de Souza Vizerra <wallacemaxters@gmail.com>\n*/\nclass Assets\n{\n    /**\n    * @static\n    * @var array\n    */\n    protected static $config = [\n        'compiled' => '_compiled',\n        'path'     => '/',\n        'base_uri' => '/',\n    ];\n\n    /**\n    * @param array $config\n    * @return void\n    */\n    public static function config(array $config)\n    {\n        static::$config = array_merge(static::$config, $config);\n    }\n\n    /**\n    * @param string|array $assets\n    * @param array $attributes\n    * @return \\PHPLegends\\Assets\\Manager\n    */\n    public static function image($assets, array $attributes = [])\n    {\n        $collection = (new ImageCollection)->setAttributes($attributes);\n\n        return static::manager()->addCollection($collection)->addArray((array) $assets);\n    }\n\n    /**\n    * @param string|array $assets\n    * @param array $attributes\n    * @return \\PHPLegends\\Assets\\Manager\n    */\n    public static function style($assets, array $attributes = [])\n    {\n        $collection = (new CssCollection)->setAttributes($attributes);\n\n        return static::manager()->addCollection($collection)->addArray((array) $assets);\n    }\n\n    /**\n    * @param array $assets\n    * @return \\PHPLegends\\Assets\\Manager\n    */\n    public static function add(array $assets)\n    {\n        return  static::manager()\n                            ->addCollection(new CssCollection)\n                            ->addCollection(new JavascriptCollection)\n                            ->addArray($assets);\n    }\n\n    /**\n    * @param string|array $assets\n    * @param array $attributes\n    * @return \\PHPLegends\\Assets\\Manager\n    */\n\n    public static function script($assets, array $attributes = [])\n    {\n        $collection = (new JavascriptCollection)->setAttributes($attributes);\n\n        return static::manager()\n                      ->addCollection($collection)\n                      ->addArray((array) $assets);\n    }\n\n\n    /**\n    * @param string|array $assets\n    * @param string|null $filename\n    * @return \\PHPLegends\\Assets\\Manager\n    */\n    public static function concatScript(array $assets, $filename = null)\n    {\n        $manager = static::script($assets);\n\n        $directory = static::buildCompileDirectory($manager->getBasePath());\n\n        $files = $manager->getFilenames();\n\n        $outputFile = Concatenator::create($files)\n                                    ->setGlue(sprintf(';%s', PHP_EOL))\n                                    ->getCache($directory, $filename);\n\n        $concatOutput = static::$config['compiled'] . '/' . $outputFile->getFilename();\n\n        return static::script($concatOutput);\n    }\n\n    /**\n    * @param string|array $assets\n    * @param string|null $filename\n    * @return \\PHPLegends\\Assets\\Manager\n    */\n\n    public static function concatStyle(array $assets, $filename = null)\n    {\n        $manager = static::style($assets);\n\n        $directory = static::buildCompileDirectory();\n\n        $files = $manager->getFilenames();\n\n        $outputFile = (new Concatenator($files))->getCache($directory, $filename);\n\n        $concatOutput = static::$config['compiled'] . '/' . $outputFile->getFilename();\n\n        return static::style($concatOutput);\n    }\n\n    /**\n    * @return string\n    */\n    protected static function buildCompileDirectory()\n    {\n        $directory = static::$config['path'] . '/' . static::$config['compiled'];\n\n        if (! is_dir($directory)) {\n\n            mkdir($directory, 0777, true);\n        }\n\n        return $directory;\n    }\n\n    /**\n    * Creates and configure the manager\n    * @return \\PHPLegends\\Assets\\Manager\n    */\n    public static function manager()\n    {\n        $manager = new Manager;\n\n        // Defines the nampesace globally\n\n        if (isset(static::$config['base_uri'])) {\n\n            $manager->setBaseUri(static::$config['base_uri']);\n        }\n\n        if (isset(static::$config['path'])) {\n\n            $manager->setBasePath(static::$config['path']);\n\n            // Trata o path para não haver barras desnecessárias\n\n            static::$config['path'] = $manager->getBasePath();\n        }\n\n        if (isset(static::$config['path_aliases']) ) {\n\n            foreach ((array) static::$config['path_aliases'] as $alias => $path) {\n\n                $manager->addPathAlias($alias, $path);\n            }   \n        }\n\n        if (isset(static::$config['version'])) {\n\n            $manager->setVersion(static::$config['version']);\n        }\n        return $manager;\n    }\n\n}",
 			"file": "src/Assets/Assets.php",
+			"file_size": 4749,
+			"file_write_time": 131008107159894944,
 			"settings":
 			{
-				"buffer_size": 4783,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": ".gitignore",
-			"settings":
-			{
-				"buffer_size": 44,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "composer.json",
-			"settings":
-			{
-				"buffer_size": 739,
+				"buffer_size": 4746,
 				"line_ending": "Unix"
 			}
 		}
@@ -551,10 +557,26 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 400.0,
+		"height": 36.0,
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"markd",
+				"Markdown Preview: Open Markdown Cheat sheet"
+			],
+			[
+				"markdown",
+				"Markdown Preview: Preview in Browser"
+			],
 			[
 				"blade",
 				"Set Syntax: Laravel Blade"
@@ -562,10 +584,6 @@
 			[
 				"html",
 				"Set Syntax: HTML"
-			],
-			[
-				"remove",
-				"Package Control: Remove Package"
 			],
 			[
 				"css comple",
@@ -718,10 +736,6 @@
 			[
 				"jinj",
 				"Set Syntax: Jinja2"
-			],
-			[
-				"insta",
-				"Package Control: Install Package"
 			],
 			[
 				"jsn",
@@ -1121,17 +1135,29 @@
 	"expanded_folders":
 	[
 		"/var/www/assets",
+		"/var/www/assets/phpunit",
+		"/var/www/assets/src/Assets",
+		"/var/www/assets/src/Assets/Collections",
 		"/var/www/assets/test",
-		"/var/www/assets/test/assets",
-		"/var/www/assets/vendor",
-		"/var/www/assets/vendor/victorjonsson",
-		"/var/www/assets/vendor/victorjonsson/markdowndocs"
+		"/var/www/assets/test/assets/css",
+		"/var/www/assets/vendor/victorjonsson/markdowndocs",
+		"/var/www/assets/vendor/victorjonsson/markdowndocs/bin",
+		"/var/www/assets/vendor/victorjonsson/markdowndocs/src"
 	],
 	"file_history":
 	[
+		"/var/www/assets/src/Assets/Manager.php",
+		"/var/www/assets/phpunit/AssetTest.php",
+		"/var/www/assets/src/Assets/Collections/CssCollection.php",
+		"/var/www/assets/test/index.php",
+		"/var/www/assets/src/Assets/Assets.php",
+		"/var/www/assets/src/Assets/README.md",
+		"/var/www/assets/composer.json",
+		"/var/www/assets/.gitignore",
+		"/var/www/assets/API.md",
+		"/var/www/assets/markdown",
 		"/var/www/assets/test/views/home.lgd.php",
 		"/var/www/assets/assets-legendary.sublime-project",
-		"/var/www/assets/test/index.php",
 		"/var/www/assets/assets-legendary.sublime-workspace",
 		"/var/www/cv/application/views/home/sobre.blade.php",
 		"/var/www/cv/application/config/mail.php",
@@ -1217,7 +1243,6 @@
 		"/var/www/cv/gulpfile.js",
 		"/var/www/cv/public/static/css/crop.css",
 		"/var/www/cv/public/static/js/jquery-ui-rotatable.js",
-		"/var/www/assets/src/Assets/Manager.php",
 		"/var/www/assets/src/Assets/CollectionInterface.php",
 		"/var/www/assets/src/Assets/Collection.php",
 		"/var/www/cv/node_test.js"
@@ -1286,6 +1311,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"findCo",
+			"createManager",
+			"doenst",
+			"        \n",
 			"base_path",
 			"mailer",
 			"<header class=\"header\">\n	    <div class=\"container\">\n	        <div class='logo'>\n	        	<a href='{{ URL::to(\"/home\") }}'><img src=\"{{ URL::to('/static/img/logo.png') }}\"/></a>\n	        </div>\n	    </div>\n	</header>",
@@ -1409,11 +1438,7 @@
 			"[^(min)]\\.js",
 			".css",
 			" car",
-			"include",
-			"getsenha",
-			"getusuario",
-			"password",
-			"username"
+			"include"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1466,24 +1491,24 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/Assets/Assets.php",
+					"file": "phpunit/AssetTest.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4783,
+						"buffer_size": 2188,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1021,
-								1021
+								2179,
+								2179
 							]
 						],
 						"settings":
@@ -1494,35 +1519,37 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1458.0,
+						"translation.y": 1368.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": ".gitignore",
+					"file": "src/Assets/Manager.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 44,
+						"buffer_size": 6626,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								44,
-								44
+								6626,
+								6626
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 5708.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -1530,33 +1557,33 @@
 				},
 				{
 					"buffer": 2,
-					"file": "composer.json",
+					"file": "src/Assets/Assets.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 739,
+						"buffer_size": 4746,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								297,
-								297
+								4746,
+								4746
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 54.0,
+						"translation.y": 672.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -1564,7 +1591,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 21.0
+		"height": 27.0
 	},
 	"input":
 	{
@@ -1593,6 +1620,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 116.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -1601,7 +1632,7 @@
 	"project": "assets-legendary.sublime-project",
 	"replace":
 	{
-		"height": 40.0
+		"height": 50.0
 	},
 	"save_all_on_build": false,
 	"select_file":
@@ -1610,6 +1641,26 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"mana",
+				"src/Assets/Manager.php"
+			],
+			[
+				"assets",
+				"src/Assets/Assets.php"
+			],
+			[
+				"css",
+				"src/Assets/Collections/CssCollection.php"
+			],
+			[
+				"manage",
+				"src/Assets/Manager.php"
+			],
+			[
+				"asset",
+				"src/Assets/Assets.php"
+			],
 			[
 				"home",
 				"test/views/home.lgd.php"
@@ -2101,26 +2152,6 @@
 			[
 				"form.scss",
 				"forms/wgm-form.scss"
-			],
-			[
-				"filters",
-				"unabh/app/filters.php"
-			],
-			[
-				"conferir.css",
-				"public/css/remessa/conferir.css"
-			],
-			[
-				"conferir.blade",
-				"app/views/remessa/conferir.blade.php"
-			],
-			[
-				"conferrir.blade",
-				"app/views/remessa/conferir_cartao.blade.php"
-			],
-			[
-				"conferir",
-				"public/js/remessa/conferir.js"
 			]
 		],
 		"width": 0.0

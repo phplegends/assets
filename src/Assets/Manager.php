@@ -218,7 +218,7 @@ class Manager
     {
         $items = [];
 
-        foreach ($collection->all() as $item)  {
+        foreach ((array) $collection->all() as $item)  {
 
             $items[] = $callback($item, $collection);
         }
