@@ -1,6 +1,8 @@
 $(function ()
 {
 
+
+
     (function chat() {
 
 
@@ -9,4 +11,7 @@ $(function ()
         setTimeout(chat, 2500);
 
     })()
+
+
+
 });

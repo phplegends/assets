@@ -15,11 +15,6 @@ View::config([
 
 Assets::config([
 
-    /*
-        Por que isso? O cara pode ter acesso a um path, e esse path, porém,
-        ter acesso via subdomínio
-    */
-
     //'base_uri' => 'http://localhost:8000/assets',
 
     'base_uri' => '/assets',
@@ -49,7 +44,7 @@ Assets::config([
 
 class_alias('PHPLegends\Assets\Assets', 'Assets');
 
-echo View::create('home', [
+echo View::create('view', [
 
     'nome' => filter_input(INPUT_GET, 'nome')
 ]);

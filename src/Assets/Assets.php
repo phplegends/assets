@@ -97,7 +97,7 @@ class Assets
         $files = $manager->getFilenames();
 
         $outputFile = Concatenator::create($files)
-                                    ->setGlue(sprintf(';%s', PHP_EOL))
+                                    ->setGlue(';')
                                     ->getCache($directory, $filename);
 
         $concatOutput = static::$config['compiled'] . '/' . $outputFile->getFilename();

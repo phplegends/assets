@@ -9,7 +9,6 @@ use PHPLegends\Assets\Collections;
 class AssetTest extends PHPUnit_Framework_TestCase
 { 
 
-
     public function testPathAndUri()
     {
 
@@ -55,7 +54,6 @@ class AssetTest extends PHPUnit_Framework_TestCase
         Assets::config([
             'path_aliases' => [
                 'admin' => 'assets/{folder}/admin/',
-
             ]
         ]);
 
@@ -84,21 +82,20 @@ class AssetTest extends PHPUnit_Framework_TestCase
 
         $manager->addPathAlias('admin', 'assets/{folder}/admin');
 
-        $asset[0] = $manager->parsePathAlias('admin:index.js');
+        $manager->addPathAlias('css.admin', 'assets/css/admin');
 
-        $this->assertEquals(
-            $asset[0],
-            '/assets/js/admin/index.js'
-        );
+        $tests = [
+            'admin:index.js'        => '/assets/js/admin/index.js',
+            'admin:doc.pdf'         => '/assets/test/admin/doc.pdf',
+            'css.admin:default.css' => '/assets/css/admin/default.css',
+        ];
 
-        $asset[1] = $manager->parsePathAlias('admin:doc.pdf');
-
-        $manager->add('admin:doc.pdf');
-
-        $this->assertEquals(
-            $asset[1],
-            '/assets/test/admin/doc.pdf'
-        );
+        foreach ($tests as $fakename => $realname) {
+            $this->assertEquals(
+                $manager->parsePathAlias($fakename),
+                $realname
+            );
+        }
 
     }
 
@@ -108,11 +105,27 @@ class AssetTest extends PHPUnit_Framework_TestCase
 
         $css = new Collections\JavascriptCollection;
 
+        $this->assertTrue($js instanceof Collections\CollectionInterface, 'The class "js" is not instance of CollectionInterface');
 
-        $this->assertTrue($js instanceof Collections\CollectionInterface, 'The class "js" is instance of CollectionInterface');
+        $this->assertTrue($css instanceof Collections\CollectionInterface, 'The class "js" is not instance of CollectionInterface');
 
-        $this->assertTrue($js instanceof Collections\CollectionInterface, 'The class "js" is instance of CollectionInterface');
+    }
 
+
+    public function testImage()
+    {
+
+        Assets::config([
+            'version' => null,
+            'base_uri' => 'http://site.com/assets'
+        ]);
+
+        $image_tag = Assets::image('img/teste.jpg')->output();
+
+        $this->assertEquals(
+            $image_tag,
+            '<img src="http://site.com/assets/img/teste.jpg"/>'
+        );
     }
 }
 

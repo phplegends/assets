@@ -98,14 +98,14 @@ class Concatenator
 
             $file = new SplFileObject($file, 'r');
 
+            $file->setFlags(SplFileObject::READ_AHEAD | SplFileObject::SKIP_EMPTY | SplFileObject::DROP_NEW_LINE);
+
             foreach ($file as $line) {
 
-                $newFile->fwrite($line);
-            }
+                $newFile->fwrite($line . PHP_EOL);
+            } 
 
-            // If the last line not has glue caractere, add caractere
-
-            if (mb_substr($line, -1) !== $this->glue) {
+            if (substr($line, -1) !== $this->glue) {
 
                 $newFile->fwrite($this->glue);
             }
