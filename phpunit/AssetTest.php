@@ -34,23 +34,6 @@ class AssetTest extends PHPUnit_Framework_TestCase
         );
     }
 
-    public function testIfThrowsExceptionOnAliasPathDoesntExists()
-    {
-        Assets::config([
-            'base_uri' => '/assets',
-            'path_aliases' => [
-                'home' => '{folder}/home',
-                'admin' => '{folder}/admin'
-            ]
-        ]);
-
-
-        Assets::add([
-            'home:default.css',
-            'admin:default.css',
-        ]);
-    }
-
 
     public function testVersionViaConfig()
     {
@@ -58,7 +41,31 @@ class AssetTest extends PHPUnit_Framework_TestCase
 
         $version = Assets::manager()->getVersion();
 
-        $this->assertEquals($version, '2.1');
+        $this->assertEquals($version, '2.0');
 
+    }
+
+
+    public function testPathAlias()
+    {
+
+        Assets::config([
+            'path_aliases' => [
+                'admin' => 'assets/{folder}/admin/',
+
+            ]
+        ]);
+
+        $manager = Assets::add([]);
+
+        $this->assertEquals(
+            $manager->parsePathAlias('admin:index.js'),
+            '/assets/js/admin/index.js'
+        );
+
+        $this->assertEquals(
+            $manager->parsePathAlias('admin:index.css'),
+            '/assets/css/admin/index.css'
+        );
     }
 }

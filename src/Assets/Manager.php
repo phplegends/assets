@@ -79,16 +79,6 @@ class Manager
 
         $collection = $this->findCollectionByFileExtension($asset);
 
-        if ($collection === null) {
-
-            $message =  sprintf(
-                'The collection of extension "%s" is not registred',
-                pathinfo($asset, PATHINFO_EXTENSION)
-            );
-
-            throw new \InvalidArgumentException($message);
-        }
-
         $asset = $this->parsePathAlias($asset);
 
         $collection->add($asset);
@@ -123,6 +113,14 @@ class Manager
                 return $collection;
             }
         }
+
+        $message =  sprintf(
+            'The collection of extension "%s" is not registred',
+            pathinfo($asset, PATHINFO_EXTENSION)
+        );
+
+        throw new \InvalidArgumentException($message);
+        
 
         return null;
     }
@@ -266,7 +264,7 @@ class Manager
     * @param string $path
     * @return string
     */
-    protected function parsePathAlias($path)
+    public function parsePathAlias($path)
     {
         list($alias, $asset) = $this->extractPathAlias($path);
 
