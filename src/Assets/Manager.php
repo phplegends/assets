@@ -97,6 +97,7 @@ class Manager
     }
 
     /**
+    * Add files according to order of elements
     * @param array $assets
     * @return PHPLegends\Assets\Manager
     */
@@ -177,7 +178,7 @@ class Manager
 
         if ($realpath === false) {
 
-            throw new \InvalidArgumentException("The base path '{$path}' doesnt exists");
+            throw new \InvalidArgumentException("The base path '{$path}' doesn't exists");
         }
 
         $this->basePath = rtrim($realpath, '/');
@@ -276,7 +277,7 @@ class Manager
         if (! isset($this->paths[$alias])) {
 
             throw new \UnexpectedValueException(
-                "Alias '{$alias}' doesnt registred"
+                "Alias with name '{$alias}' doesn't registred"
             );
         }
 

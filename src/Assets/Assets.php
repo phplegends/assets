@@ -40,7 +40,7 @@ class Assets
     {
         $collection = (new ImageCollection)->setAttributes($attributes);
 
-        return static::createManager()->addCollection($collection)->addArray((array) $assets);
+        return static::manager()->addCollection($collection)->addArray((array) $assets);
     }
 
     /**
@@ -52,7 +52,7 @@ class Assets
     {
         $collection = (new CssCollection)->setAttributes($attributes);
 
-        return static::createManager()->addCollection($collection)->addArray((array) $assets);
+        return static::manager()->addCollection($collection)->addArray((array) $assets);
     }
 
     /**
@@ -61,7 +61,7 @@ class Assets
     */
     public static function add(array $assets)
     {
-        return  static::createManager()
+        return  static::manager()
                             ->addCollection(new CssCollection)
                             ->addCollection(new JavascriptCollection)
                             ->addArray($assets);
@@ -77,7 +77,7 @@ class Assets
     {
         $collection = (new JavascriptCollection)->setAttributes($attributes);
 
-        return static::createManager()
+        return static::manager()
                       ->addCollection($collection)
                       ->addArray((array) $assets);
     }
@@ -145,7 +145,7 @@ class Assets
     * Creates and configure the manager
     * @return \PHPLegends\Assets\Manager
     */
-    protected static function createManager()
+    public static function manager()
     {
         $manager = new Manager;
 
