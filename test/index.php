@@ -27,7 +27,7 @@ Assets::config([
     /*
         A pasta base de todos o assets. Aqui é onde podemos processar o caminho completo do arquivo.
     */
-    'base_path' => __DIR__ . '/assets',
+    'path' => __DIR__ . '/assets',
 
     // Diretório onde são compilados os arquivos unidos pelo Concatenator
     'compiled' => '_compiled_assets',
