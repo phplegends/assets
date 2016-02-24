@@ -26,7 +26,7 @@ class Assets
     * @param array $config
     * @return void
     */
-    public static function setConfig(array $config)
+    public static function config(array $config)
     {
         static::$config = array_merge(static::$config, $config);
     }

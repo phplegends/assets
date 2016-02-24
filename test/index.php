@@ -13,7 +13,7 @@ View::config([
     'path'     => __DIR__ . '/views',
 ]);
 
-Assets::setConfig([
+Assets::config([
 
     /*
         Por que isso? O cara pode ter acesso a um path, e esse path, porém,

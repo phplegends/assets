@@ -4,15 +4,22 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Wallace de Souza",
-            "email": "wallacemaxters@gmail.com"
+            "name": "Wallace de Souza Vizerra",
+            "email": "wallacemaxters@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Guilherme Nascimento",
+            "email": "guilherme@gmail.com",
+            "role": "Developer"
         }
     ],
     "require": {
         "php" : ">=5.4"
     },
     "require-dev" : {
-        "phplegends/legendary" : "dev-master"
+        "phplegends/legendary" : "dev-master",
+        "victorjonsson/markdowndocs" : "dev-master"
     },
     "autoload" : {
         "psr-4" : {

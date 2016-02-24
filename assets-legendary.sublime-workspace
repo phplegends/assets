@@ -520,18 +520,26 @@
 	"buffers":
 	[
 		{
-			"file": "assets-legendary.sublime-project",
+			"file": "src/Assets/Assets.php",
 			"settings":
 			{
-				"buffer_size": 182,
+				"buffer_size": 4783,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "assets-legendary.sublime-workspace",
+			"file": ".gitignore",
 			"settings":
 			{
-				"buffer_size": 550,
+				"buffer_size": 44,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "composer.json",
+			"settings":
+			{
+				"buffer_size": 739,
 				"line_ending": "Unix"
 			}
 		}
@@ -544,7 +552,7 @@
 	"command_palette":
 	{
 		"height": 400.0,
-		"last_filter": "blade",
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -1112,10 +1120,18 @@
 	},
 	"expanded_folders":
 	[
-		"/var/www/assets"
+		"/var/www/assets",
+		"/var/www/assets/test",
+		"/var/www/assets/test/assets",
+		"/var/www/assets/vendor",
+		"/var/www/assets/vendor/victorjonsson",
+		"/var/www/assets/vendor/victorjonsson/markdowndocs"
 	],
 	"file_history":
 	[
+		"/var/www/assets/test/views/home.lgd.php",
+		"/var/www/assets/assets-legendary.sublime-project",
+		"/var/www/assets/test/index.php",
 		"/var/www/assets/assets-legendary.sublime-workspace",
 		"/var/www/cv/application/views/home/sobre.blade.php",
 		"/var/www/cv/application/config/mail.php",
@@ -1208,7 +1224,7 @@
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -1270,6 +1286,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"base_path",
 			"mailer",
 			"<header class=\"header\">\n	    <div class=\"container\">\n	        <div class='logo'>\n	        	<a href='{{ URL::to(\"/home\") }}'><img src=\"{{ URL::to('/static/img/logo.png') }}\"/></a>\n	        </div>\n	    </div>\n	</header>",
 			"500",
@@ -1396,8 +1413,7 @@
 			"getsenha",
 			"getusuario",
 			"password",
-			"username",
-			"static/"
+			"username"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1450,66 +1466,97 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "assets-legendary.sublime-project",
+					"file": "src/Assets/Assets.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 182,
+						"buffer_size": 4783,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								131,
-								131
+								1021,
+								1021
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"auto_complete": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1458.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": ".gitignore",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 44,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								44,
+								44
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "assets-legendary.sublime-workspace",
+					"buffer": 2,
+					"file": "composer.json",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 550,
+						"buffer_size": 739,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								25,
-								25
+								297,
+								297
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"auto_complete": false,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 45.0,
+						"translation.y": 54.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1517,7 +1564,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 21.0
 	},
 	"input":
 	{
@@ -1554,7 +1601,7 @@
 	"project": "assets-legendary.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 40.0
 	},
 	"save_all_on_build": false,
 	"select_file":
@@ -1563,6 +1610,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"home",
+				"test/views/home.lgd.php"
+			],
+			[
+				"index",
+				"test/index.php"
+			],
 			[
 				"mail",
 				"cv/application/config/mail.php"
@@ -1658,10 +1713,6 @@
 			[
 				"homecentral",
 				"cv/application/views/home/central_de_atendimento.blade.php"
-			],
-			[
-				"home",
-				"cv/application/controllers/home.php"
 			],
 			[
 				"central",
@@ -2070,10 +2121,6 @@
 			[
 				"conferir",
 				"public/js/remessa/conferir.js"
-			],
-			[
-				"conferir.js",
-				"public/js/remessa/conferir.js"
 			]
 		],
 		"width": 0.0
@@ -2086,7 +2133,7 @@
 		[
 			[
 				"",
-				"/var/www/cv/cardvantagens.sublime-project"
+				"/var/www/legendary/legendary.sublime-project"
 			]
 		],
 		"width": 380.0
