@@ -1,159 +1,137 @@
-## The PHPLegends\Assets Library
+## Table of contents
+
+- [\PHPLegends\Assets\Manager](#class-phplegendsassetsmanager)
+- [\PHPLegends\Assets\Assets](#class-phplegendsassetsassets)
+- [\PHPLegends\Assets\Concatenator](#class-phplegendsassetsconcatenator)
+- [\PHPLegends\Assets\Collections\CssCollection](#class-phplegendsassetscollectionscsscollection)
+- [\PHPLegends\Assets\Collections\AbstractCollection (abstract)](#class-phplegendsassetscollectionsabstractcollection-abstract)
+- [\PHPLegends\Assets\Collections\JavascriptCollection](#class-phplegendsassetscollectionsjavascriptcollection)
+- [\PHPLegends\Assets\Collections\CollectionInterface (interface)](#interface-phplegendsassetscollectionscollectioninterface)
+- [\PHPLegends\Assets\Collections\ImageCollection](#class-phplegendsassetscollectionsimagecollection)
+
+<hr /> 
+### Class: \PHPLegends\Assets\Manager
+
+| Visibility | Function |
+|:-----------|:---------|
+| public | <strong>__construct(</strong><em>array/[\PHPLegends\Assets\Collections\CollectionInterface](#interface-phplegendsassetscollectionscollectioninterface)[]</em> <strong>$collections=array()</strong>)</strong> : <em>void</em> |
+| public | <strong>__toString()</strong> : <em>string</em><br /><em>yes! this returns a string</em> |
+| public | <strong>add(</strong><em>string</em> <strong>$asset</strong>)</strong> : <em>\PHPLegends\Assets\PHPLegends\Assets\Manager</em> |
+| public | <strong>addArray(</strong><em>array</em> <strong>$assets</strong>)</strong> : <em>\PHPLegends\Assets\PHPLegends\Assets\Manager</em><br /><em>Add files according to order of elements</em> |
+| public | <strong>addCollection(</strong><em>[\PHPLegends\Assets\Collections\CollectionInterface](#interface-phplegendsassetscollectionscollectioninterface)</em> <strong>$collection</strong>)</strong> : <em>\PHPLegends\Assets\PHPLegends\Assets\Manager</em> |
+| public | <strong>addPathAlias(</strong><em>string</em> <strong>$name</strong>, <em>string</em> <strong>$directory</strong>)</strong> : <em>\PHPLegends\Assets\PHPLegends\Assets\Manager</em> |
+| public | <strong>getBasePath()</strong> : <em>string</em> |
+| public | <strong>getBaseUri()</strong> : <em>string</em> |
+| public | <strong>getFilenames()</strong> : <em>array</em> |
+| public | <strong>getTags()</strong> : <em>array</em> |
+| public | <strong>getVersion()</strong> : <em>string</em> |
+| public | <strong>output()</strong> : <em>string</em> |
+| public | <strong>parsePathAlias(</strong><em>string</em> <strong>$path</strong>)</strong> : <em>string</em> |
+| public | <strong>setBasePath(</strong><em>string</em> <strong>$path</strong>)</strong> : <em>[\PHPLegends\Assets\Manager](#class-phplegendsassetsmanager)</em> |
+| public | <strong>setBaseUri(</strong><em>string</em> <strong>$uri</strong>)</strong> : <em>\PHPLegends\Assets\PHPLegends\Assets\Manager</em> |
+| public | <strong>setVersion(</strong><em>string</em> <strong>$version</strong>)</strong> : <em>[\PHPLegends\Assets\Manager](#class-phplegendsassetsmanager)</em> |
+| protected | <strong>buildUrl(</strong><em>mixed</em> <strong>$asset</strong>)</strong> : <em>string</em> |
+| protected | <strong>collectionToMappedList(</strong><em>\callable</em> <strong>$callback</strong>)</strong> : <em>array</em> |
+| protected | <strong>extractPathAlias(</strong><em>string</em> <strong>$path</strong>)</strong> : <em>array</em> |
+| protected | <strong>findCollectionByFileExtension(</strong><em>string</em> <strong>$asset</strong>)</strong> : <em>\PHPLegends\Assets\PHPLegends\Assets\Manager</em> |
+| protected | <strong>mapCollection(</strong><em>[\PHPLegends\Assets\Collections\CollectionInterface](#interface-phplegendsassetscollectionscollectioninterface)</em> <strong>$collection</strong>, <em>\callable</em> <strong>$callback</strong>)</strong> : <em>array</em> |
+| protected | <strong>parsePathWildcards(</strong><em>string</em> <strong>$path</strong>, <em>string</em> <strong>$asset</strong>)</strong> : <em>string</em> |
+
+<hr /> 
+### Class: \PHPLegends\Assets\Assets
+
+| Visibility | Function |
+|:-----------|:---------|
+| public static | <strong>add(</strong><em>array</em> <strong>$assets</strong>)</strong> : <em>[\PHPLegends\Assets\Manager](#class-phplegendsassetsmanager)</em> |
+| public static | <strong>concatScript(</strong><em>string/array/array</em> <strong>$assets</strong>, <em>mixed/string/null</em> <strong>$filename=null</strong>)</strong> : <em>[\PHPLegends\Assets\Manager](#class-phplegendsassetsmanager)</em> |
+| public static | <strong>concatStyle(</strong><em>string/array/array</em> <strong>$assets</strong>, <em>mixed/string/null</em> <strong>$filename=null</strong>)</strong> : <em>[\PHPLegends\Assets\Manager](#class-phplegendsassetsmanager)</em> |
+| public static | <strong>config(</strong><em>array</em> <strong>$config</strong>)</strong> : <em>void</em> |
+| public static | <strong>image(</strong><em>string/array</em> <strong>$assets</strong>, <em>array</em> <strong>$attributes=array()</strong>)</strong> : <em>[\PHPLegends\Assets\Manager](#class-phplegendsassetsmanager)</em> |
+| public static | <strong>manager()</strong> : <em>[\PHPLegends\Assets\Manager](#class-phplegendsassetsmanager)</em><br /><em>Creates and configure the manager</em> |
+| public static | <strong>script(</strong><em>string/array</em> <strong>$assets</strong>, <em>array</em> <strong>$attributes=array()</strong>)</strong> : <em>[\PHPLegends\Assets\Manager](#class-phplegendsassetsmanager)</em> |
+| public static | <strong>style(</strong><em>string/array</em> <strong>$assets</strong>, <em>array</em> <strong>$attributes=array()</strong>)</strong> : <em>[\PHPLegends\Assets\Manager](#class-phplegendsassetsmanager)</em> |
+| protected static | <strong>buildCompileDirectory()</strong> : <em>string</em> |
+
+<hr /> 
+### Class: \PHPLegends\Assets\Concatenator
+
+| Visibility | Function |
+|:-----------|:---------|
+| public | <strong>__construct(</strong><em>array</em> <strong>$files</strong>)</strong> : <em>void</em> |
+| public | <strong>add(</strong><em>string</em> <strong>$file</strong>)</strong> : <em>[\PHPLegends\Assets\Concatenator](#class-phplegendsassetsconcatenator)</em> |
+| public static | <strong>create(</strong><em>array</em> <strong>$files</strong>)</strong> : <em>[\PHPLegends\Assets\Concatenator](#class-phplegendsassetsconcatenator)</em> |
+| public | <strong>getCache(</strong><em>string</em> <strong>$path</strong>, <em>mixed/string/null</em> <strong>$filename=null</strong>)</strong> : <em>\SplFileObject</em> |
+| public | <strong>save(</strong><em>string</em> <strong>$path</strong>, <em>mixed/string/null</em> <strong>$filename=null</strong>)</strong> : <em>\SplFileObject</em> |
+| public | <strong>setGlue(</strong><em>string</em> <strong>$glue</strong>)</strong> : <em>[\PHPLegends\Assets\Concatenator](#class-phplegendsassetsconcatenator)</em> |
+| protected | <strong>buildFilename(</strong><em>mixed</em> <strong>$path</strong>, <em>mixed</em> <strong>$filename=null</strong>)</strong> : <em>string</em> |
+| protected | <strong>generateFilename()</strong> : <em>string</em> |
+| protected | <strong>isCacheExpired(</strong><em>string</em> <strong>$filename</strong>)</strong> : <em>boolean</em> |
+
+<hr /> 
+### Class: \PHPLegends\Assets\Collections\CssCollection
+
+| Visibility | Function |
+|:-----------|:---------|
+| public | <strong>buildTag(</strong><em>mixed</em> <strong>$url</strong>)</strong> : <em>void</em> |
+| public | <strong>getAssetAlias()</strong> : <em>mixed</em> |
+| public | <strong>getExtensions()</strong> : <em>mixed</em> |
+
+*This class extends [\PHPLegends\Assets\Collections\AbstractCollection](#class-phplegendsassetscollectionsabstractcollection-abstract)*
+
+*This class implements [\PHPLegends\Assets\Collections\CollectionInterface](#interface-phplegendsassetscollectionscollectioninterface)*
+
+<hr /> 
+### Class: \PHPLegends\Assets\Collections\AbstractCollection (abstract)
+
+| Visibility | Function |
+|:-----------|:---------|
+| public | <strong>add(</strong><em>mixed</em> <strong>$asset</strong>)</strong> : <em>void</em> |
+| public | <strong>addArray(</strong><em>array</em> <strong>$assets</strong>)</strong> : <em>[\PHPLegends\Assets\Collections\AbstractCollection](#class-phplegendsassetscollectionsabstractcollection-abstract)</em> |
+| public | <strong>all()</strong> : <em>void</em> |
+| public | <strong>abstract buildTag(</strong><em>mixed</em> <strong>$url</strong>)</strong> : <em>void</em> |
+| public | <strong>abstract getAssetAlias()</strong> : <em>mixed</em> |
+| public | <strong>getAttributes()</strong> : <em>mixed</em><br /><em>Get attributes for tag build</em> |
+| public | <strong>setAttributes(</strong><em>array</em> <strong>$attributes</strong>)</strong> : <em>[\PHPLegends\Assets\Collections\AbstractCollection](#class-phplegendsassetscollectionsabstractcollection-abstract)</em> |
+| public | <strong>validateExtension(</strong><em>mixed</em> <strong>$asset</strong>)</strong> : <em>void</em> |
+| protected | <strong>createHtmlAttributes(</strong><em>array</em> <strong>$attributes</strong>)</strong> : <em>mixed</em> |
+
+*This class implements [\PHPLegends\Assets\Collections\CollectionInterface](#interface-phplegendsassetscollectionscollectioninterface)*
+
+<hr /> 
+### Class: \PHPLegends\Assets\Collections\JavascriptCollection
 
-This library provides an easy way to includes your assets in the project.
+| Visibility | Function |
+|:-----------|:---------|
+| public | <strong>buildTag(</strong><em>mixed</em> <strong>$asset</strong>)</strong> : <em>void</em> |
+| public | <strong>getAssetAlias()</strong> : <em>mixed</em> |
+| public | <strong>getExtensions()</strong> : <em>mixed</em> |
 
+*This class extends [\PHPLegends\Assets\Collections\AbstractCollection](#class-phplegendsassetscollectionsabstractcollection-abstract)*
 
-Instalation:
+*This class implements [\PHPLegends\Assets\Collections\CollectionInterface](#interface-phplegendsassetscollectionscollectioninterface)*
 
-```json
-{ 
-    "phplegends/assets" : "dev-master"
-}
-```
+<hr /> 
+### Interface: \PHPLegends\Assets\Collections\CollectionInterface
 
-See the example of configuration
+| Visibility | Function |
+|:-----------|:---------|
+| public | <strong>add(</strong><em>string</em> <strong>$asset</strong>)</strong> : <em>[\PHPLegends\Assets\Collections\CollectionInterface](#interface-phplegendsassetscollectionscollectioninterface)</em><br /><em>Add asset file to collection</em> |
+| public | <strong>all()</strong> : <em>array</em><br /><em>Get all items</em> |
+| public | <strong>buildTag(</strong><em>mixed</em> <strong>$asset</strong>)</strong> : <em>string</em><br /><em>Retrieves the content tag with url of asset</em> |
+| public | <strong>getAssetAlias()</strong> : <em>string</em><br /><em>Retrieves the alias of collection</em> |
+| public | <strong>getExtensions()</strong> : <em>array</em><br /><em>Get all extension accept by collection</em> |
+| public | <strong>validateExtension(</strong><em>string</em> <strong>$asset</strong>)</strong> : <em>boolean</em><br /><em>Validates the file extension of asset</em> |
 
-```php
+<hr /> 
+### Class: \PHPLegends\Assets\Collections\ImageCollection
 
-include_once 'vendor/autoload.php';
+| Visibility | Function |
+|:-----------|:---------|
+| public | <strong>buildTag(</strong><em>mixed</em> <strong>$asset</strong>)</strong> : <em>void</em> |
+| public | <strong>getAssetAlias()</strong> : <em>mixed</em> |
+| public | <strong>getExtensions()</strong> : <em>mixed</em> |
 
-use PHPLegends\Assets\Assets;
+*This class extends [\PHPLegends\Assets\Collections\AbstractCollection](#class-phplegendsassetscollectionsabstractcollection-abstract)*
 
-Assets::config([
-    'path'     => __DIR__ . '/public', // Folder containing the assets file
+*This class implements [\PHPLegends\Assets\Collections\CollectionInterface](#interface-phplegendsassetscollectionscollectioninterface)*
 
-    'base_uri' => '/public', // Base uri for asset. Can be used for another domains, for example
-
-    'compiled' => '_compiled_assets', // folder used for concatenator
-
-    'version'  => '1.0', //  Version added in assets to prevent browser cache
-]);
-```
-
-
-For the usage in css, javascript or image, do this:
-
-```php
-
-echo Assets::image('img/default.png');
-
-echo Assets::image('img/default.png', ['height' => 80]); 
-
-```
-
-```html
-<img src="/public/img/default.png" />
-<img src="/public/img/default.png" height="80" />
-
-```
-
-Example with `version` option defined: 
-
-```php
-
-echo Assets::style(['css/default.css']);
-
-echo Assets::script(['js/default.js', 'js/jquery.min.js'])
-
-```
-
-```html
-<link href="/public/css/default.css?_version=1.0" rel="stylesheet" type="text/css"/>
-<script src="/public/js/default.js?_version=1.0" type="text/javascript" ></script>
-<script src="/public/js/jquery.min.css?_version=1.0" type="text/javascript"></script>
-
-```
-
-#Concatenator
-
-
-In this Asset library, is possible concatenate javascript and css files. You can define the name of output optionally
-
-See this example:
-
-```php
-
-echo Assets::concatStyle(['css/default.css', 'css/reset.css', 'css/normalize.css'], 'output.css');
-
-echo Assets::concatStyle(['css/default.css', 'css/reset.css', 'css/normalize.css']);
-
-echo Asset::concatScript(['js/default.js', 'js/app.js']);
-
-```
-
-```html
-
-<link href="/public/_compiled_assets/output.css" rel="stylesheet" type="text/css" />
-
-<link href="/public/_compiled_assets/1ad453afa3564564fab3445.css" rel="stylesheet" type="text/css" />
-
-<script src="/public/_compiled_assets/1ad453afa3564564fab3445.js" type="text/javascript"></script>
-
-```
-
-
-
-#Alias for Paths
-
-
-You can create simple alias for paths. 
-
-Example:
-
-
-```php
-
-Assets::config([
-   // ...
-     'path_aliases' => [
-           'css.bootstrap' => 'css/dist/bootstrap'
-     ]
-   // ...
-]);
-
-echo Assets::style('css.bootstrap:bootstrap.min.css');
-
-```
-
-
-The output:
-
-```html
-<link 
-    href="/public/css/dist/bootstrap/bootstrap.min.css?_version=1.0" 
-    rel="stylesheet" 
-    type="text/css" 
-/>
-
-```
-
-
-For the dinamic alias generate, you will can use `{folder}` wildcard
-
-```php
-
-Assets::config([
-    'path_aliases' => [
-        'admin.site'  => '{folder}/admin/site'
-    ]
-]);
-
-
-echo Assets::style('admin.site:index.css');
-
-echo Assets::script('admin.site:index.js');
-
-```
-
-
-Output:
-
-```html
-<link 
-    href="/public/css/admin/site/index.css" 
-    rel="stylesheet" type="text/css" 
-/>
-
-<script src="/public/js/admin/site/index.js" type="text/javascript"></script>
-
-```
