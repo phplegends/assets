@@ -83,14 +83,15 @@ class ImageResizer
     }
 
     /**
-    * @param 
+    * @param string $directory
+    * @param string|null $filename
     * @return string
     */
-    protected function buildFilename($path, $filename = null)
+    protected function buildFilename($directory, $filename = null)
     {
         $filename = ($filename) ? $filename : $this->generateFilename();
 
-        $filename = rtrim($path, '/') . '/' . $filename;
+        $filename = rtrim($directory, '/') . '/' . $filename;
 
         return $filename;
     }  
@@ -106,6 +107,7 @@ class ImageResizer
 
     /**
     * Generate a filename
+    * @return string
     */
     protected function generateFilename()
     {

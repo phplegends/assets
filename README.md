@@ -157,3 +157,21 @@ Output:
 <script src="/public/js/admin/site/index.js" type="text/javascript"></script>
 
 ```
+
+
+
+#Image resize
+
+
+```php
+
+echo Assets::imageResize('img/user.png', ['height' => 20]);
+
+
+```
+
+```php
+
+<img src="/img/_compiled_assets/96bc8ba221fe12e2fecac2e846987763.png" height="20" />
+
+```

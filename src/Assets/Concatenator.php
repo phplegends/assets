@@ -42,7 +42,6 @@ class Concatenator
     */
     public function add($file)
     {
-
         if (! file_exists($file)) {
 
             throw new \UnexpectedValueException("File {$file} doesn't exists");

@@ -8,7 +8,8 @@ use PHPLegends\Assets\Collections\CssCollection;
 use PHPLegends\Assets\Collections\CollectionInterface;
 
 /**
-* @author Wallace de Souza Vizerra <wallacemaxters@gmail.com>
+* @author Wallace de Souza Vizerra <wallacemaxters@gmail.com>]
+* This class is a facade acessor to \PHPLegends\Assets\Manager
 *
 * @method \PHPLegends\Assets\Manager style(string $asset, array $attributes)
 * @method \PHPLegends\Assets\Manager script(string $asset, array $attributes)
@@ -56,7 +57,7 @@ class Assets
     }
 
     /**
-    * @static
+    * Return the method of \PHPLegends\Assets\Manager magically
     * @param string $method
     * @param array $arguments
     * @return mixed
