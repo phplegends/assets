@@ -2,11 +2,17 @@
 
 namespace PHPLegends\Assets;
 
+
 use PHPLegends\Assets\Collections\CollectionInterface;
 use PHPLegends\Assets\Collections\CssCollection;
 use PHPLegends\Assets\Collections\JavascriptCollection;
+use PHPLegends\Assets\Collections\ImageCollection;
 
-class Manager
+/**
+* @author Wallace de Souza Vizerra <wallacemaxters@gmail.com>
+* @see {@link https://github.com/phplegends/assets/blob/master/API.md#class-phplegendsassetsmanager}
+*/
+class Manager implements \IteratorAggregate
 {
     /**
     * @var array
@@ -29,7 +35,7 @@ class Manager
     protected $basePath;
 
     /**
-    * @var string|null
+    * @var string|callable
     */
     protected $version;
 
@@ -68,6 +74,14 @@ class Manager
         $this->paths[$name] = '/' . trim($directory, '/');
 
         return $this;
+    }
+
+    /**
+    * @return array
+    */
+    public function getPathAliases()
+    {
+        return $this->paths;
     }
     
     /**
@@ -121,7 +135,6 @@ class Manager
 
         throw new \InvalidArgumentException($message);
         
-
         return null;
     }
 
@@ -144,6 +157,17 @@ class Manager
         return $this->collectionToMappedList(function($item, $collection)
         {
             return $this->getBasePath() . $item;
+        });
+    }
+
+    /**
+    * @return array
+    */
+    public function getUrls()
+    {
+        return $this->collectionToMappedList(function ($item) {
+
+            return $this->buildUrl($item);
         });
     }
 
@@ -210,23 +234,6 @@ class Manager
     }
 
     /**
-    * @param \PHPLegends\Assets\Collection\CollectionInterface
-    * @param callable $callback
-    * @return array
-    */
-    protected function mapCollection(CollectionInterface $collection, callable $callback)
-    {
-        $items = [];
-
-        foreach ((array) $collection->all() as $item)  {
-
-            $items[] = $callback($item, $collection);
-        }
-
-        return $items;
-    }
-
-    /**
     * @param callable $callback
     * @return array
     */
@@ -237,7 +244,7 @@ class Manager
         foreach ($this->collections as $collection) {
 
             $items = array_merge(
-                $items, $this->mapCollection($collection, $callback)
+                $items, $collection->map($callback)
             );
         }
 
@@ -293,18 +300,19 @@ class Manager
     */
     protected function parsePathWildcards($path, $asset)
     {
-
         $collection = $this->findCollectionByFileExtension($asset);
 
         return strtr($path, ['{folder}' => $collection->getAssetAlias()]);
     }
 
     /**
-    * @param string $version
+    * Defines the version of assets
+    * @param string|callable $version
     * @return \PHPLegends\Assets\Manager
     */
     public function setVersion($version)
     {
+
         $this->version = $version;
 
         return $this;
@@ -323,14 +331,289 @@ class Manager
     */
     protected function buildUrl($asset)
     {
-        $version = $this->getVersion();
+        $version = $this->buildVersion($asset);
 
         if ($version !== null) {
 
-            $asset .= '?' . http_build_query(['_version' => $this->getVersion()]);
+            $asset .= '?' . http_build_query(['_version' => $version]);
         }
 
         return $this->getBaseUri() . $asset;
+    }
+
+    /**
+    * Build the version of the asset. 
+    * If callable is given, the arguments are full filename and this instance
+    * @param string $asset
+    * @return string|null
+    */
+    protected function buildVersion($asset)
+    {
+        $version = $this->getVersion();
+
+        if (is_callable($version)) {
+
+            $version = $version($this->getBasePath() . $asset, $this);
+        }
+
+        return $version;
+    }
+
+    /**
+    * Erases all collections
+    * @return \PHPLegends\Assets\Manager
+    **/
+    public function clear()
+    {
+        $this->collections = [];
+
+        return $this;
+    }
+
+    /**
+    * Clone the manager to create a manager (width the current configuration)
+    * of only javascripts and stylesheets
+    * @param array $assets
+    * @return \PHPLegends\Assets\Manager
+    */
+    public function mixed(array $assets)
+    {
+        $manager = clone $this;
+
+        $manager->clear()
+                ->addCollection(new CssCollection)
+                ->addCollection(new JavascriptCollection)
+                ->addArray($assets);
+
+        return $manager;
+    }
+
+    /**
+    * Clone the manager to create a manager (width the current configuration)
+    * of only image
+    * @return \PHPLegends\Assets\Manager
+    */
+    public function image($assets, array $attributes = [])
+    {
+
+        $manager = clone $this;
+
+        $collection = (new ImageCollection)->setAttributes($attributes);
+
+        $manager->clear()
+                ->addCollection($collection)
+                ->addArray((array) $assets);
+
+        return $manager;
+
+    }
+
+    /**
+    * Resize the images
+    * of only image
+    * @return \PHPLegends\Assets\Manager
+    */
+    public function imageResize($assets, array $attributes = [])
+    {
+        if (! isset($attributes['height'])) {
+
+            throw new \InvalidArgumentException('The argumento #height is required in attributes array');
+        }
+
+        $height = $attributes['height'];
+
+        $width = isset($attributes['width']) ? $attributes['width'] : null;
+
+        $images = [];
+
+        $directory = $this->buildCompileDirectory();
+
+        foreach ($this->image($assets)->getFilenames() as $file) {
+
+            $outputFile = ImageResizer::create($file, $height, $width)
+                                ->getCache($directory)
+                                ->getFilename();
+
+            $images[] = $this->getCompileDirectory() . '/' . $outputFile;
+        }
+
+        return $this->image($images, $attributes);
+    }
+
+    /**
+    * Creates a clone of this manager (to mantains the same configuraions),
+    * with only CssCollection
+    *
+    * @param string|array $assets
+    * @param array $attributes
+    * @param string|array $assets
+    */
+    public function style($assets, array $attributes = [])
+    {
+
+        $manager = clone $this;
+
+        $collection = (new CssCollection)->setAttributes($attributes);
+
+        $manager->clear()
+                ->addCollection($collection)
+                ->addArray((array) $assets);
+
+        return $manager;
+    }
+
+
+    /**
+    * Creates a clone of this manager (to mantains the same configuraions),
+    * with only JavascriptCollection
+    *
+    * @param string|array $assets
+    * @param array $attributes
+    * @param string|array $assets
+    */
+    public function script($assets, array $attributes = [])
+    {
+
+        $manager = clone $this;
+
+        $collection = (new JavascriptCollection)->setAttributes($attributes);
+
+        $manager->clear()
+                ->addCollection($collection)
+                ->addArray((array) $assets);
+
+        return $manager;
+    }
+
+    /**
+    * Sets the directory for story the compilations (for example, the concatenations)
+    * @param string $directory
+    * @return \PHPLegends\Assets\Manager
+    */
+    public function setCompileDirectory($directory)
+    {
+        $this->compiledDirectory = rtrim($directory, '/');
+
+        return $this;
+    }
+
+    /**
+    * Gets the compile directory
+    * @return string
+    */
+    public function getCompileDirectory()
+    {
+        return $this->compiledDirectory;
+    }
+
+
+    /**
+    * Build the directory name of the compile. If directory not exists, it's created.
+    * @return string
+    */
+    protected function buildCompileDirectory()
+    {
+        $directory = $this->getBasePath() . '/' . $this->getCompileDirectory();
+
+        if (! is_dir($directory)) mkdir($directory, 0777, true);
+
+        return $directory;
+    }
+
+    /**
+    * @param string|array $assets
+    * @param string|null $filename
+    * @return \PHPLegends\Assets\Manager
+    */
+    public function concatScript(array $assets, $filename = null)
+    {
+        $manager = $this->script($assets);
+
+        $directory = $this->buildCompileDirectory();
+
+        $files = $manager->getFilenames();
+
+        $outputFile = Concatenator::create($files)
+                                    ->setGlue(';')
+                                    ->getCache($directory, $filename);
+
+        $concatOutput = $this->getCompileDirectory() . '/' . $outputFile->getFilename();
+
+        return $this->script($concatOutput);
+    }
+
+    /**
+    * @param string|array $assets
+    * @param string|null $filename
+    * @return \PHPLegends\Assets\Manager
+    */
+
+    public function concatStyle(array $assets, $filename = null)
+    {
+        $manager = $this->style($assets);
+
+        $directory = $this->buildCompileDirectory();
+
+        $files = $manager->getFilenames();
+
+        $outputFile = Concatenator::create($files)->getCache($directory, $filename);
+
+        $concatOutput = $this->getCompileDirectory() . '/' . $outputFile->getFilename();
+
+        return $this->style($concatOutput);
+    }
+
+    
+    /**
+    * Creates and configure the manager via array options
+    * @return \PHPLegends\Assets\Manager
+    */
+    public static function createFromConfig(array $config)
+    {
+        $manager = new self([
+            new CssCollection,
+            new JavascriptCollection,
+            new ImageCollection
+        ]);
+
+        if (isset($config['base_uri'])) {
+
+            $manager->setBaseUri($config['base_uri']);
+        }
+
+        if (isset($config['path'])) {
+
+            $manager->setBasePath($config['path']);
+        }
+
+        if (isset($config['path_aliases']) && is_array($config['path_aliases'])) {
+
+            foreach ($config['path_aliases'] as $alias => $path) {
+
+                $manager->addPathAlias($alias, $path);
+            }   
+        }
+
+        if (isset($config['compiled'])) {
+
+            $manager->setCompileDirectory($config['compiled']);
+        }
+
+        if (isset($config['version'])) {
+
+            $manager->setVersion($config['version']);
+        }
+
+        return $manager;
+    }
+
+    /**
+    * Iterates with tags
+    * @return \ArrayIterator
+    */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->getTags());
     }
 
 }

@@ -9,6 +9,10 @@ use PHPLegends\Assets\Collections\CollectionInterface;
 
 /**
 * @author Wallace de Souza Vizerra <wallacemaxters@gmail.com>
+*
+* @method \PHPLegends\Assets\Manager style(string $asset, array $attributes)
+* @method \PHPLegends\Assets\Manager script(string $asset, array $attributes)
+* @method \PHPLegends\Assets\Manager image(string $asset, array $attributes)
 */
 class Assets
 {
@@ -32,152 +36,75 @@ class Assets
     }
 
     /**
-    * @param string|array $assets
-    * @param array $attributes
-    * @return \PHPLegends\Assets\Manager
-    */
-    public static function image($assets, array $attributes = [])
-    {
-        $collection = (new ImageCollection)->setAttributes($attributes);
-
-        return static::manager()->addCollection($collection)->addArray((array) $assets);
-    }
-
-    /**
-    * @param string|array $assets
-    * @param array $attributes
-    * @return \PHPLegends\Assets\Manager
-    */
-    public static function style($assets, array $attributes = [])
-    {
-        $collection = (new CssCollection)->setAttributes($attributes);
-
-        return static::manager()->addCollection($collection)->addArray((array) $assets);
-    }
-
-    /**
+    * Alias for add|addArray method of Manager
     * @param array $assets
     * @return \PHPLegends\Assets\Manager
     */
     public static function add(array $assets)
     {
-        return  static::manager()
-                            ->addCollection(new CssCollection)
-                            ->addCollection(new JavascriptCollection)
-                            ->addArray($assets);
+        return static::manager()->addArray($assets);
     }
 
     /**
-    * @param string|array $assets
-    * @param array $attributes
-    * @return \PHPLegends\Assets\Manager
-    */
-
-    public static function script($assets, array $attributes = [])
-    {
-        $collection = (new JavascriptCollection)->setAttributes($attributes);
-
-        return static::manager()
-                      ->addCollection($collection)
-                      ->addArray((array) $assets);
-    }
-
-
-    /**
-    * @param string|array $assets
-    * @param string|null $filename
-    * @return \PHPLegends\Assets\Manager
-    */
-    public static function concatScript(array $assets, $filename = null)
-    {
-        $manager = static::script($assets);
-
-        $directory = static::buildCompileDirectory($manager->getBasePath());
-
-        $files = $manager->getFilenames();
-
-        $outputFile = Concatenator::create($files)
-                                    ->setGlue(';')
-                                    ->getCache($directory, $filename);
-
-        $concatOutput = static::$config['compiled'] . '/' . $outputFile->getFilename();
-
-        return static::script($concatOutput);
-    }
-
-    /**
-    * @param string|array $assets
-    * @param string|null $filename
-    * @return \PHPLegends\Assets\Manager
-    */
-
-    public static function concatStyle(array $assets, $filename = null)
-    {
-        $manager = static::style($assets);
-
-        $directory = static::buildCompileDirectory();
-
-        $files = $manager->getFilenames();
-
-        $outputFile = (new Concatenator($files))->getCache($directory, $filename);
-
-        $concatOutput = static::$config['compiled'] . '/' . $outputFile->getFilename();
-
-        return static::style($concatOutput);
-    }
-
-    /**
-    * @return string
-    */
-    protected static function buildCompileDirectory()
-    {
-        $directory = static::$config['path'] . '/' . static::$config['compiled'];
-
-        if (! is_dir($directory)) {
-
-            mkdir($directory, 0777, true);
-        }
-
-        return $directory;
-    }
-
-    /**
-    * Creates and configure the manager
+    * Create Manager with storage static config
+    * @static
     * @return \PHPLegends\Assets\Manager
     */
     public static function manager()
     {
-        $manager = new Manager;
+        return Manager::createFromConfig(static::$config);
+    }
 
-        // Defines the nampesace globally
+    /**
+    * @static
+    * @param string $method
+    * @param array $arguments
+    * @return mixed
+    */
+    public static function __callStatic($method, array $arguments)
+    {
+        $manager = static::manager();
 
-        if (isset(static::$config['base_uri'])) {
+        if (! method_exists($manager, $method)) {
 
-            $manager->setBaseUri(static::$config['base_uri']);
+            throw new BadMethodCallException(sprintf(
+                    'The method "%s::%s" does not exists',
+                    get_class($manager),
+                    $method
+                )
+            );
         }
 
-        if (isset(static::$config['path'])) {
+        $count_arguments = count($arguments);
 
-            $manager->setBasePath(static::$config['path']);
+        switch ($count_arguments) {
 
-            // Trata o path para não haver barras desnecessárias
-
-            static::$config['path'] = $manager->getBasePath();
+            case 0:
+                $result = $manager->$method();
+                break;
+            case 1:
+                $result = $manager->$method($arguments[0]);
+                break;
+            case 2:
+                $result = $manager->$method($arguments[0], $arguments[1]);
+                break;
+            case 3:
+                $result = $manager->$method($arguments[0], $arguments[1], $arguments[2]);
+                break;
+            case 4:
+                $result = $manager->$method($arguments[0], $arguments[1], $arguments[2], $arguments[3]);
+                break;
+            case 5:
+                $result = $manager->$method($arguments[0], $arguments[1], $arguments[2], $arguments[3], $arguments[4]);
+                break;
+            
+            default:
+                $result = call_user_func_array([$method, $method], $arguments);
+                break;
         }
 
-        if (isset(static::$config['path_aliases']) ) {
-
-            foreach ((array) static::$config['path_aliases'] as $alias => $path) {
-
-                $manager->addPathAlias($alias, $path);
-            }   
-        }
-
-        if (isset(static::$config['version'])) {
-
-            $manager->setVersion(static::$config['version']);
-        }
-        return $manager;
+        return $result;
+        
     }
 
 }

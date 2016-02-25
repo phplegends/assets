@@ -33,7 +33,7 @@ class AssetTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             (string) Assets::style('css.home:index.css'),
-            '<link href="/assets/css/home/index.css" rel="stylesheet" type="text/css"/>'
+            '<link href="/assets/css/home/index.css" rel="stylesheet" type="text/css" />'
         );
     }
 
@@ -57,7 +57,7 @@ class AssetTest extends PHPUnit_Framework_TestCase
             ]
         ]);
 
-        $manager = Assets::add([]);
+        $manager = Assets::manager();
 
         $this->assertEquals(
             $manager->parsePathAlias('admin:index.js'),
@@ -124,7 +124,7 @@ class AssetTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             $image_tag,
-            '<img src="http://site.com/assets/img/teste.jpg"/>'
+            '<img src="http://site.com/assets/img/teste.jpg" />'
         );
     }
 }
@@ -158,7 +158,7 @@ class TestCollection implements Collections\CollectionInterface
         return ['txt', 'pdf'];
     }
 
-    public function all()
+    public function map(callable $callback = null)
     {
         return $this->items;
     }

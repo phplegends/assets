@@ -21,7 +21,7 @@ class CssCollection extends AbstractCollection
 
         $attr = $this->createHtmlAttributes($attributes);
 
-        return "<link {$attr}/>";
+        return "<link {$attr} />";
     }
 
     public function getExtensions()

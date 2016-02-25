@@ -28,10 +28,10 @@ interface CollectionInterface
     public function getAssetAlias();
 
     /**
-    * Get all items
+    * Map all items
     * @return array
     */
-    public function all();
+    public function map(callable $callback = null);
 
     /**
     * Get all extension accept by collection
@@ -46,4 +46,5 @@ interface CollectionInterface
     * @return boolean
     */
     public function validateExtension($asset);
+
 }

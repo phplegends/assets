@@ -68,9 +68,18 @@ abstract class AbstractCollection implements CollectionInterface
     /**
     * @{inheritdoc}
     */
-    public function all()
+    public function map(callable $callback = null)
     {
-        return $this->items;
+        if ($callback === null) return $this->items;
+
+        $items = [];
+
+        foreach ($this->items as $item) {
+            
+            $items[] = $callback($item, $this);
+        }
+
+        return $items;
     }
 
     /**

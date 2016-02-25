@@ -16,7 +16,7 @@ class ImageCollection extends AbstractCollection
 
         $attr = $this->createHtmlAttributes($attributes);
 
-        return "<img {$attr}/>";
+        return "<img {$attr} />";
     }
 
     public function getExtensions()

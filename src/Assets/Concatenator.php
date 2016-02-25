@@ -73,7 +73,7 @@ class Concatenator
     {
         $cachedfile = $this->buildFilename($path, $filename);
 
-        if (! file_exists($cachedfile) || $this->isCacheExpired($cachedfile))
+        if (! file_exists($cachedfile) || $this->isExpiredCache($cachedfile))
         {
             $this->save($path, $filename);
         }
@@ -105,7 +105,7 @@ class Concatenator
                 $newFile->fwrite($line . PHP_EOL);
             } 
 
-            if (substr($line, -1) !== $this->glue) {
+            if (isset($line) && substr($line, -1) !== $this->glue) {
 
                 $newFile->fwrite($this->glue);
             }
@@ -142,7 +142,7 @@ class Concatenator
     * @param string $filename
     * @return boolean
     */
-    protected function isCacheExpired($filename)
+    protected function isExpiredCache($filename)
     {
 
         $modified = filemtime($filename);
