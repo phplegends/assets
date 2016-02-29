@@ -6,7 +6,6 @@ namespace PHPLegends\Assets;
 use PHPLegends\Assets\Collections\CollectionInterface;
 use PHPLegends\Assets\Collections\CssCollection;
 use PHPLegends\Assets\Collections\JavascriptCollection;
-use PHPLegends\Assets\Collections\ImageCollection;
 
 /**
 * @author Wallace de Souza Vizerra <wallacemaxters@gmail.com>
@@ -389,58 +388,6 @@ class Manager implements \IteratorAggregate
     }
 
     /**
-    * Clone the manager to create a manager (width the current configuration)
-    * of only image
-    * @return \PHPLegends\Assets\Manager
-    */
-    public function image($assets, array $attributes = [])
-    {
-
-        $manager = clone $this;
-
-        $collection = (new ImageCollection)->setAttributes($attributes);
-
-        $manager->clear()
-                ->addCollection($collection)
-                ->addArray((array) $assets);
-
-        return $manager;
-
-    }
-
-    /**
-    * Resize the images
-    * of only image
-    * @return \PHPLegends\Assets\Manager
-    */
-    public function imageResize($assets, array $attributes = [])
-    {
-        if (! isset($attributes['height'])) {
-
-            throw new \InvalidArgumentException('The argumento #height is required in attributes array');
-        }
-
-        $height = $attributes['height'];
-
-        $width = isset($attributes['width']) ? $attributes['width'] : null;
-
-        $images = [];
-
-        $directory = $this->buildCompileDirectory();
-
-        foreach ($this->image($assets)->getFilenames() as $file) {
-
-            $outputFile = ImageResizer::create($file, $height, $width)
-                                ->getCache($directory)
-                                ->getFilename();
-
-            $images[] = $this->getCompileDirectory() . '/' . $outputFile;
-        }
-
-        return $this->image($images, $attributes);
-    }
-
-    /**
     * Creates a clone of this manager (to mantains the same configuraions),
     * with only CssCollection
     *
@@ -572,8 +519,7 @@ class Manager implements \IteratorAggregate
     {
         $manager = new self([
             new CssCollection,
-            new JavascriptCollection,
-            new ImageCollection
+            new JavascriptCollection
         ]);
 
         if (isset($config['base_uri'])) {

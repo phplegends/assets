@@ -3,7 +3,6 @@
 namespace PHPLegends\Assets;
 
 use PHPLegends\Assets\Collections\JavascriptCollection;
-use PHPLegends\Assets\Collections\ImageCollection;
 use PHPLegends\Assets\Collections\CssCollection;
 use PHPLegends\Assets\Collections\CollectionInterface;
 
@@ -13,7 +12,6 @@ use PHPLegends\Assets\Collections\CollectionInterface;
 *
 * @method \PHPLegends\Assets\Manager style(string $asset, array $attributes)
 * @method \PHPLegends\Assets\Manager script(string $asset, array $attributes)
-* @method \PHPLegends\Assets\Manager image(string $asset, array $attributes)
 */
 class Assets
 {

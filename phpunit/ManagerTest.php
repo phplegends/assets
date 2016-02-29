@@ -21,7 +21,6 @@ class ManagerTest extends PHPUnit_Framework_TestCase
         $this->manager->addPathAlias('admin', 'assets/{folder}/admin');
 
         $tests = [
-            'image' => ['admin:teste.png', '<img src="/assets/img/admin/teste.png" />'],
             'style' => ['admin:teste.css', '<link href="/assets/css/admin/teste.css" rel="stylesheet" type="text/css" />'],
             'script'=> ['admin:teste.js', '<script src="/assets/js/admin/teste.js" type="text/javascript"></script>']
         ];
@@ -67,7 +66,7 @@ class ManagerTest extends PHPUnit_Framework_TestCase
         $anotherManager = $manager->concatStyle(['css/default.css', 'css/reset.css'], 'output.css');
 
         $this->assertEquals(
-            '<link href="/assets/_compiled/output.css" rel="stylesheet" type="text/css" />',
+            '<link href="/assets/_compiled_created_by_phpunit_test/output.css" rel="stylesheet" type="text/css" />',
             (string) $anotherManager
         );  
 
@@ -144,8 +143,6 @@ class ManagerTest extends PHPUnit_Framework_TestCase
             $manager->getPathAliases(),
             'The array not contain "admin"'
         );
-
-        var_dump($manager->add('admin:default.js')->output());
 
 
     }

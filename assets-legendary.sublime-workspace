@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"cache",
+				"cacheModified"
+			],
+			[
+				"P",
+				"ServiceProvider〔class〕"
+			],
+			[
 				"build",
 				"buildCompileDirectory"
 			],
@@ -130,10 +138,6 @@
 			[
 				"sol",
 				"$solicitacoes〔variable〕"
-			],
-			[
-				"cache",
-				"cacheEnabled"
 			],
 			[
 				"save",
@@ -510,52 +514,16 @@
 			[
 				"confirma",
 				"confirma_senha"
-			],
-			[
-				"r",
-				"rgb(〔value〕"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "src/Assets/Assets.php",
+			"file": "test/temp/96bc8ba221fe12e2fecac2e846987763",
 			"settings":
 			{
-				"buffer_size": 2925,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Assets/Manager.php",
-			"settings":
-			{
-				"buffer_size": 13689,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "test/views/view.php",
-			"settings":
-			{
-				"buffer_size": 552,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Assets/ImageResizer.php",
-			"settings":
-			{
-				"buffer_size": 2080,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "composer.json",
-			"settings":
-			{
-				"buffer_size": 817,
+				"buffer_size": 406,
 				"line_ending": "Unix"
 			}
 		}
@@ -567,10 +535,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 36.0,
+		"height": 400.0,
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"mard",
+				"Markdown Preview: Preview in Browser"
+			],
 			[
 				"insta",
 				"Package Control: Install Package"
@@ -1145,33 +1117,38 @@
 	"expanded_folders":
 	[
 		"/var/www/assets",
-		"/var/www/assets/src",
-		"/var/www/assets/src/Assets",
 		"/var/www/assets/test",
-		"/var/www/assets/test/_compiled_assets",
-		"/var/www/assets/test/assets/js",
 		"/var/www/assets/test/views"
 	],
 	"file_history":
 	[
+		"/var/www/assets/test/views/view.php",
+		"/var/www/assets/src/Assets/Manager.php",
+		"/var/www/assets/src/Assets/ImageResizer.php",
+		"/var/www/assets/vendor/gregwar/image/Gregwar/Image/Image.php",
+		"/var/www/assets/composer.json",
+		"/var/www/assets/src/Assets/LaravelProvider/AssetsProvider.php",
+		"/var/www/assets/src/Assets/LaravelProvider/Assets.php",
+		"/var/www/assets/src/Assets/LaravelProvider/Assets].php",
+		"/var/www/assets/vendor/illuminate/support/Illuminate/Support/Facades/Facade.php",
+		"/var/www/assets/vendor/illuminate/support/Illuminate/Support/ServiceProvider.php",
+		"/var/www/assets/vendor/illuminate/support/Illuminate/Support/helpers.php",
+		"/var/www/assets/src/Assets/Assets.php",
+		"/var/www/assets/README.md",
+		"/var/www/assets/API.md",
+		"/var/www/assets/test/index.php",
 		"/var/www/assets/src/Assets/Concatenator.php",
+		"/var/www/assets/test/assets/css/home/hello.css",
 		"/var/www/assets/vendor/phplegends/legendary/src/legendary/View.php",
 		"/var/www/assets/test/_compiled_assets/dda62cb6ab68d9f32a5cb310ca35d142.png",
-		"/var/www/assets/vendor/gregwar/image/Gregwar/Image/Image.php",
 		"/var/www/assets/vendor/gregwar/image/Gregwar/Image/Source/Source.php",
 		"/var/www/assets/vendor/gregwar/image/Gregwar/Image/Adapter/GD.php",
-		"/var/www/assets/test/views/view.php",
 		"/var/www/assets/src/Assets/FileSystemInterface.php",
-		"/var/www/assets/src/Assets/Manager.php",
 		"/var/www/assets/phpunit/ManagerTest.php",
 		"/var/www/assets/phpunit/AssetTest.php",
-		"/var/www/assets/src/Assets/Assets.php",
 		"/var/www/assets/src/Assets/Collections/CssCollection.php",
-		"/var/www/assets/test/index.php",
 		"/var/www/assets/src/Assets/README.md",
-		"/var/www/assets/composer.json",
 		"/var/www/assets/.gitignore",
-		"/var/www/assets/API.md",
 		"/var/www/assets/markdown",
 		"/var/www/assets/test/views/home.lgd.php",
 		"/var/www/assets/assets-legendary.sublime-project",
@@ -1328,6 +1305,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"MockInterface",
+			"concat",
 			"buildFilename",
 			"filemt",
 			"isCacheExpired",
@@ -1453,9 +1432,7 @@
 			"min.min.",
 			"(?!\\.min)\\.js",
 			"char",
-			"return",
-			".css",
-			"min.min."
+			"return"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1508,158 +1485,35 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/Assets/Assets.php",
-					"semi_transient": false,
+					"file": "test/temp/96bc8ba221fe12e2fecac2e846987763",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 2925,
+						"buffer_size": 406,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1645,
-								1645
+								214,
+								214
 							]
 						],
 						"settings":
 						{
-							"auto_complete": false,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 905.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/Assets/Manager.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 13689,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8851,
-								8851
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 7438.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "test/views/view.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 552,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								486,
-								486
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/Assets/ImageResizer.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2080,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								698,
-								698
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 329.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "composer.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 817,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								574,
-								574
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -1667,7 +1521,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 38.0
+		"height": 21.0
 	},
 	"input":
 	{
@@ -1708,7 +1562,7 @@
 	"project": "assets-legendary.sublime-project",
 	"replace":
 	{
-		"height": 48.0
+		"height": 40.0
 	},
 	"save_all_on_build": false,
 	"select_file":
@@ -1717,6 +1571,50 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"manager",
+				"src/Assets/Manager.php"
+			],
+			[
+				"gregwarimage",
+				"vendor/gregwar/image/Gregwar/Image/Image.php"
+			],
+			[
+				"image",
+				"src/Assets/ImageResizer.php"
+			],
+			[
+				"gregwar",
+				"vendor/gregwar/image/Gregwar/Image/Image.php"
+			],
+			[
+				"mana",
+				"src/Assets/Manager.php"
+			],
+			[
+				"facade",
+				"vendor/illuminate/support/Illuminate/Support/Facades/Facade.php"
+			],
+			[
+				"helpers",
+				"vendor/illuminate/support/Illuminate/Support/helpers.php"
+			],
+			[
+				"servce",
+				"vendor/illuminate/support/Illuminate/Support/ServiceProvider.php"
+			],
+			[
+				"serve",
+				"vendor/illuminate/support/Illuminate/Support/ServiceProvider.php"
+			],
+			[
+				"asset",
+				"src/Assets/Assets.php"
+			],
+			[
+				"index.",
+				"test/index.php"
+			],
 			[
 				"view",
 				"vendor/phplegends/legendary/src/legendary/View.php"
@@ -1730,23 +1628,11 @@
 				"vendor/gregwar/image/Gregwar/Image/Source/Source.php"
 			],
 			[
-				"gregwar",
-				"vendor/gregwar/image/Gregwar/Image/Image.php"
-			],
-			[
-				"gregwarimage",
-				"vendor/gregwar/image/Gregwar/Image/Image.php"
-			],
-			[
 				"maa",
 				"src/Assets/Manager.php"
 			],
 			[
 				"manage",
-				"src/Assets/Manager.php"
-			],
-			[
-				"mana",
 				"src/Assets/Manager.php"
 			],
 			[
@@ -1756,10 +1642,6 @@
 			[
 				"css",
 				"src/Assets/Collections/CssCollection.php"
-			],
-			[
-				"asset",
-				"src/Assets/Assets.php"
 			],
 			[
 				"home",
@@ -2200,34 +2082,6 @@
 			[
 				"remessaco",
 				"app/controllers/RemessaController.php"
-			],
-			[
-				"remesa",
-				"app/models/Remessa.php"
-			],
-			[
-				"sol",
-				"app/controllers/SolicitacaoController.php"
-			],
-			[
-				"remessa",
-				"app/controllers/RemessaController.php"
-			],
-			[
-				"solici",
-				"app/models/Solicitacao.php"
-			],
-			[
-				"viewconf",
-				"src/legendary/ViewConfig.php"
-			],
-			[
-				"inter",
-				"src/legendary/Engine/Interpreter.php"
-			],
-			[
-				"view.php",
-				"src/legendary/View.php"
 			]
 		],
 		"width": 0.0
@@ -2240,7 +2094,15 @@
 		[
 			[
 				"",
-				"/var/www/legendary/legendary.sublime-project"
+				"/var/www/assets-laravel/laravel-assets.sublime-project"
+			],
+			[
+				"th",
+				"/var/www/thumb/thumb.sublime-project"
+			],
+			[
+				"unibh",
+				"/var/www/unibh/unibh-identidade-estudantil.sublime-project"
 			]
 		],
 		"width": 380.0
@@ -2262,7 +2124,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 316.0,
+	"side_bar_width": 494.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

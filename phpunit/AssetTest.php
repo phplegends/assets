@@ -111,22 +111,6 @@ class AssetTest extends PHPUnit_Framework_TestCase
 
     }
 
-
-    public function testImage()
-    {
-
-        Assets::config([
-            'version' => null,
-            'base_uri' => 'http://site.com/assets'
-        ]);
-
-        $image_tag = Assets::image('img/teste.jpg')->output();
-
-        $this->assertEquals(
-            $image_tag,
-            '<img src="http://site.com/assets/img/teste.jpg" />'
-        );
-    }
 }
 
 class TestCollection implements Collections\CollectionInterface
