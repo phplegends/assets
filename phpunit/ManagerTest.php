@@ -156,10 +156,7 @@ class ManagerTest extends PHPUnit_Framework_TestCase
             'path_aliases' => [
                 'admin' => '{folder}/admin',
             ],
-            'version' =>  function ($file)
-            {
-                return is_file($file) ?  md5_file($file) : '1.0';
-            }
+            'version' =>  '123456'
         ]);
 
 
@@ -172,9 +169,37 @@ class ManagerTest extends PHPUnit_Framework_TestCase
         // Css are ordened first than Javascriot
         
         $this->assertEquals(
-            'http://localhost:8000/assets/js/admin/default.js?_version=3ee7ba0a657110425903181bcb0459c7',
+            'http://localhost:8000/assets/js/admin/default.js?_version=123456',
             $manager->getUrls()[1]
         );
+    }
+
+
+    public function testUrl()
+    {
+
+        $manager = Manager::createFromConfig([
+            'compiled' => '_compiled/',
+            'path'     => __DIR__ . '/../test/assets',
+            'base_uri' => 'http://localhost:8000/assets',
+            'path_aliases' => [
+
+                'admin'     => '{folder}/admin',
+
+                'logos' => 'img/logos'
+            ],
+
+            // Be careful, in PHP, float 1.0 are converted to "1"
+            'version' => '1.0',
+        ]);
+
+        $url = $manager->url('logos:default.png');
+
+        $this->assertEquals(
+            'http://localhost:8000/assets/img/logos/default.png?_version=1.0',
+            $url
+        );
+
     }
 
 }

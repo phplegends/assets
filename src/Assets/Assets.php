@@ -55,6 +55,17 @@ class Assets
     }
 
     /**
+    * Create a url for a any asset
+    * @param string $url
+    * @return string
+    */
+
+    public static function url($asset)
+    {
+        return Manager::createEmptyManagerFromConfig(static::$config)->url($asset);
+    }
+
+    /**
     * Return the method of \PHPLegends\Assets\Manager magically
     * @param string $method
     * @param array $arguments

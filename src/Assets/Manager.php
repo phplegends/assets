@@ -13,6 +13,8 @@ use PHPLegends\Assets\Collections\JavascriptCollection;
 */
 class Manager implements \IteratorAggregate
 {
+
+    const FOLDER_WILDCARD = '{folder}';
     /**
     * @var array
     */
@@ -268,9 +270,10 @@ class Manager implements \IteratorAggregate
 
     /**
     * @param string $path
+    * @param boolean $useWildcard
     * @return string
     */
-    public function parsePathAlias($path)
+    public function parsePathAlias($path, $useWilcard = true)
     {
         list($alias, $asset) = $this->extractPathAlias($path);
 
@@ -287,7 +290,10 @@ class Manager implements \IteratorAggregate
 
         $path = $this->paths[$alias];
 
-        $path = $this->parsePathWildcards($path, $asset);
+        if ($useWilcard) {
+
+            $path = $this->parsePathWildcards($path, $asset);
+        }
 
         return $path . $asset;
     }
@@ -301,7 +307,9 @@ class Manager implements \IteratorAggregate
     {
         $collection = $this->findCollectionByFileExtension($asset);
 
-        return strtr($path, ['{folder}' => $collection->getAssetAlias()]);
+        return strtr($path, [
+            static::FOLDER_WILDCARD => $collection->getAssetAlias()
+        ]);
     }
 
     /**
@@ -512,15 +520,29 @@ class Manager implements \IteratorAggregate
 
     
     /**
-    * Creates and configure the manager via array options
+    * Creates and configure a manager instance via array options
+    * @param array $config
     * @return \PHPLegends\Assets\Manager
     */
     public static function createFromConfig(array $config)
     {
-        $manager = new self([
-            new CssCollection,
-            new JavascriptCollection
-        ]);
+        $manager = static::createEmptyManagerFromConfig($config);
+
+        $manager->addCollection(new CssCollection)
+                ->addCollection(new JavascriptCollection);
+
+        return $manager;
+       
+    }
+
+    /**
+    * Creates and configure a empty manager instance via array options
+    * @param array $config
+    * @return \PHPLegends\Assets\Manager
+    */
+    public static function createEmptyManagerFromConfig(array $config)
+    {
+        $manager = new self();
 
         if (isset($config['base_uri'])) {
 
@@ -562,5 +584,17 @@ class Manager implements \IteratorAggregate
         return new \ArrayIterator($this->getTags());
     }
 
-}
+    /**
+    * Create an url to a any asset. Is a way to use images with this class
+    * @param string $asset
+    * @return string
+    */
 
+    public function url($asset)
+    {   
+        $url = $this->parsePathAlias($asset, false);
+
+        return $this->buildUrl($url);
+    }
+
+}

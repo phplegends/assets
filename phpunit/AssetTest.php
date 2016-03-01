@@ -111,6 +111,31 @@ class AssetTest extends PHPUnit_Framework_TestCase
 
     }
 
+
+    public function testUrl()
+    {
+
+        $manager = Assets::config([
+            'compiled' => '_compiled/',
+            'path'     => __DIR__ . '/../test/assets',
+            'base_uri' => 'http://localhost:8000/assets',
+            'path_aliases' => [
+                'logos' => 'img/logos'
+            ],
+
+            // Be careful, in PHP, float 1.0 are converted to "1"
+            'version' => '1.0',
+        ]);
+
+        $url = Assets::url('logos:default.png');
+
+        $this->assertEquals(
+            'http://localhost:8000/assets/img/logos/default.png?_version=1.0',
+            $url
+        );
+
+    }
+
 }
 
 class TestCollection implements Collections\CollectionInterface
