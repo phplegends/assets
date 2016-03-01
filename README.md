@@ -31,22 +31,6 @@ Assets::config([
 ```
 
 
-For the usage in css, javascript or image, do this:
-
-```php
-
-echo Assets::image('img/default.png');
-
-echo Assets::image('img/default.png', ['height' => 80]); 
-
-```
-
-```html
-<img src="/public/img/default.png" />
-<img src="/public/img/default.png" height="80" />
-
-```
-
 Example with `version` option defined: 
 
 ```php
@@ -155,23 +139,5 @@ Output:
 />
 
 <script src="/public/js/admin/site/index.js" type="text/javascript"></script>
-
-```
-
-
-
-#Image resize
-
-
-```php
-
-echo Assets::imageResize('img/user.png', ['height' => 20]);
-
-
-```
-
-```php
-
-<img src="/img/_compiled_assets/96bc8ba221fe12e2fecac2e846987763.png" height="20" />
 
 ```

@@ -2,3 +2,4 @@ vendor
 assets-legendary.sublime-project
 test
 ./markdown
+composer.lock

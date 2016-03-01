@@ -520,10 +520,10 @@
 	"buffers":
 	[
 		{
-			"file": "test/temp/96bc8ba221fe12e2fecac2e846987763",
+			"file": "composer.json",
 			"settings":
 			{
-				"buffer_size": 406,
+				"buffer_size": 739,
 				"line_ending": "Unix"
 			}
 		}
@@ -1117,23 +1117,25 @@
 	"expanded_folders":
 	[
 		"/var/www/assets",
-		"/var/www/assets/test",
-		"/var/www/assets/test/views"
+		"/var/www/assets/src",
+		"/var/www/assets/src/Assets"
 	],
 	"file_history":
 	[
-		"/var/www/assets/test/views/view.php",
+		"/var/www/assets/phpunit/ManagerTest.php",
 		"/var/www/assets/src/Assets/Manager.php",
+		"/var/www/assets/phpunit/AssetTest.php",
+		"/var/www/assets/src/Assets/Assets.php",
+		"/var/www/assets/composer.json",
+		"/var/www/assets/test/views/view.php",
 		"/var/www/assets/src/Assets/ImageResizer.php",
 		"/var/www/assets/vendor/gregwar/image/Gregwar/Image/Image.php",
-		"/var/www/assets/composer.json",
 		"/var/www/assets/src/Assets/LaravelProvider/AssetsProvider.php",
 		"/var/www/assets/src/Assets/LaravelProvider/Assets.php",
 		"/var/www/assets/src/Assets/LaravelProvider/Assets].php",
 		"/var/www/assets/vendor/illuminate/support/Illuminate/Support/Facades/Facade.php",
 		"/var/www/assets/vendor/illuminate/support/Illuminate/Support/ServiceProvider.php",
 		"/var/www/assets/vendor/illuminate/support/Illuminate/Support/helpers.php",
-		"/var/www/assets/src/Assets/Assets.php",
 		"/var/www/assets/README.md",
 		"/var/www/assets/API.md",
 		"/var/www/assets/test/index.php",
@@ -1144,8 +1146,6 @@
 		"/var/www/assets/vendor/gregwar/image/Gregwar/Image/Source/Source.php",
 		"/var/www/assets/vendor/gregwar/image/Gregwar/Image/Adapter/GD.php",
 		"/var/www/assets/src/Assets/FileSystemInterface.php",
-		"/var/www/assets/phpunit/ManagerTest.php",
-		"/var/www/assets/phpunit/AssetTest.php",
 		"/var/www/assets/src/Assets/Collections/CssCollection.php",
 		"/var/www/assets/src/Assets/README.md",
 		"/var/www/assets/.gitignore",
@@ -1243,7 +1243,7 @@
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 41.0
 	},
 	"find_in_files":
 	{
@@ -1305,6 +1305,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"img",
+			"im",
+			"image",
+			"img",
+			"image",
 			"MockInterface",
 			"concat",
 			"buildFilename",
@@ -1427,12 +1432,7 @@
 			"tmt-form",
 			";\n",
 			"borderInputColor",
-			"bgInputColor",
-			"?>\n",
-			"min.min.",
-			"(?!\\.min)\\.js",
-			"char",
-			"return"
+			"bgInputColor"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1490,27 +1490,29 @@
 			[
 				{
 					"buffer": 0,
-					"file": "test/temp/96bc8ba221fe12e2fecac2e846987763",
+					"file": "composer.json",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 406,
+						"buffer_size": 739,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								214,
-								214
+								503,
+								503
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 288.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1521,7 +1523,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 21.0
+		"height": 32.0
 	},
 	"input":
 	{
@@ -1562,7 +1564,7 @@
 	"project": "assets-legendary.sublime-project",
 	"replace":
 	{
-		"height": 40.0
+		"height": 60.0
 	},
 	"save_all_on_build": false,
 	"select_file":
@@ -2094,7 +2096,11 @@
 		[
 			[
 				"",
-				"/var/www/assets-laravel/laravel-assets.sublime-project"
+				"/var/www/thumb-laravel/laravel-thumb.sublime-project"
+			],
+			[
+				"una",
+				"/var/www/unabh/una-identidade-estudantil.sublime-project"
 			],
 			[
 				"th",
@@ -2124,7 +2130,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 494.0,
+	"side_bar_width": 412.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
