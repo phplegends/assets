@@ -526,7 +526,7 @@ class Manager implements \IteratorAggregate
     */
     public static function createFromConfig(array $config)
     {
-        $manager = static::createEmptyManagerFromConfig($config);
+        $manager = static::createEmptyFromConfig($config);
 
         $manager->addCollection(new CssCollection)
                 ->addCollection(new JavascriptCollection);
@@ -540,7 +540,7 @@ class Manager implements \IteratorAggregate
     * @param array $config
     * @return \PHPLegends\Assets\Manager
     */
-    public static function createEmptyManagerFromConfig(array $config)
+    public static function createEmptyFromConfig(array $config)
     {
         $manager = new self();
 

@@ -62,7 +62,7 @@ class Assets
 
     public static function url($asset)
     {
-        return Manager::createEmptyManagerFromConfig(static::$config)->url($asset);
+        return Manager::createEmptyFromConfig(static::$config)->url($asset);
     }
 
     /**
